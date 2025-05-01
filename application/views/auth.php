@@ -22,6 +22,8 @@
                     <div class="row">
                         <div class="col">
                                 <img class="mx-auto d-block" src="<?= base_url('assets/image/logo-sn.png') ?>" height="300" width="300" />
+                                <h4 class="text-center">Selamat Datang di Taman Pedia</h4>
+                                <p class="text-center">Silahkan Masukkan PIN Anda</p>
                                 <form method="post" action="<?= base_url('auth'); ?>">
                                     <?= $this->session->flashdata('message'); ?>
                                     <div class="form-group position-relative has-icon-left mb-4">
@@ -35,7 +37,7 @@
                                     </div>
                                     <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" type="submit">Log in</button>
                                 </form>
-                            <div class="text-center">
+                            <div class="mt-10 text-center">
                                 <p>2025 &copy; Jadicuan Developer V.01 Beta</p>
                             </div>
                         </div>
