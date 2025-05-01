@@ -42,6 +42,8 @@
 
     <i class="header-toggle d-xl-none bi bi-list"></i>
 
+	<!-- Menu -->
+
     <nav id="navmenu" class="navmenu">
       <ul>
         <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i><span>Home</span></a></li>
@@ -65,8 +67,9 @@
       <div class="container" data-aos="zoom-out">
         <div class="row justify-content-center">
           <div class="col-lg-9">
-            <h2>Brandon Johnson</h2>
-            <p>I'm <span class="typed" data-typed-items="Designer, Developer, Freelancer, Photographer">Designer</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+            <h2>Tamanpedia</h2>
+			<h5>Kampung Tamansari RT02 RW05 Kel.Krandegan Banjarnegara</h5>
+            <p>World <span class="typed" data-typed-items="Beautiful, Lovely, Peaceful, Wonderful">Lovely</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
             <div class="social-links">
               <a href="#"><i class="bi bi-twitter-x"></i></a>
               <a href="#"><i class="bi bi-facebook"></i></a>
