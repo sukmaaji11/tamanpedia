@@ -782,7 +782,7 @@
                         }
                         $('#data-pengeluaran').html(html);
                     } else {
-                        $('#data-pengeluaran').html(response);
+                        $('#data-pengeluaran').html('<div class="card"> <div class="card-content"> <div class="card-body"> <h6 class="text-center">Tidak Ada Data</h6> </div></div></div>');
                     }
                 }
             });
