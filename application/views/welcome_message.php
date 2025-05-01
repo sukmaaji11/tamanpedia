@@ -62,13 +62,14 @@
     <!-- Hero Section -->
     <section id="hero" class="hero section light-background">
 
-      <img src="assets/img/hero-bg.jpg" alt="">
+      <img src="<?= base_url('assets/template/landing/assets/img/hero-bg.jpg')?>" alt="" class="hero-bg" data-aos="zoom-out" data-aos-delay="100">
 
       <div class="container" data-aos="zoom-out">
         <div class="row justify-content-center">
           <div class="col-lg-9">
             <h2>Tamanpedia</h2>
-			<h5>Kampung Tamansari RT02 RW05 Kel.Krandegan Banjarnegara</h5>
+			<hr />
+			<p>Kampung Tamansari RT02 RW05 Kel.Krandegan Banjarnegara<p>
             <p>World <span class="typed" data-typed-items="Beautiful, Lovely, Peaceful, Wonderful">Lovely</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
             <div class="social-links">
               <a href="#"><i class="bi bi-twitter-x"></i></a>
