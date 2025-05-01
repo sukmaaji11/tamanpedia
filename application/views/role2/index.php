@@ -15,8 +15,8 @@
                 <div class="card-header">
                     <h4 class="card-title">Dana Tersedia</h4>
                 </div>
-                <div class="card-body">
-               
+                <div class="card-body" id="dana-tersedia">
+                    Rp. 0
                 </div>
                 <div class="d-block text-center mb-3">
                     <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Pemasukan</button>
@@ -523,6 +523,7 @@
             getToday();
             getMonth();
             getYear();
+            renderPemasukan();
             renderPengeluaran();
         });
 
