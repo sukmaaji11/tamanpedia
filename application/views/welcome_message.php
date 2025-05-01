@@ -810,7 +810,7 @@
   <script src="<?= base_url('assets/template/landing/assets/vendor/swiper/swiper-bundle.min.js')?>"></script>
 
   <!-- Main JS File -->
-  <script src="<?= base_url('assets/template/landing/assets/js/main.js'?>"></script>
+  <script src="<?= base_url('assets/template/landing/assets/js/main.js')?>"></script>
 
 </body>
 
