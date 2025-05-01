@@ -18,9 +18,11 @@
                 <div class="card-body">
                
                 </div>
+            </div>  
+            <div class="d-block text-center mb-3">
+                <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Pemasukan</button>
+                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Pengeluaran</button>
             </div>
-                    <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Pemasukan</button>
-                    <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Pengeluaran</button>
             <hr />
             <!-- Section 2 -->
             <h6 class="card-title mb-2">Data Pemasukan</h6>
