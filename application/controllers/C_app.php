@@ -73,7 +73,7 @@ class C_app extends CI_Controller
         $data = [
             'kategori_id'   => $this->input->post('kategori_id'),
             'kategori'  => $this->input->post('kategori'),
-            'kategori_role' $this->input->post('kategori_role')
+            'kategori_role' => $this->input->post('kategori_role'),
         ];
 
         $this->M_kategori->add($data);
