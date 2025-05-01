@@ -79,6 +79,11 @@ $route['pengeluaran'] = 'C_pengeluaran';
 $route['pengeluaran/(:any)'] = 'C_pengeluaran/$1';
 $route['pengeluaran/(:any)/(:any)'] = 'C_pengeluaran/$1/$2';
 
+//Pemasukan
+$route['pemasukan'] = 'C_pemasukan';
+$route['pemasukan/(:any)'] = 'C_pemasukan/$1';
+$route['pemasukan/(:any)/(:any)'] = 'C_pemasukan/$1/$2';
+
 //Dashboard
 $route['dashboard'] = 'C_dashboard';
 
