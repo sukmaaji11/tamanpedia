@@ -112,6 +112,11 @@
                         for (i = 0; i < response.length; i++) {
                             html += '<tr>';
                             html += '   <td class="">' + response[i].kategori + '</td>';
+                            if(response[i].kategori_role = 1) {
+                                html += '<td class="">Pemasukan</td>';
+                            } else  {
+                                html += '<td class="">Pengeluaran</td>';
+                            }
                             html += '   <td class="">';
                             html += '       <button class="btn btn-danger btn-sm btn-delete-kategori" data-id="' + response[i].kategori_id + '">Delete</button>';
                             html += '   </td>';
