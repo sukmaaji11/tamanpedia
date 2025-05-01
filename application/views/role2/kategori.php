@@ -25,9 +25,9 @@
                         </div>
                         <div class="form-group position-relative has-icon-left">
                              <select class="form form-select" id="kategori_role">
-                                    <option value=" ">--Pilih Jenis Kategori--</option>
+                                    <option value="">--Pilih Jenis Kategori--</option>
                                     <option value="1">Pemasukan</option>
-                                    <option value="2">Pengeluran</option>
+                                    <option value="2">Pengeluaran</option>
                             </select>
                         </div>
                         <div style="float: right;">

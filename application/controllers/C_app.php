@@ -75,6 +75,9 @@ class C_app extends CI_Controller
             'kategori_role' => $this->input->post('kategori_role'),
         ];
 
+        var_dump($data);
+        die;
+
         $this->M_kategori->add($data);
 
         redirect('app/kategori');
