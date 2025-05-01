@@ -22,10 +22,9 @@
                     <div class="row">
                         <div class="col">
                             <div id="auth-left">
-                                <img class="mx-auto d-block mb-5" src="<?= base_url('assets/image/logo-sn.png') ?>" height="100" width="130" />
+                                <img class="mx-auto d-block mb-5" src="<?= base_url('assets/image/logo-sn.png') ?>" height="130" width="130" />
                                 <div class="auth-logo">
-                                    <h1 class="title text-center">Taman</h1>
-                                    <h1 class="title text-center">Pedia</h1>
+                                    <h1 class="title text-center">Taman Pedia</h1>
                                 </div>
                                 <form method="post" action="<?= base_url('auth'); ?>">
                                     <?= $this->session->flashdata('message'); ?>
