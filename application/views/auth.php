@@ -21,7 +21,6 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <div id="auth-left">
                                 <img class="mx-auto d-block" src="<?= base_url('assets/image/logo-sn.png') ?>" height="300" width="300" />
                                 <form method="post" action="<?= base_url('auth'); ?>">
                                     <?= $this->session->flashdata('message'); ?>
@@ -36,7 +35,6 @@
                                     </div>
                                     <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" type="submit">Log in</button>
                                 </form>
-                            </div>
                             <div class="text-center">
                                 <p>2025 &copy; Jadicuan Developer V.01 Beta</p>
                             </div>
