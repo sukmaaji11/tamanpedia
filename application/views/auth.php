@@ -22,9 +22,8 @@
                     <div class="row">
                         <div class="col">
                             <div id="auth-left">
-                                <img class="mx-auto d-block mb-5" src="<?= base_url('assets/image/logo-sn.png') ?>" height="300" width="300" />
                                 <div class="auth-logo">
-                                    <h1 class="title text-center">Taman Pedia</h1>
+                                    <img class="mx-auto d-block mb-5" src="<?= base_url('assets/image/logo-sn.png') ?>" height="300" width="300" />
                                 </div>
                                 <form method="post" action="<?= base_url('auth'); ?>">
                                     <?= $this->session->flashdata('message'); ?>
