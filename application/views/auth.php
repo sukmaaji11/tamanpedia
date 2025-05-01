@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - SN Admin Dashboard</title>
+    <title>Dashboard - Taman Pedia</title>
     <link rel="stylesheet" href="<?= base_url('assets/template/mazer/css/main/app.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/template/mazer/css/pages/auth.css') ?>">
     <link rel="shortcut icon" href="<?= base_url('assets/image/logo-sn.png') ?>" type="image/x-icon">
@@ -24,8 +24,8 @@
                             <div id="auth-left">
                                 <img class="mx-auto d-block mb-5" src="<?= base_url('assets/image/logo-sn.png') ?>" height="100" width="130" />
                                 <div class="auth-logo">
-                                    <h1 class="title text-center">SYS</h1>
-                                    <h1 class="title text-center">Pengeluaran</h1>
+                                    <h1 class="title text-center">Taman</h1>
+                                    <h1 class="title text-center">Pedia</h1>
                                 </div>
                                 <form method="post" action="<?= base_url('auth'); ?>">
                                     <?= $this->session->flashdata('message'); ?>
@@ -42,7 +42,7 @@
                                 </form>
                             </div>
                             <div class="text-center">
-                                <p>2022 &copy; Dev-SN V.01 Beta</p>
+                                <p>2025 &copy; Jadicuan Developer V.01 Beta</p>
                             </div>
                         </div>
                     </div>
