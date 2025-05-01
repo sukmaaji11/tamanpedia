@@ -5,24 +5,25 @@
                     <div class="d-block">
                         <img src="<?= base_url('assets/image/logo-sn.png') ?>" alt="Logo" width="100" height="75">
                     </div>
-                    <h3>Pengeluaran SN</h3>
-                    <p class="text-subtitle text-muted">Sistem Keuangan SN.</p>
+                    <h3>Dashboard</h3>
+                    <p class="text-subtitle text-muted">Keuangan Tamanpedia</p>
                 </div>
             </div>
         </div>
         <section class="section">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Tambah Pengeluaran</h4>
+                    <h4 class="card-title">Dana Tersedia</h4>
                 </div>
                 <div class="card-body">
-                    <button class="btn btn-small btn-success" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Tambah</button>
+                    <button class="btn btn-small btn-success" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Tambah Pemasukan</button>
+                    <button class="btn btn-small btn-success" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Tambah Pengeluaran</button>
                 </div>
             </div>
 
             <hr />
             <!-- Section 2 -->
-            <h6 class="card-title mb-2">Data Pengeluaran</h6>
+            <h6 class="card-title mb-2">Data Pemasukan</h6>
             <div class="row">
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
@@ -48,13 +49,30 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+               <!-- Section 2 -->
+            <h6 class="card-title mb-2">Data Pengeluaran</h6>
+            <div class="row">
                 <div class="col-6 col-lg-3 col-md-6">
                     <div class="card">
                         <div class="card-body px-4 py-4-5">
                             <div class="row">
                                 <div class="col">
-                                    <h6 class="text-muted font-semibold">Tahun ini</h6>
-                                    <h6 class="font-extrabold mb-0" id="pengeluaran_tahun_ini">112.000</h6>
+                                    <h6 class="text-muted font-semibold">Hari ini</h6>
+                                    <h6 class="font-extrabold mb-0" id="pengeluaran_hari_ini">112.000</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-4 py-4-5">
+                            <div class="row">
+                                <div class="col">
+                                    <h6 class="text-muted font-semibold">Bulan ini</h6>
+                                    <h6 class="font-extrabold mb-0" id="pengeluaran_bulan_ini">112.000</h6>
                                 </div>
                             </div>
                         </div>
