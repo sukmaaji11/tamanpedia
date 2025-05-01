@@ -5,8 +5,8 @@
                     <div class="d-block">
                         <img src="<?= base_url('assets/image/logo-sn.png') ?>" alt="Logo" width="100" height="75">
                     </div>
-                    <h3>Pengeluaran SN</h3>
-                    <p class="text-subtitle text-muted">Sistem Keuangan SN.</p>
+                    <h3>Kategori</h3>
+                    <p class="text-subtitle text-muted">Kagegori Tamanpedia</p>
                 </div>
             </div>
         </div>
@@ -22,6 +22,12 @@
                             <div class="form-control-icon">
                                 <i class="bi bi-tag"></i>
                             </div>
+                        </div>
+                        <div class="form-group position-relative has-icon-left">
+                             <select class="form form-select" id="kategori_role">
+                                    <option value="1">Pemasukan</option>
+                                    <option value="2">Pengeluran</option>
+                            </select>
                         </div>
                         <div style="float: right;">
                             <button type="submit" class="btn btn btn-success">+ Tambah</button>

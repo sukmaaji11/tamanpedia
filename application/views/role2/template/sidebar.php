@@ -41,16 +41,16 @@
                         </a>
                     </li>
                     <!-- Sidebar Title -->
-                    <li class="sidebar-item" id="sidebar-pengeluaran">
+                    <li class="sidebar-item" id="sidebar-pemasukan">
                         <a href="<?= base_url('pemasukan') ?>" class='sidebar-link'>
-                            <i class="bi bi-wallet2"></i>
+                            <i class="bi bi-cash-coin"></i>
                             <span>Pemasukan</span>
                         </a>
                     </li>
                     <!-- Sidebar Title -->
                     <li class="sidebar-item" id="sidebar-pengeluaran">
                         <a href="<?= base_url('pengeluaran') ?>" class='sidebar-link'>
-                            <i class="bi bi-wallet2"></i>
+                            <i class="bi bi-cash"></i>
                             <span>Pengeluaran</span>
                         </a>
                     </li>
