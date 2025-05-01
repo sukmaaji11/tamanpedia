@@ -18,11 +18,12 @@
                 <div class="card-body">
                
                 </div>
+                <div class="d-block text-center mb-3">
+                    <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Pemasukan</button>
+                    <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Pengeluaran</button>
+                </div>
             </div>  
-            <div class="d-block text-center mb-3">
-                <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Pemasukan</button>
-                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Pengeluaran</button>
-            </div>
+
             <hr />
             <!-- Section 2 -->
             <h6 class="card-title mb-2">Data Pemasukan</h6>
@@ -85,7 +86,7 @@
             <hr />
             <!-- Section 3 -->
             <h6 class="card-title mb-2">Pemasukan Terbaru</h6>
-            <div class="col-12" id="data-pengeluaran">
+            <div class="col-12" id="data-pemasukan">
 
             </div>
             <a href="<?= base_url('pengeluaran') ?>" class="btn btn-sm btn-primary">Selengkapnya</a>
@@ -760,6 +761,34 @@
         })
 
         function renderPengeluaran() {
+            $.ajax({
+                url: '<?= base_url('pengeluaran/get_data') ?>',
+                async: true,
+                type: 'POST',
+                dataType: 'json',
+                success: function(response) {
+                    var i;
+                    var html = '';
+                    if (response.length != 0) {
+                        for (i = 0; i < 5; i++) {
+                            html += '<div class="card">';
+                            html += '<div class="card-content">';
+                            html += '<div class="card-body">';
+                            html += '<p class="text-right" style="text-align:right;">' + response[i].pengeluaran_tgl + '</p>';
+                            html += '<h6 class="">' + response[i].pengeluaran + '</h6>';
+                            html += '<p>' + response[i].pengeluaran_keterangan + '</p>';
+                            html += '<hr />';
+                            html += '<h6>Rp. ' + formatRupiah(response[i].pengeluaran_total) + '</h6>';
+                            html += '</div></div></div>';
+                        }
+                        $('#data-pemasukan').html(html);
+                    } else {
+                        $('#data-pemasukan').html('<div class="card"> <div class="card-content"> <div class="card-body"> <h6 class="text-center">Tidak Ada Data</h6> </div></div></div>');
+                    }
+                }
+            });
+
+            function renderPemasukan() {
             $.ajax({
                 url: '<?= base_url('pengeluaran/get_data') ?>',
                 async: true,
