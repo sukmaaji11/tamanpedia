@@ -51,7 +51,7 @@
                     <li class="sidebar-item" id="sidebar-laporan">
                         <a href="<?= base_url('laporan') ?>" class='sidebar-link'>
                             <i class="bi bi-newspaper"></i>
-                            <span>Laporan</span>
+                            <span>Cetak Laporan</span>
                         </a>
                     </li>
                     <!-- Sidebar Title -->
