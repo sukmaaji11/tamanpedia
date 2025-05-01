@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Index - MyResume Bootstrap Template</title>
+  <title>Tamanpedia - Krandegan</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -88,12 +88,12 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>About</h2>
+        <h2>Tentang Kami</h2>
         <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-
+	<!-- UI/UX Designer & Web Developer 
         <div class="row gy-4 justify-content-center">
           <div class="col-lg-4">
             <img src="assets/img/profile-img.jpg" class="img-fluid" alt="">
@@ -131,20 +131,20 @@
 
       </div>
 
-    </section><!-- /About Section -->
+    </section> /About Section -->
 
     <!-- Stats Section -->
     <section id="stats" class="stats section">
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-
+		<h2>Administrasi Penduduk</h2>
         <div class="row gy-4">
 
           <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
             <i class="bi bi-emoji-smile"></i>
             <div class="stats-item">
               <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Happy Clients</p>
+              <p>Total Penduduk</p>
             </div>
           </div><!-- End Stats Item -->
 
@@ -152,7 +152,7 @@
             <i class="bi bi-journal-richtext"></i>
             <div class="stats-item">
               <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Projects</p>
+              <p>Laki-Laki</p>
             </div>
           </div><!-- End Stats Item -->
 
@@ -160,7 +160,7 @@
             <i class="bi bi-headset"></i>
             <div class="stats-item">
               <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Hours Of Support</p>
+              <p>Perempuan</p>
             </div>
           </div><!-- End Stats Item -->
 
@@ -168,7 +168,7 @@
             <i class="bi bi-people"></i>
             <div class="stats-item">
               <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
-              <p>Hard Workers</p>
+              <p>Kepala Keluarga</p>
             </div>
           </div><!-- End Stats Item -->
 
@@ -183,7 +183,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Skills</h2>
+        <h2>APBD DESA 202X</h2>
         <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
       </div><!-- End Section Title -->
 
@@ -194,52 +194,18 @@
           <div class="col-lg-6">
 
             <div class="progress">
-              <span class="skill"><span>HTML</span> <i class="val">100%</i></span>
+              <span class="skill"><span>Pendapatan Desa</span> <i class="val">100%</i></span>
               <div class="progress-bar-wrap">
                 <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div><!-- End Skills Item -->
 
             <div class="progress">
-              <span class="skill"><span>CSS</span> <i class="val">90%</i></span>
+              <span class="skill"><span>Belanja Desa</span> <i class="val">90%</i></span>
               <div class="progress-bar-wrap">
                 <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div><!-- End Skills Item -->
-
-            <div class="progress">
-              <span class="skill"><span>JavaScript</span> <i class="val">75%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
-
-          </div>
-
-          <div class="col-lg-6">
-
-            <div class="progress">
-              <span class="skill"><span>PHP</span> <i class="val">80%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
-
-            <div class="progress">
-              <span class="skill"><span>WordPress/CMS</span> <i class="val">90%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
-
-            <div class="progress">
-              <span class="skill"><span>Photoshop</span> <i class="val">55%</i></span>
-              <div class="progress-bar-wrap">
-                <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div><!-- End Skills Item -->
-
-          </div>
 
         </div>
 
@@ -252,7 +218,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Resume</h2>
+        <h2>Sejarah Desa</h2>
         <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
       </div><!-- End Section Title -->
 
@@ -273,21 +239,29 @@
               </ul>
             </div><!-- Edn Resume Item -->
 
+			<!--   
+
             <h3 class="resume-title">Education</h3>
             <div class="resume-item">
               <h4>Master of Fine Arts &amp; Graphic Design</h4>
               <h5>2015 - 2016</h5>
               <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
               <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
-            </div><!-- Edn Resume Item -->
+            </div>Edn Resume Item -->
 
+			<!--
+			<div class="resume-item">
+			  <h4>Master of Fine Arts &amp; Graphic Design</h4>
+			  <h5>2015 - 2016</h5>
+			  <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
+			  <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p>
             <div class="resume-item">
               <h4>Bachelor of Fine Arts &amp; Graphic Design</h4>
               <h5>2010 - 2014</h5>
               <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
               <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p>
             </div><!-- Edn Resume Item -->
-
+			<!--
           </div>
 
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
@@ -302,8 +276,8 @@
                 <li>Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the design</li>
                 <li>Oversee the efficient use of production project budgets ranging from $2,000 - $25,000</li>
               </ul>
-            </div><!-- Edn Resume Item -->
-
+            </div> Edn Resume Item -->
+			<!--
             <div class="resume-item">
               <h4>Graphic design specialist</h4>
               <h5>2017 - 2018</h5>
@@ -314,7 +288,7 @@
                 <li>Recommended and consulted with clients on the most appropriate graphic design</li>
                 <li>Created 4+ design presentations and proposals a month for clients and account managers</li>
               </ul>
-            </div><!-- Edn Resume Item -->
+            </div> Edn Resume Item -->
 
           </div>
 
@@ -329,7 +303,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Portfolio</h2>
+        <h2>Gallery</h2>
         <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
       </div><!-- End Section Title -->
 
@@ -339,9 +313,9 @@
 
           <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
             <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">App</li>
-            <li data-filter=".filter-product">Card</li>
-            <li data-filter=".filter-branding">Web</li>
+            <li data-filter=".filter-app">Kesenian</li>
+            <li data-filter=".filter-product">Kegiatan</li>
+            <li data-filter=".filter-branding">Produk</li>
           </ul><!-- End Portfolio Filters -->
 
           <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
@@ -449,7 +423,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Services</h2>
+        <h2>Layanan</h2>
         <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
       </div><!-- End Section Title -->
 
@@ -561,7 +535,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Testimonials</h2>
+        <h2>Apa kata mereka?</h2>
         <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
       </div><!-- End Section Title -->
 
@@ -771,8 +745,8 @@
 
   <footer id="footer" class="footer position-relative light-background">
     <div class="container">
-      <h3 class="sitename">Brandon Johnson</h3>
-      <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
+      <h3 class="sitename">Tamanpedia</h3>
+      <p>Kampung Tamansari RT02 RW05 Kel.Krandegan Banjarnegara</p>
       <div class="social-links d-flex justify-content-center">
         <a href=""><i class="bi bi-twitter-x"></i></a>
         <a href=""><i class="bi bi-facebook"></i></a>
