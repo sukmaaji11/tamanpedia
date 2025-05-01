@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class C_pengeluaran extends CI_Controller
+class C_pemasukan extends CI_Controller
 {
 
     /**
