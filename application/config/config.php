@@ -23,7 +23,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://sys.sasanangapak.com/';
+$config['base_url'] = 'https://tamanpedia.bra-dev.com/';
 
 /*
 |--------------------------------------------------------------------------
