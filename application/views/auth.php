@@ -22,9 +22,7 @@
                     <div class="row">
                         <div class="col">
                             <div id="auth-left">
-                                <div class="auth-logo">
-                                    <img class="mx-auto d-block mb-5" src="<?= base_url('assets/image/logo-sn.png') ?>" height="300" width="300" />
-                                </div>
+                                <img class="mx-auto d-block" src="<?= base_url('assets/image/logo-sn.png') ?>" height="300" width="300" />
                                 <form method="post" action="<?= base_url('auth'); ?>">
                                     <?= $this->session->flashdata('message'); ?>
                                     <div class="form-group position-relative has-icon-left mb-4">
