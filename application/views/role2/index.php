@@ -19,8 +19,8 @@
                
                 </div>
             </div>
-                    <button class="btn btn-small btn-success" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Pemasukan</button>
-                    <button class="btn btn-small btn-danger" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Pengeluaran</button>
+                    <button class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Pemasukan</button>
+                    <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Pengeluaran</button>
             <hr />
             <!-- Section 2 -->
             <h6 class="card-title mb-2">Data Pemasukan</h6>
@@ -82,6 +82,14 @@
 
             <hr />
             <!-- Section 3 -->
+            <h6 class="card-title mb-2">Pemasukan Terbaru</h6>
+            <div class="col-12" id="data-pengeluaran">
+
+            </div>
+            <a href="<?= base_url('pengeluaran') ?>" class="btn btn-sm btn-primary">Selengkapnya</a>
+
+            <hr />
+            <!-- Section 4 -->
             <h6 class="card-title mb-2">Pengeluaran Terbaru</h6>
             <div class="col-12" id="data-pengeluaran">
 
