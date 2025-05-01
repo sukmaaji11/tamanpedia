@@ -138,7 +138,6 @@
     <section id="stats" class="stats section">
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-		    <h2>Administrasi Penduduk</h2>
         <div class="row gy-4">
           <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
             <i class="bi bi-emoji-smile"></i>
@@ -180,7 +179,7 @@
     <section id="skills" class="skills section">
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>APBD DESA 202X</h2>
+        <h2>APBD DESA 2025</h2>
         <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
       </div><!-- End Section Title -->
 
