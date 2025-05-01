@@ -65,14 +65,14 @@ class C_pemasukan extends CI_Controller
     public function add()
     {
         $data = [
-            'pengeluaran'   => $this->input->post('pengeluaran'),
-            'pengeluaran_kategori'   => $this->input->post('kategori'),
-            'pengeluaran_tgl'  => $this->input->post('tgl_pengeluaran'),
-            'pengeluaran_jenis_barang' => $this->input->post('jenis_barang'),
-            'pengeluaran_jumlah'  => $this->input->post('jumlah_barang'),
-            'pengeluaran_harga_satuan' => $this->input->post('harga_satuan'),
-            'pengeluaran_total' => $this->input->post('total'),
-            'pengeluaran_keterangan' => $this->input->post('keterangan')
+            'pemasukan'   => $this->input->post('pemasukan'),
+            'pemasukan_kategori'   => $this->input->post('pemasukan_kategori'),
+            'pemasukan_tgl'  => $this->input->post('pemasukan_tgl'),
+            'pemasukan'  => $this->input->post('pemasukan'),
+            'pemasukan_sumber' => $this->input->post('pemasukan_sumber'),
+            'pemasukan_total' => $this->input->post('pemasukan_total'),
+            'pemasukan_keteraangan' => $this->input->post('pemasukan_keteraangan'),
+            'pemasukan_status'=> $this->input->post('pemasukan_status')
         ];
         
         $this->M_pemasukan->add($data);

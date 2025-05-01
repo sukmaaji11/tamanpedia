@@ -16,7 +16,7 @@
                     <h4 class="card-title">Tambah Pemasukan</h4>
                 </div>
                 <div class="card-body">
-                    <button class="btn btn-small btn-success" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Tambah</button>
+                    <button class="btn btn-small btn-success" data-bs-toggle="modal" data-bs-target="#modal_pemasukan">+ Tambah</button>
                 </div>
             </div>
 
@@ -103,12 +103,12 @@
             </div>
         </div>
 
-        <!-- MODAL KANDANG -->
-        <div class="modal fade" id="modal_kandang" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <!-- MODAL PEMASUKAN -->
+        <div class="modal fade" id="modal_pemasukan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">Form Pengeluaran Kandang
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Form Pemasukan
                         </h5>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <i data-feather="x"></i>
@@ -120,35 +120,22 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="email-id-vertical">Tanggal</label>
-                                            <input type="date" id="email-id-vertical" class="form-control" name="tgl_pengeluaran_kandang">
+                                            <label for="pemasukan_tgl text-sm">Tanggal</label>
+                                            <input type="date" id="pemasukan_tgl" class="form-control" name="pemasukan_tgl">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="first-name-vertical text-sm">Pengeluaran Ke Toko / Penerima</label>
-                                            <input type="text" id="first-name-vertical" class="form-control" name="pengeluaran_kandang" placeholder="Contoh : Rincing PS">
+                                            <label for="pemasukan_kategori text-sm">Kategori Pemasukan</label>
+                                            <select class="form form-select pemasukan_kategori" name="pemasukan_kategori" id="pemasukan_kategori">
+                                                <option></option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="first-name-vertical text-sm">Jenis Barang</label>
-                                            <input type="text" id="first-name-vertical" class="form-control" name="pengeluaran_jenis_barang" placeholder="Contoh : Pakan, Produksi dll">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-vertical text-sm">Jumlah</label>
-                                            <input type="text" id="first-name-vertical" class="form-control" name="satuan_pengeluaran_kandang" placeholder="5 KG">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="contact-info-vertical">Harga Satuan</label>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">Rp.</span>
-                                                <input type="text" name="harga_satuan_pengeluaran_kandang" class="form-control harga_satuan_pengeluaran_kandang rupiah_satuan" placeholder="0" aria-label="Harga" aria-describedby="basic-addon1">
-                                            </div>
+                                            <label for="pemasukan_sumber text-sm">Kontributor</label>
+                                            <input type="text" id="pemasukan_sumber" class="form-control" name="pemasukan_sumber" placeholder="Cth: Sumarno">
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -156,14 +143,14 @@
                                             <label for="contact-info-vertical">Total</label>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon1">Rp.</span>
-                                                <input type="text" name="total_pengeluaran_kandang" class="form-control total_pengeluaran_kandang rupiah" placeholder="0" aria-label="Username" aria-describedby="basic-addon1">
+                                                <input type="text" name="pemasukan_total" class="form-control pemasukan_total rupiah" placeholder="0" aria-label="Total" aria-describedby="basic-addon1">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="contact-info-vertical">Keterangan</label>
-                                            <textarea class="form-control" placeholder="Keterangan" name="keterangan_pengeluaran_kandang" id="floatingTextarea" rows="5"></textarea>
+                                            <textarea class="form-control" placeholder="Keterangan" name="pemasukan_keterangan" id="floatingTextarea" rows="5"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -173,7 +160,7 @@
                         <button type="button" class="btn btn-light-secondary btn-sm" data-bs-dismiss="modal">
                             <span class="d-sm-block">Close</span>
                         </button>
-                        <button type="button" class="btn btn-primary ml-1 btn-sm" id="btn-pengeluaran-kandang">
+                        <button type="button" class="btn btn-primary ml-1 btn-sm" id="btn-pemasukan">
                             <span class=" d-sm-block">Simpan</span>
                         </button>
                     </div>
@@ -181,299 +168,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- MODAL LAIN-LAIN -->
-        <div class="modal fade" id="modal_lain" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">Form Pengeluaran Lain-Lain
-                        </h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <i data-feather="x"></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form form-vertical">
-                            <div class="form-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="email-id-vertical">Tanggal</label>
-                                            <input type="date" id="email-id-vertical" class="form-control" name="tgl_pengeluaran_lain">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-vertical text-sm">Pengeluaran</label>
-                                            <input type="text" id="first-name-vertical" class="form-control" name="pengeluaran_lain" placeholder="Contoh : Ongkir Furqon">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="contact-info-vertical">Total</label>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">Rp.</span>
-                                                <input type="text" name="total_pengeluaran_lain" class="form-control total_pengeluaran_lain rupiah" placeholder="0" aria-label="Username" aria-describedby="basic-addon1">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="contact-info-vertical">Keterangan</label>
-                                            <textarea class="form-control" name="keterangan_pengeluaran_lain" placeholder="Keterangan" id="floatingTextarea" rows="5"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light-secondary btn-sm" data-bs-dismiss="modal">
-                            <span class="d-sm-block">Close</span>
-                        </button>
-                        <button type="button" class="btn btn-primary ml-1 btn-sm" id="btn-pengeluaran-lain">
-                            <span class=" d-sm-block">Simpan</span>
-                        </button>
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODAL PROD IDHAM -->
-        <div class="modal fade" id="modal_prodidh" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">Form Pengeluaran PROD.(IDHAM)
-                        </h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <i data-feather="x"></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form form-vertical">
-                            <div class="form-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="email-id-vertical">Tanggal</label>
-                                            <input type="date" id="email-id-vertical" class="form-control" name="tgl_pengeluaran_prodidh">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-vertical text-sm">Pengeluaran</label>
-                                            <input type="text" id="first-name-vertical" class="form-control" name="pengeluaran_prodidh" placeholder="Contoh : Biaya Produksi">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="contact-info-vertical">Total</label>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">Rp.</span>
-                                                <input type="text" name="total_pengeluaran_prodidh" class="form-control total_pengeluaran_prodidh rupiah" placeholder="0" aria-label="Username" aria-describedby="basic-addon1">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="contact-info-vertical">Keterangan</label>
-                                            <textarea class="form-control" name="keterangan_pengeluaran_prodidh" placeholder="Keterangan" id="floatingTextarea" rows="5"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light-secondary btn-sm" data-bs-dismiss="modal">
-                            <span class="d-sm-block">Close</span>
-                        </button>
-                        <button type="button" class="btn btn-primary ml-1 btn-sm" id="btn-pengeluaran-prodidh">
-                            <span class=" d-sm-block">Simpan</span>
-                        </button>
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODAL PROD HARY -->
-        <div class="modal fade" id="modal_prodhar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">Form Pengeluaran PROD.(HARY)
-                        </h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <i data-feather="x"></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form form-vertical">
-                            <div class="form-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="email-id-vertical">Tanggal</label>
-                                            <input type="date" id="email-id-vertical" class="form-control" name="tgl_pengeluaran_prodhar">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-vertical text-sm">Pengeluaran</label>
-                                            <input type="text" id="first-name-vertical" class="form-control" name="pengeluaran_prodhar" placeholder="Contoh : Biaya Produksi">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="contact-info-vertical">Total</label>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">Rp.</span>
-                                                <input type="text" name="total_pengeluaran_prodhar" class="form-control total_pengeluaran_prodhar rupiah" placeholder="0" aria-label="Username" aria-describedby="basic-addon1">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="contact-info-vertical">Keterangan</label>
-                                            <textarea class="form-control" name="keterangan_pengeluaran_prodhar" placeholder="Keterangan" id="floatingTextarea" rows="5"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light-secondary btn-sm" data-bs-dismiss="modal">
-                            <span class="d-sm-block">Close</span>
-                        </button>
-                        <button type="button" class="btn btn-primary ml-1 btn-sm" id="btn-pengeluaran-prodhar">
-                            <span class=" d-sm-block">Simpan</span>
-                        </button>
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- MODAL REK.LAIN -->
-        <div class="modal fade" id="modal_reklain" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">Form Pengeluaran Rek.Lain
-                        </h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <i data-feather="x"></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form form-vertical">
-                            <div class="form-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="email-id-vertical">Tanggal</label>
-                                            <input type="date" id="email-id-vertical" class="form-control" name="tgl_pengeluaran_reklain">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-vertical text-sm">Pengeluaran</label>
-                                            <input type="text" id="first-name-vertical" class="form-control" name="pengeluaran_reklain" placeholder="Contoh : Ongkir Furqon">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="contact-info-vertical">Total</label>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">Rp.</span>
-                                                <input type="text" name="total_pengeluaran_reklain" class="form-control total_pengeluaran_reklain rupiah" placeholder="0" aria-label="Username" aria-describedby="basic-addon1">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="contact-info-vertical">Keterangan</label>
-                                            <textarea class="form-control" name="keterangan_pengeluaran_reklain" placeholder="Keterangan" id="floatingTextarea" rows="5"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light-secondary btn-sm" data-bs-dismiss="modal">
-                            <span class="d-sm-block">Close</span>
-                        </button>
-                        <button type="button" class="btn btn-primary ml-1 btn-sm" id="btn-pengeluaran-reklain">
-                            <span class=" d-sm-block">Simpan</span>
-                        </button>
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- MODAL PROYEK -->
-        <div class="modal fade" id="modal_proyek" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalCenterTitle">Form Pengeluaran Proyek
-                        </h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <i data-feather="x"></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="form form-vertical">
-                            <div class="form-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="email-id-vertical">Tanggal</label>
-                                            <input type="date" id="email-id-vertical" class="form-control" name="tgl_pengeluaran_proyek">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-vertical text-sm">Pengeluaran</label>
-                                            <input type="text" id="first-name-vertical" class="form-control" name="pengeluaran_proyek" placeholder="Contoh : Proyek Kandang">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="contact-info-vertical">Total</label>
-                                            <div class="input-group mb-3">
-                                                <span class="input-group-text" id="basic-addon1">Rp.</span>
-                                                <input type="text" name="total_pengeluaran_proyek" class="form-control total_pengeluaran_proyek rupiah" placeholder="0" aria-label="Username" aria-describedby="basic-addon1">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="contact-info-vertical">Keterangan</label>
-                                            <textarea class="form-control" name="keterangan_pengeluaran_proyek" placeholder="Keterangan" id="floatingTextarea" rows="5"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-light-secondary btn-sm" data-bs-dismiss="modal">
-                            <span class="d-sm-block">Close</span>
-                        </button>
-                        <button type="button" class="btn btn-primary ml-1 btn-sm" id="btn-pengeluaran-proyek">
-                            <span class=" d-sm-block">Simpan</span>
-                        </button>
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- END -->
     </div>
     </div>
     </div>
