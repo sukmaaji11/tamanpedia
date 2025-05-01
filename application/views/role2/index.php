@@ -16,11 +16,11 @@
                     <h4 class="card-title">Dana Tersedia</h4>
                 </div>
                 <div class="card-body">
-                    <button class="btn btn-small btn-success" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Tambah Pemasukan</button>
-                    <button class="btn btn-small btn-success" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Tambah Pengeluaran</button>
+               
                 </div>
             </div>
-
+                    <button class="btn btn-small btn-success" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Pemasukan</button>
+                    <button class="btn btn-small btn-danger" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Pengeluaran</button>
             <hr />
             <!-- Section 2 -->
             <h6 class="card-title mb-2">Data Pemasukan</h6>
