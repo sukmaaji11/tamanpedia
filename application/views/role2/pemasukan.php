@@ -64,7 +64,7 @@
 
             <hr />
             <!-- Section 3 -->
-            <h6 class="card-title mb-2">Pengeluaran Terbaru</h6>
+            <h6 class="card-title mb-2">Pemasukan Terbaru</h6>
             <div class="col-12" id="data-pengeluaran">
 
             </div>
