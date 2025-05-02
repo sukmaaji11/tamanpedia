@@ -66,9 +66,9 @@
 
       <div class="container" data-aos="zoom-out">
         <div class="row justify-content-center" style="margin-left: 10px; margin-right: 10px;">
+          <img src="https://tamanpedia.bra-dev.com/assets/image/logo-sn.png" style="object-fit: contain;width: 45%;display: block;margin: auto;position: initial;">
           <div class="text-center bg-white" style="border-radius: 15px;">
-            <img src="<?= base_url('assets/image/logo-sn.png')?>" width="10px"/>
-            <h2>Tamanpedia</h2>
+            <h2>Website Resmi - Tamanpedia</h2>
             <hr />
             <p style="font-size:14px;">Kampung Tamansari RT02 RW05 Kel.Krandegan Banjarnegara<p>
             <p>Welcome to Taman Sari : <span class="typed" data-typed-items="Mandiri, Religius, Inovatif, Kompak, Beriman">MRIKI</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
