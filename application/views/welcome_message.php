@@ -65,8 +65,8 @@
       <img src="<?= base_url('assets/image/bg-tamanpedia.jpeg')?>" alt="" class="hero-bg" data-aos="zoom-out" data-aos-delay="100">
 
       <div class="container" data-aos="zoom-out">
-        <div class="row justify-content-center">
-          <div class="col-lg-9">
+        <div class="row justify-content-center" style="margin-left: 10px; margin-right: 10px;">
+          <div class="text-center bg-white" style="border-radius: 15px;">
             <div class="image-logo m-auto d-block">
                 <img src="<?= base_url('assets/image/logo-sn.png')?>" width="50px"/>
             </div>
