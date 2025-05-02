@@ -67,9 +67,7 @@
       <div class="container" data-aos="zoom-out">
         <div class="row justify-content-center" style="margin-left: 10px; margin-right: 10px;">
           <div class="text-center bg-white" style="border-radius: 15px;">
-            <div class="image-logo m-auto d-block">
-                <img src="<?= base_url('assets/image/logo-sn.png')?>" width="50px"/>
-            </div>
+            <img src="<?= base_url('assets/image/logo-sn.png')?>" width="10px"/>
             <h2>Tamanpedia</h2>
             <hr />
             <p style="font-size:14px;">Kampung Tamansari RT02 RW05 Kel.Krandegan Banjarnegara<p>
