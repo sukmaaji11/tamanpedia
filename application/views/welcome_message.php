@@ -62,7 +62,7 @@
     <!-- Hero Section -->
     <section id="hero" class="hero section light-background">
 
-      <img src="<?= base_url('assets/template/landing/assets/img/hero-bg.jpg')?>" alt="" class="hero-bg" data-aos="zoom-out" data-aos-delay="100">
+      <img src="<?= base_url('assets/image/bg-tamanpedia.jpeg')?>" alt="" class="hero-bg" data-aos="zoom-out" data-aos-delay="100">
 
       <div class="container" data-aos="zoom-out">
         <div class="row justify-content-center">
