@@ -67,10 +67,13 @@
       <div class="container" data-aos="zoom-out">
         <div class="row justify-content-center">
           <div class="col-lg-9">
+            <div class="image-logo m-auto d-block">
+                <img src="<?= base_url('assets/image/logo-sn.png')?>" width="50px"/>
+            </div>
             <h2>Tamanpedia</h2>
             <hr />
             <p style="font-size:14px;">Kampung Tamansari RT02 RW05 Kel.Krandegan Banjarnegara<p>
-            <p>World <span class="typed" data-typed-items="Beautiful, Lovely, Peaceful, Wonderful">Lovely</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+            <p>Welcome to Taman Sari : <span class="typed" data-typed-items="Mandiri, Religius, Inovatif, Kompak, Beriman">MRIKI</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
             <div class="social-links">
               <a href="#"><i class="bi bi-twitter-x"></i></a>
               <a href="#"><i class="bi bi-facebook"></i></a>
