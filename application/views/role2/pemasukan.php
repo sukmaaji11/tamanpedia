@@ -85,7 +85,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form class="form form-vertical" action="<?= base_url('pemasukan/add') ?>" method="POST" id="form-pemasukan">
+                        <form class="form form-vertical" id="form-pemasukan">
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-12">
@@ -135,7 +135,7 @@
                         <button type="button" class="btn btn-light-secondary btn-sm" data-bs-dismiss="modal">
                             <span class="d-sm-block">Close</span>
                         </button>
-                        <button type="submit" class="btn btn-primary ml-1 btn-sm" id="btn-pemasukan">
+                        <button type="submit" class="btn btn-primary ml-1 btn-sm" id="btn-add-pemasukan">
                             <span class="d-sm-block">Simpan</span>
                         </button>
                     </div>
@@ -331,7 +331,6 @@
             })
         })
 
-
         //BTN REK LAIN
         $('#btn-pengeluaran-reklain').on('click', function() {
             var pengeluaran = $('input[name=pengeluaran_reklain]').val();
@@ -399,6 +398,35 @@
                 }
             })
         })
+        
+        //BTN ADD Pemasukan
+        $('#btn-add-pemasukan').on('click', function() {
+            var pemasukan_kategori = $('input[name=pemasukan_kategori]').val();
+            var pemasukan_tgl =  $('input[name=pemasukan_tgl]').val();
+            var pemasukan_sumber = $('input[name=pemasukan_sumber]').val();
+            var total = $('input[name=pemasukan_total]').val();
+            var pemasukan_keterangan = $('textarea[name=pemasukan_keterangan]').val();
+
+            $.ajax({
+                type: 'POST',
+                url: '<?= base_url('pemasukan/add') ?>',
+                data: {
+                    'pemasukan_kategori': pemasukan_kategori,
+                    'pemasukan_tgl': pemasukan_tgl,
+                    'pemasukan_sumber': pemasukan_sumber,
+                    'pemasukan_total': total.replace(/,(?=\d{3})/g, ''),
+                    'pemasukan_keterangan': pemasukan_keterangan,
+                },
+                beforeSend: function() {
+                    $('#btn-add-pemasukan').attr('disabled');
+                },
+                success: function(response) {
+                    alert('Data Berhasil Disimpan!');
+                    location.reload();
+                }
+            })
+        })
+
 
         function renderPemasukan() {
             $.ajax({
