@@ -130,6 +130,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light-secondary btn-sm" data-bs-dismiss="modal">
@@ -139,7 +140,6 @@
                             <span class="d-sm-block">Simpan</span>
                         </button>
                     </div>
-                    </form>
                 </div>
             </div>
         </div>
