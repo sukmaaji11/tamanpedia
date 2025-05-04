@@ -85,12 +85,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <select class="form form-select" id="select_kategori">
-                                    <option value=" "></option>
-                                    <?php
-                                    $i = 0;
-                                    foreach ($kategori as $kt) : ?>
-                                        <option value="<?= $kt->kategori_id ?>"><?= $kt->kategori; ?></option>
-                                    <?php endforeach; ?>
+                                   
                                 </select>
                             </div>
                         </div>
@@ -128,7 +123,12 @@
                                         <div class="form-group">
                                             <label for="pemasukan_kategori text-sm">Kategori Pemasukan</label>
                                             <select class="form form-select pemasukan_kategori" name="pemasukan_kategori" id="pemasukan_kategori">
-                                                <option></option>
+                                                 <option value=" "></option>
+                                                <?php
+                                                    $i = 0;
+                                                    foreach ($kategori as $kt) : ?>
+                                                        <option value="<?= $kt->kategori_id ?>"><?= $kt->kategori; ?></option>
+                                                <?php endforeach; ?>
                                             </select>
                                         </div>
                                     </div>

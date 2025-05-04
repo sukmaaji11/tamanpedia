@@ -30,6 +30,7 @@ class C_pemasukan extends CI_Controller
     public function index()
     {
         $data['user'] = $this->db->get_where('tb_user', ['user_role' => $this->session->userdata('user_role')])->row_array();
+        $data['kategori'] = $this->db->get_where('tb_kategori',array('kategori_role =' => 1))->result();
         if ($this->session->userdata('user_role') == 2) {
             $this->load->view('role2/template/header.php', $data);
             $this->load->view('role2/template/sidebar.php', $data);
