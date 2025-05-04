@@ -110,19 +110,19 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form class="form form-vertical">
+                        <form class="form form-vertical" action="<?= base_url('pemasukan/add') ?>" method="POST" id="form-pemasukan">
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="pemasukan_tgl text-sm">Tanggal</label>
-                                            <input type="date" id="pemasukan_tgl" class="form-control" name="pemasukan_tgl">
+                                            <input type="date" id="pemasukan_tgl" class="form-control" name="pemasukan_tgl" required>  
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="pemasukan_kategori text-sm">Kategori Pemasukan</label>
-                                            <select class="form form-select pemasukan_kategori" name="pemasukan_kategori" id="pemasukan_kategori">
+                                            <select class="form form-select pemasukan_kategori" name="pemasukan_kategori" id="pemasukan_kategori" required>
                                                  <option value=" "></option>
                                                 <?php
                                                     $i = 0;
@@ -135,7 +135,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="pemasukan_sumber text-sm">Kontributor</label>
-                                            <input type="text" id="pemasukan_sumber" class="form-control" name="pemasukan_sumber" placeholder="Cth: Sumarno">
+                                            <input type="text" id="pemasukan_sumber" class="form-control" name="pemasukan_sumber" placeholder="Cth: Sumarno" required>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -143,14 +143,14 @@
                                             <label for="contact-info-vertical">Total</label>
                                             <div class="input-group mb-3">
                                                 <span class="input-group-text" id="basic-addon1">Rp.</span>
-                                                <input type="text" name="pemasukan_total" class="form-control pemasukan_total rupiah" placeholder="0" aria-label="Total" aria-describedby="basic-addon1">
+                                                <input type="text" name="pemasukan_total" class="form-control pemasukan_total rupiah" placeholder="0" aria-label="Total" aria-describedby="basic-addon1" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="contact-info-vertical">Keterangan</label>
-                                            <textarea class="form-control" placeholder="Keterangan" name="pemasukan_keterangan" id="floatingTextarea" rows="5"></textarea>
+                                            <textarea class="form-control" placeholder="Keterangan" name="pemasukan_keterangan" id="floatingTextarea" rows="5" required></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -160,8 +160,8 @@
                         <button type="button" class="btn btn-light-secondary btn-sm" data-bs-dismiss="modal">
                             <span class="d-sm-block">Close</span>
                         </button>
-                        <button type="button" class="btn btn-primary ml-1 btn-sm" id="btn-pemasukan">
-                            <span class=" d-sm-block">Simpan</span>
+                        <button type="submit" class="btn btn-primary ml-1 btn-sm" id="btn-pemasukan">
+                            <span class="d-sm-block">Simpan</span>
                         </button>
                     </div>
                     </form>

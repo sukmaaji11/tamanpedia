@@ -66,7 +66,7 @@ class C_pemasukan extends CI_Controller
     public function add()
     {
         $data = [
-            'pemasukan'   => $this->input->post('pemasukan'),
+            'pemasukan'   => $this->input->post('pemasukan_kategori'),
             'pemasukan_kategori'   => $this->input->post('pemasukan_kategori'),
             'pemasukan_tgl'  => $this->input->post('pemasukan_tgl'),
             'pemasukan'  => $this->input->post('pemasukan'),
@@ -75,6 +75,7 @@ class C_pemasukan extends CI_Controller
             'pemasukan_keteraangan' => $this->input->post('pemasukan_keteraangan'),
             'pemasukan_status'=> $this->input->post('pemasukan_status')
         ];
+        
         
         $this->M_pemasukan->add($data);
     }
