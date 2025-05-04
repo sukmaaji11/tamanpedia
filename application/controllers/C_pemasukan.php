@@ -72,7 +72,7 @@ class C_pemasukan extends CI_Controller
 
         $data = [   
             'pemasukan_kategori'   => $this->input->post('pemasukan_kategori'),
-            'pemasukan_tgl'  => $this->input->post('pemasukan_tgl'),
+            'pemasukan_tgl'  => date($this->input->post('pemasukan_tgl')),
             'pemasukan'  => $pemasukan,
             'pemasukan_sumber' => $this->input->post('pemasukan_sumber'),
             'pemasukan_total' => $this->input->post('pemasukan_total'),

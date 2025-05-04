@@ -284,7 +284,7 @@
                     'jenis_barang' : jenis_barang,
                     'jumlah_barang': jumlah_barang,
                     'harga_satuan': harga_satuan,
-                    'total': total.replace(/,(?=\d{3})/g, ''),
+                    'total': parseInt(total.replace(/,(?=\d{3})/g, '')),
                     'keterangan': keterangan
                 },
                 beforeSend: function() {
