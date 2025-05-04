@@ -65,14 +65,17 @@ class C_pemasukan extends CI_Controller
 
     public function add()
     {
-        $data = [
-            'pemasukan'   => $this->input->post('pemasukan_kategori'),
+        $kategori_id = $this->input->post('pemasukan_kategori');    
+        $kategori = $this->db->get_where('tb_kategori', ['kategori_id' => $kategori_id])->row_array();
+
+        $data = [   
+            'pemasukan'  => $kategori['kategori'],
             'pemasukan_kategori'   => $this->input->post('pemasukan_kategori'),
             'pemasukan_tgl'  => $this->input->post('pemasukan_tgl'),
             'pemasukan'  => $this->input->post('pemasukan'),
             'pemasukan_sumber' => $this->input->post('pemasukan_sumber'),
             'pemasukan_total' => $this->input->post('pemasukan_total'),
-            'pemasukan_keteraangan' => $this->input->post('pemasukan_keteraangan'),
+            'pemasukan_keterangan' => $this->input->post('pemasukan_keterangan'),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             'pemasukan_status'=> "Approved"
