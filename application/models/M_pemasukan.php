@@ -12,9 +12,9 @@ class M_pemasukan extends CI_Model
         return $query->result();
     }
 
-    public function get_data_by_id($pengeluaran_id)
+    public function get_data_by_id($pemasukan_id)
     {
-        $this->db->where('pemasukan_id', $pengeluaran_id);
+        $this->db->where('pemasukan_id', $pemasukan_id);
         return $this->db->get('tb_pemasukan')->result();
     }
 
@@ -30,15 +30,15 @@ class M_pemasukan extends CI_Model
         $this->db->insert('tb_pemasukan', $data);
     }
 
-    public function edit($pengeluaran_id, $data)
+    public function edit($pemasukan_id, $data)
     {
-        $this->db->where('pemasukan_id', $pengeluaran_id);
+        $this->db->where('pemasukan_id', $pemasukan_id);
         $this->db->update('tb_pemasukan', $data);
     }
 
-    public function delete($pengeluaran_id)
+    public function delete($pemasukan_id)
     {
-        $this->db->where('pemasukan_id', $pengeluaran_id);
+        $this->db->where('pemasukan_id', $pemasukan_id);
         $this->db->delete('tb_pemasukan');
     }
 }

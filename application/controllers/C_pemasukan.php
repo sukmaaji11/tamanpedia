@@ -80,7 +80,16 @@ class C_pemasukan extends CI_Controller
             'updated_at' => date('Y-m-d H:i:s'),
             'pemasukan_status'=> "Approved"
         ];
-        $this->M_pemasukan->add($data);
+        try {
+            //code...
+              $this->M_pemasukan->add($data);
+        } catch (\Throwable $th) {
+            //throw $th;
+            echo $th->getMessage();
+            echo $th->getLine();     
+        } 
+        // $this->M_pemasukan->add($data);  
+      
         redirect('pemasukan');
     }
 
