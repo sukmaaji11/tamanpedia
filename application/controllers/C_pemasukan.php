@@ -75,7 +75,7 @@ class C_pemasukan extends CI_Controller
             'pemasukan_tgl'  => $this->input->post('pemasukan_tgl'),
             'pemasukan'  => $pemasukan,
             'pemasukan_sumber' => $this->input->post('pemasukan_sumber'),
-            'pemasukan_total' => parseInt($this->input->post('pemasukan_total')),
+            'pemasukan_total' => $this->input->post('pemasukan_total'),
             'pemasukan_keterangan' => $this->input->post('pemasukan_keterangan'),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
