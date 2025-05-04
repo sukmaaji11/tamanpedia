@@ -174,9 +174,6 @@
             var total = $('input[name=pemasukan_total]').val();
             var pemasukan_keterangan = $('textarea[name=pemasukan_keterangan]').val();
 
-            console.log(pemasukan_kategori);
-            console.log(total);
-
             $.ajax({
                 type: 'POST',
                 url: '',
@@ -192,7 +189,7 @@
                 },
                 success: function(response) {
                     alert('Data Berhasil Disimpan!');
-                    //location.reload();
+                    location.reload();
                 }
             })
         })
