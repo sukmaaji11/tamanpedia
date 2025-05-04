@@ -168,13 +168,14 @@
         
         //BTN ADD Pemasukan
         $('#btn-add-pemasukan').on('click', function() {
-            alert('Hello');
-            /*
             var pemasukan_kategori = $('input[name=pemasukan_kategori]').val();
             var pemasukan_tgl =  $('input[name=pemasukan_tgl]').val();
             var pemasukan_sumber = $('input[name=pemasukan_sumber]').val();
             var total = $('input[name=pemasukan_total]').val();
             var pemasukan_keterangan = $('textarea[name=pemasukan_keterangan]').val();
+
+            console.log(pemasukan_kategori);
+            console.log(total);
 
             $.ajax({
                 type: 'POST',
@@ -194,7 +195,6 @@
                     location.reload();
                 }
             })
-                */
         })
 
 
