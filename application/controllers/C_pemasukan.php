@@ -70,7 +70,7 @@ class C_pemasukan extends CI_Controller
         $data_kategori = $kategori['kategori'];
         var_dump($data_kategori);
         $data = [   
-            'pemasukan'  => $kategori["kategori"],
+            'pemasukan'  => $data_kategori,
             'pemasukan_kategori'   => $this->input->post('pemasukan_kategori'),
             'pemasukan_tgl'  => $this->input->post('pemasukan_tgl'),
             'pemasukan'  => $this->input->post('pemasukan'),
