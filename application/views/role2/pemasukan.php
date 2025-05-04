@@ -414,7 +414,7 @@
                     'pemasukan_kategori': pemasukan_kategori,
                     'pemasukan_tgl': pemasukan_tgl,
                     'pemasukan_sumber': pemasukan_sumber,
-                    'pemasukan_total': total.replace(/,(?=\d{3})/g, ''),
+                    'pemasukan_total': parseInt(total.replace(/,(?=\d{3})/g, '')),
                     'pemasukan_keterangan': pemasukan_keterangan,
                 },
                 beforeSend: function() {
