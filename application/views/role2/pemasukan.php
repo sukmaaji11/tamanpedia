@@ -30,7 +30,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h6 class="text-muted font-semibold">Hari ini</h6>
-                                    <h6 class="font-extrabold mb-0" id="pengeluaran_hari_ini">112.000</h6>
+                                    <h6 class="font-extrabold mb-0" id="pemasukan_hari_ini">112.000</h6>
                                 </div>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h6 class="text-muted font-semibold">Bulan ini</h6>
-                                    <h6 class="font-extrabold mb-0" id="pengeluaran_bulan_ini">112.000</h6>
+                                    <h6 class="font-extrabold mb-0" id="pemasukan_bulan_ini">112.000</h6>
                                 </div>
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                             <div class="row">
                                 <div class="col">
                                     <h6 class="text-muted font-semibold">Tahun ini</h6>
-                                    <h6 class="font-extrabold mb-0" id="pengeluaran_tahun_ini">112.000</h6>
+                                    <h6 class="font-extrabold mb-0" id="pemasukan_tahun_ini">112.000</h6>
                                 </div>
                             </div>
                         </div>
@@ -65,38 +65,13 @@
             <hr />
             <!-- Section 3 -->
             <h6 class="card-title mb-2">Pemasukan Terbaru</h6>
-            <div class="col-12" id="data-pengeluaran">
+            <div class="col-12" id="data-pemasukan">
 
             </div>
-            <a href="<?= base_url('pengeluaran') ?>" class="btn btn-sm btn-primary">Selengkapnya</a>
+            <a href="<?= base_url('pemasukan') ?>" class="btn btn-sm btn-primary">Selengkapnya</a>
 
             <hr />
         </section>
-
-        <!-- Modal Kategori-->
-        <div class="modal fade" id="modal_kategori" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="myModalLabel">Kategori Pengeluaran</h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="col-12">
-                            <div class="form-group">
-                                <select class="form form-select" id="select_kategori">
-                                   
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="btn-next">Next</button>
-                        <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!-- MODAL PEMASUKAN -->
         <div class="modal fade" id="modal_pemasukan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -188,7 +163,7 @@
             getToday();
             getMonth();
             getYear();
-            renderPengeluaran();
+            renderPemasukan();
         });
 
         //BTN NEXT 
@@ -425,9 +400,9 @@
             })
         })
 
-        function renderPengeluaran() {
+        function renderPemasukan() {
             $.ajax({
-                url: '<?= base_url('pengeluaran/get_data') ?>',
+                url: '<?= base_url('pemasukan/get_data') ?>',
                 async: true,
                 type: 'POST',
                 dataType: 'json',
@@ -439,11 +414,11 @@
                             html += '<div class="card">';
                             html += '<div class="card-content">';
                             html += '<div class="card-body">';
-                            html += '<p class="text-right" style="text-align:right;">' + response[i].pengeluaran_tgl + '</p>';
-                            html += '<h6 class="">' + response[i].pengeluaran + '</h6>';
-                            html += '<p>' + response[i].pengeluaran_keterangan + '</p>';
+                            html += '<p class="text-right" style="text-align:right;">' + response[i].pemasukan_tgl + '</p>';
+                            html += '<h6 class="">' + response[i].pemasukan + '</h6>';
+                            html += '<p>' + response[i].pemasukan_keterangan + '</p>';
                             html += '<hr />';
-                            html += '<h6>Rp. ' + formatRupiah(response[i].pengeluaran_total) + '</h6>';
+                            html += '<h6>Rp. ' + formatRupiah(response[i].pemasukan_total) + '</h6>';
                             html += '</div></div></div>';
                         }
                         $('#data-pengeluaran').html(html);
@@ -491,7 +466,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '<?= base_url('pengeluaran/get_data_by_date') ?>',
+                url: '<?= base_url('pemasukan/get_data_by_date') ?>',
                 dataType: 'json',
                 data: {
                     'datefrom': datefrom,
@@ -505,7 +480,7 @@
                             sum += parseInt(response[i].pengeluaran_total)
                         }
                     }
-                    $('#pengeluaran_hari_ini').text("Rp. " + formatRupiah(sum.toString()))
+                    $('#pemasukan_hari_ini').text("Rp. " + formatRupiah(sum.toString()))
                 },
             })
         }
@@ -522,7 +497,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '<?= base_url('pengeluaran/get_data_by_date') ?>',
+                url: '<?= base_url('pemasukan/get_data_by_date') ?>',
                 dataType: 'json',
                 data: {
                     'datefrom': datefrom,
@@ -536,7 +511,7 @@
                             sum += parseInt(response[i].pengeluaran_total)
                         }
                     }
-                    $('#pengeluaran_bulan_ini').text("Rp. " + formatRupiah(sum.toString()))
+                    $('#pemasukan_bulan_ini').text("Rp. " + formatRupiah(sum.toString()))
                 },
             })
         }
@@ -553,7 +528,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '<?= base_url('pengeluaran/get_data_by_date') ?>',
+                url: '<?= base_url('pemasukan/get_data_by_date') ?>',
                 dataType: 'json',
                 data: {
                     'datefrom': datefrom,
@@ -567,7 +542,7 @@
                             sum += parseInt(response[i].pengeluaran_total)
                         }
                     }
-                    $('#pengeluaran_tahun_ini').text("Rp. " + formatRupiah(sum.toString()))
+                    $('#pemasukan_tahun_ini').text("Rp. " + formatRupiah(sum.toString()))
                 },
             })
         }
