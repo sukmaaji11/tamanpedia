@@ -71,7 +71,7 @@ class C_pemasukan extends CI_Controller
         $pemasukan = $data_kategori . '-' . $this->input->post('pemasukan_sumber');
         var_dump($pemasukan);   
         $data = [   
-            'pemasukan'  => str_replace(' ', '-', $pemasukan),
+            'pemasukan'  => "test",
             'pemasukan_kategori'   => $this->input->post('pemasukan_kategori'),
             'pemasukan_tgl'  => $this->input->post('pemasukan_tgl'),
             'pemasukan'  => $this->input->post('pemasukan'),
