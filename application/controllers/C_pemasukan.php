@@ -69,7 +69,7 @@ class C_pemasukan extends CI_Controller
         $kategori = $this->db->get_where('tb_kategori', ['kategori_id' => $kategori_id])->row_array();
         var_dump($kategori);
         $data = [   
-            'pemasukan'  => $kategori,
+            'pemasukan'  => $kategori['kategori'],
             'pemasukan_kategori'   => $this->input->post('pemasukan_kategori'),
             'pemasukan_tgl'  => $this->input->post('pemasukan_tgl'),
             'pemasukan'  => $this->input->post('pemasukan'),
