@@ -135,7 +135,7 @@
                         <button type="button" class="btn btn-light-secondary btn-sm" data-bs-dismiss="modal">
                             <span class="d-sm-block">Close</span>
                         </button>
-                        <button type="submit" class="btn btn-primary ml-1 btn-sm" id="btn-add-pemasukan">
+                        <button type="button" class="btn btn-primary ml-1 btn-sm" id="btn-add-pemasukan">
                             <span class="d-sm-block">Simpan</span>
                         </button>
                     </div>
