@@ -192,7 +192,7 @@
                 },
                 success: function(response) {
                     alert('Data Berhasil Disimpan!');
-                    location.reload();
+                    //location.reload();
                 }
             })
         })
