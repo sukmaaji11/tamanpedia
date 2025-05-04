@@ -73,6 +73,8 @@ class C_pemasukan extends CI_Controller
             'pemasukan_sumber' => $this->input->post('pemasukan_sumber'),
             'pemasukan_total' => $this->input->post('pemasukan_total'),
             'pemasukan_keteraangan' => $this->input->post('pemasukan_keteraangan'),
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
             'pemasukan_status'=> "Approved"
         ];
         $this->M_pemasukan->add($data);
