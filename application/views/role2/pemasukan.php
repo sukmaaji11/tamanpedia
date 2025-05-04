@@ -65,8 +65,14 @@
             <hr />
             <!-- Section 3 -->
             <h6 class="card-title mb-2">Pemasukan Terbaru</h6>
-            <div class="col-12" id="data-pemasukan">
-
+            <div class="col-12" id="data-pemasukan">    
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <p class="text-center">Tidak ada data pemasukan</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <a href="<?= base_url('pemasukan') ?>" class="btn btn-sm btn-primary">Selengkapnya</a>
 
@@ -421,9 +427,9 @@
                             html += '<h6>Rp. ' + formatRupiah(response[i].pemasukan_total) + '</h6>';
                             html += '</div></div></div>';
                         }
-                        $('#data-pengeluaran').html(html);
+                        $('#data-pemasukan').html(html);
                     } else {
-                        $('#data-pengeluaran').html(response);
+                        $('#data-pemasukan').html(response);
                     }
                 }
             });
