@@ -66,13 +66,7 @@
             <!-- Section 3 -->
             <h6 class="card-title mb-2">Pemasukan Terbaru</h6>
             <div class="col-12" id="data-pemasukan">    
-                <div class="card">
-                    <div class="card-content">
-                        <div class="card-body">
-                            <p class="text-center">Tidak ada data pemasukan</p>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
             <a href="<?= base_url('pemasukan') ?>" class="btn btn-sm btn-primary">Selengkapnya</a>
 
@@ -429,7 +423,12 @@
                         }
                         $('#data-pemasukan').html(html);
                     } else {
-                        $('#data-pemasukan').html(response);
+                        html = "<div class='card'>";
+                        html += "<div class='card-content'>";   
+                        html += "<div class='card-body'>";
+                        html += "<h6 class='text-center'>Data Kosong</h6>";
+                        html += "</div></div></div>";
+                        $('#data-pemasukan').html(html);
                     }
                 }
             });
