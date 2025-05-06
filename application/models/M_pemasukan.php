@@ -27,7 +27,7 @@ class M_pemasukan extends CI_Model
 
     public function add($data)
     {
-        $this->db->insert('tb_pemasukan', $data);
+        return $this->db->insert('tb_pemasukan', $data);
     }
 
     public function edit($pemasukan_id, $data)
