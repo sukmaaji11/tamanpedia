@@ -189,37 +189,23 @@
                 ) || 0;
             }
 
-            $.ajax({
-                type: 'POST',
-                url: '<?= base_url('pemasukan/add') ?>', // Specify full URL
-                data: formData,
-                dataType: 'json', // Expect JSON response
-                beforeSend: function() {
-                    $('#btn-add-pemasukan').prop('disabled', true);
-                },
-                complete: function() {
-                    $('#btn-add-pemasukan').prop('disabled', false);
-                },
-                success: function(response) {
-                    if (response.status === 'success') {
-                        alert('Data Berhasil Disimpan!');
-                        window.location.reload();
-                    } else {
-                        alert('Error: ' + response.message);
-                    }
-                },
-                error: function(xhr) {
-                    let errorMessage = 'Terjadi kesalahan: ';
-                    try {
-                        const res = JSON.parse(xhr.responseText);
-                        errorMessage += res.message || xhr.statusText;
-                    } catch(e) {
-                        errorMessage += xhr.statusText;
-                    }
-                    alert(errorMessage);
-                }
-            });
-        });
+           $.ajax({
+    type: 'POST',
+    url: '<?= site_url("pemasukan/add") ?>',
+    data: formData,
+    dataType: 'json', // 👈 Critical for JSON parsing
+    success: function(response) {
+        if (response.status === 'success') {
+            window.location.reload();
+        } else {
+            alert('Error: ' + response.message);
+        }
+    },
+    error: function(xhr) {
+        console.error("AJAX Error:", xhr.responseText);
+        alert('Terjadi kesalahan. Cek konsol untuk detail.');
+    }
+});
 
 
         function renderPemasukan() {
