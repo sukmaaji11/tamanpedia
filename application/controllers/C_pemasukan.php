@@ -68,11 +68,10 @@ class C_pemasukan extends CI_Controller
          // Force JSON response even for errors
         header('Content-Type: application/json');
         try {
+
         // Enable error reporting temporarily
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
-
-
             // Check if form is submitted
             if ($this->input->post()) {
                 // Validate required fields
@@ -112,7 +111,8 @@ class C_pemasukan extends CI_Controller
                     echo "<pre>";
                     print_r($data);
                     echo "</pre>";
-                    
+                }
+            }
                  if ($this->M_pemasukan->add($data)) {
                     echo json_encode([
                         'status' => 'success',
