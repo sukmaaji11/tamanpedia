@@ -191,7 +191,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '<?php echo site_url("pemasukan/add"); ?>', // Specify full URL
+                url: '<?= base_url('pemasukan/add') ?>', // Specify full URL
                 data: formData,
                 dataType: 'json', // Expect JSON response
                 beforeSend: function() {
