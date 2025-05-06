@@ -65,26 +65,67 @@ class C_pemasukan extends CI_Controller
 
     public function add()
     {
-        $kategori_id = $this->input->post('pemasukan_kategori');    
-        $kategori = $this->db->get_where('tb_kategori', ['kategori_id' => $kategori_id])->row_array();
-        $data_kategori = $kategori['kategori'];
-        $pemasukan = $data_kategori . ' - ' . $this->input->post('pemasukan_sumber');
+        // Enable error reporting temporarily
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
 
-        $data = [   
-            'pemasukan_kategori'   => $this->input->post('pemasukan_kategori'),
-            'pemasukan_tgl'  => $this->input->post('pemasukan_tgl'),
-            'pemasukan'  => $pemasukan,
-            'pemasukan_sumber' => $this->input->post('pemasukan_sumber'),
-            'pemasukan_total' => $this->input->post('pemasukan_total'),
-            'pemasukan_keterangan' => $this->input->post('pemasukan_keterangan'),
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-            'pemasukan_status'=> "Approved"
-        ];
+        // Check if form is submitted
+        if ($this->input->post()) {
+            // Validate required fields
+            $this->form_validation->set_rules('pemasukan_kategori', 'Kategori', 'required');
+            $this->form_validation->set_rules('pemasukan_total', 'Total', 'required|numeric');
 
-        $this->M_pemasukan->add($data);
-    }   
+            if ($this->form_validation->run() == FALSE) {
+                // Show validation errors
+                $errors = validation_errors();
+                echo $errors;
+                die();
+            } else {
+                // Get kategori safely
+                $kategori_id = $this->input->post('pemasukan_kategori');
+                $kategori = $this->db->get_where('tb_kategori', ['kategori_id' => $kategori_id])->row_array();
 
+                // Check if kategori exists
+                if (!$kategori) {
+                    echo "Error: Kategori tidak ditemukan!";
+                    die();
+                }
+
+                // Prepare data
+                $data = [   
+                    'pemasukan_kategori'   => $kategori_id,
+                    'pemasukan_tgl'         => $this->input->post('pemasukan_tgl'),
+                    'pemasukan'             => $kategori['kategori'] . ' - ' . $this->input->post('pemasukan_sumber'),
+                    'pemasukan_sumber'     => $this->input->post('pemasukan_sumber'),
+                    'pemasukan_total'       => $this->input->post('pemasukan_total'),
+                    'pemasukan_keterangan' => $this->input->post('pemasukan_keterangan'),
+                    'created_at'           => date('Y-m-d H:i:s'),
+                    'updated_at'           => date('Y-m-d H:i:s'),
+                    'pemasukan_status'     => "Approved"
+                ];
+
+                // Debug: Check final data
+                echo "<pre>";
+                print_r($data);
+                echo "</pre>";
+                
+                // Attempt insertion
+                if ($this->M_pemasukan->add($data)) {
+                    // Redirect on success
+                    redirect('pemasukan'); // Change to your target page
+                } else {
+                    // Show database error
+                    $error = $this->db->error();
+                    echo "Database Error: " . $error['message'];
+                    die();
+                }
+            }
+        } else {
+            echo "Error: Form tidak dikirim!";
+            die();
+        }
+    }
+    
     public function edit()
     {
         $pengeluaran_id = $this->input->post('pengeluaran_id');
