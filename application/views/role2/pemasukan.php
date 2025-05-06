@@ -168,31 +168,58 @@
         
         //BTN ADD Pemasukan
         $('#btn-add-pemasukan').on('click', function() {
-            var pemasukan_kategori = $('select[name=pemasukan_kategori]').val();
-            var pemasukan_tgl =  $('input[name=pemasukan_tgl]').val();
-            var pemasukan_sumber = $('input[name=pemasukan_sumber]').val();
-            var total = $('input[name=pemasukan_total]').val();
-            var pemasukan_keterangan = $('textarea[name=pemasukan_keterangan]').val();
+            // Get CSRF token
+            var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>';
+            var csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+            
+            // Get form values
+            var formData = {
+                [csrfName]: csrfHash, // Include CSRF token
+                'pemasukan_kategori': $('select[name=pemasukan_kategori]').val(),
+                'pemasukan_tgl': $('input[name=pemasukan_tgl]').val(),
+                'pemasukan_sumber': $('input[name=pemasukan_sumber]').val(),
+                'pemasukan_total': $('input[name=pemasukan_total]').val(),
+                'pemasukan_keterangan': $('textarea[name=pemasukan_keterangan]').val()
+            };
+
+            // Convert numeric value properly
+            if (formData.pemasukan_total) {
+                formData.pemasukan_total = parseFloat(
+                    formData.pemasukan_total.replace(/[^0-9.]/g, '')
+                ) || 0;
+            }
 
             $.ajax({
                 type: 'POST',
-                url: '',
-                data: {
-                    'pemasukan_kategori': pemasukan_kategori,
-                    'pemasukan_tgl': pemasukan_tgl,
-                    'pemasukan_sumber': pemasukan_sumber,
-                    'pemasukan_total': parseInt(total.replace(/,(?=\d{3})/g, '')),
-                    'pemasukan_keterangan': pemasukan_keterangan,
-                },
+                url: '<?php echo site_url("pemasukan/add"); ?>', // Specify full URL
+                data: formData,
+                dataType: 'json', // Expect JSON response
                 beforeSend: function() {
-                    $('#btn-add-pemasukan').attr('disabled');
+                    $('#btn-add-pemasukan').prop('disabled', true);
+                },
+                complete: function() {
+                    $('#btn-add-pemasukan').prop('disabled', false);
                 },
                 success: function(response) {
-                    alert('Data Berhasil Disimpan!');
-                    location.reload();
+                    if (response.status === 'success') {
+                        alert('Data Berhasil Disimpan!');
+                        window.location.reload();
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                },
+                error: function(xhr) {
+                    let errorMessage = 'Terjadi kesalahan: ';
+                    try {
+                        const res = JSON.parse(xhr.responseText);
+                        errorMessage += res.message || xhr.statusText;
+                    } catch(e) {
+                        errorMessage += xhr.statusText;
+                    }
+                    alert(errorMessage);
                 }
-            })
-        })
+            });
+        });
 
 
         function renderPemasukan() {
