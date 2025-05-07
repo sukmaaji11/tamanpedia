@@ -206,7 +206,7 @@
                     alert('Terjadi kesalahan. Cek konsol untuk detail.');
                 }
             });
-        }
+        });
 
 
     function renderPemasukan() {
@@ -242,7 +242,7 @@
             }
         });
     }
-    
+
     //Format Rupiah
     function formatRupiah(angka, prefix) {
         var number_string = angka.replace(/[^,\d]/g, '').toString(),
