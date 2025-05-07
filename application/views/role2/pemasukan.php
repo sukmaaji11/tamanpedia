@@ -202,7 +202,7 @@
                     }
                 },
                 error: function(xhr) {
-                    var url: '<?= site_url("pemasukan/add") ?>',
+                    var url = '<?= site_url("pemasukan/add") ?>';
                     console.log(url);
                     console.error("AJAX Error:", xhr.responseText);
                     alert('Terjadi kesalahan. Cek konsol untuk detail.');
