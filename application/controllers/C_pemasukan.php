@@ -67,11 +67,11 @@ class C_pemasukan extends CI_Controller
     {
          // Force JSON response even for errors
         header('Content-Type: application/json');
+        
         try {
-
-        // Enable error reporting temporarily
-        error_reporting(E_ALL);
-        ini_set('display_errors', 1);
+            // Enable error reporting temporarily
+            error_reporting(E_ALL);
+            ini_set('display_errors', 1);
             // Check if form is submitted
             if ($this->input->post()) {
                 // Validate required fields
@@ -112,24 +112,24 @@ class C_pemasukan extends CI_Controller
                     print_r($data);
                     echo "</pre>";
                 }
-            }
-                 if ($this->M_pemasukan->add($data)) {
-                    echo json_encode([
-                        'status' => 'success',
-                        'message' => 'Data berhasil disimpan'
-                    ]);
-                } else {
-                    throw new Exception('Gagal menyimpan ke database');
-                }
-        } catch (Exception $e) {
-                // Log the error
-                log_message('error', 'Pemasukan Error: ' . $e->getMessage());
-                
+            
+            if ($this->M_pemasukan->add($data)) {
                 echo json_encode([
-                    'status' => 'error',
-                    'message' => $e->getMessage()
+                    'status' => 'success',
+                    'message' => 'Data berhasil disimpan'
                 ]);
+            } else {
+                throw new Exception('Gagal menyimpan ke database');
             }
+        } catch (Exception $e) {
+            // Log the error
+            log_message('error', 'Pemasukan Error: ' . $e->getMessage());
+            
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ]);
+        }
         exit;
     }
     
