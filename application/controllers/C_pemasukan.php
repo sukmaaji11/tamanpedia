@@ -112,7 +112,7 @@ class C_pemasukan extends CI_Controller
                     print_r($data);
                     echo "</pre>";
                 }
-            
+            }
             if ($this->M_pemasukan->add($data)) {
                 echo json_encode([
                     'status' => 'success',
