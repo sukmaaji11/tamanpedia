@@ -30,7 +30,7 @@ class C_pemasukan extends CI_Controller
     public function index()
     {
         $data['user'] = $this->db->get_where('tb_user', ['user_role' => $this->session->userdata('user_role')])->row_array();
-        $data['kategori'] = $this->db->get_where('tb_kategori',array('kategori_role =' => 1))->result();
+        $data['kategori'] = $this->db->get_where('tb_kategori', array('kategori_role =' => 1))->result();
         if ($this->session->userdata('user_role') == 2) {
             $this->load->view('role2/template/header.php', $data);
             $this->load->view('role2/template/sidebar.php', $data);
@@ -65,10 +65,13 @@ class C_pemasukan extends CI_Controller
 
     public function add()
     {
-         // Force JSON response even for errors
+        // Force JSON response even for errors
         header('Content-Type: application/json');
-        
+
         try {
+            // Enable database debugging
+            $this->db->db_debug = TRUE; // 👈 Add this line
+
             // Enable error reporting temporarily
             error_reporting(E_ALL);
             ini_set('display_errors', 1);
@@ -95,7 +98,7 @@ class C_pemasukan extends CI_Controller
                     }
 
                     // Prepare data
-                    $data = [   
+                    $data = [
                         'pemasukan_kategori'   => $kategori_id,
                         'pemasukan_tgl'         => $this->input->post('pemasukan_tgl'),
                         'pemasukan'             => $kategori['kategori'] . ' - ' . $this->input->post('pemasukan_sumber'),
@@ -122,17 +125,19 @@ class C_pemasukan extends CI_Controller
                 throw new Exception('Gagal menyimpan ke database');
             }
         } catch (Exception $e) {
-            // Log the error
-            log_message('error', 'Pemasukan Error: ' . $e->getMessage());
-            
+            // Get database error if exists
+            $db_error = $this->db->error();
+            $message = $db_error['message'] ?? $e->getMessage();
+
+            log_message('error', 'Insert Failed: ' . $message);
             echo json_encode([
                 'status' => 'error',
-                'message' => $e->getMessage()
+                'message' => 'Database Error: ' . $message // 👈 Show exact error
             ]);
         }
         exit;
     }
-    
+
     public function edit()
     {
         $pengeluaran_id = $this->input->post('pengeluaran_id');

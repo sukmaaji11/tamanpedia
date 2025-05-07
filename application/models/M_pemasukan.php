@@ -27,7 +27,16 @@ class M_pemasukan extends CI_Model
 
     public function add($data)
     {
-        return $this->db->insert('tb_pemasukan', $data);
+        $this->db->insert('tb_pemasukan', $data);
+
+        if ($this->db->affected_rows() > 0) {
+            return true;
+        } else {
+            // Get detailed error
+            $error = $this->db->error();
+            log_message('error', 'DB Error: ' . $error['message']);
+            return false;
+        }
     }
 
     public function edit($pemasukan_id, $data)
