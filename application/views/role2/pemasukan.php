@@ -190,173 +190,173 @@
             }
 
            $.ajax({
-    type: 'POST',
-    url: '<?= site_url("pemasukan/add") ?>',
-    data: formData,
-    dataType: 'json', // 👈 Critical for JSON parsing
-    success: function(response) {
-        if (response.status === 'success') {
-            window.location.reload();
-        } else {
-            alert('Error: ' + response.message);
-        }
-    },
-    error: function(xhr) {
-        console.error("AJAX Error:", xhr.responseText);
-        alert('Terjadi kesalahan. Cek konsol untuk detail.');
-    }
-});
-
-
-        function renderPemasukan() {
-            $.ajax({
-                url: '<?= base_url('pemasukan/get_data') ?>',
-                async: true,
                 type: 'POST',
-                dataType: 'json',
+                url: '<?= site_url("pemasukan/add") ?>',
+                data: formData,
+                dataType: 'json', // 👈 Critical for JSON parsing
                 success: function(response) {
-                    var i;
-                    var html = '';
-                    if (response.length != 0) {
-                        for (i = 0; i < 5; i++) {
-                            html += '<div class="card">';
-                            html += '<div class="card-content">';
-                            html += '<div class="card-body">';
-                            html += '<p class="text-right" style="text-align:right;">' + response[i].pemasukan_tgl + '</p>';
-                            html += '<h6 class="">' + response[i].pemasukan + '</h6>';
-                            html += '<p>' + response[i].pemasukan_keterangan + '</p>';
-                            html += '<hr />';
-                            html += '<h6>Rp. ' + formatRupiah(response[i].pemasukan_total) + '</h6>';
-                            html += '</div></div></div>';
-                        }
-                        $('#data-pemasukan').html(html);
+                    if (response.status === 'success') {
+                        window.location.reload();
                     } else {
-                        html = "<div class='card'>";
-                        html += "<div class='card-content'>";   
-                        html += "<div class='card-body'>";
-                        html += "<h6 class='text-center'>Data Kosong</h6>";
-                        html += "</div></div></div>";
-                        $('#data-pemasukan').html(html);
+                        alert('Error: ' + response.message);
                     }
+                },
+                error: function(xhr) {
+                    console.error("AJAX Error:", xhr.responseText);
+                    alert('Terjadi kesalahan. Cek konsol untuk detail.');
                 }
             });
-
         }
-        //Format Rupiah
-        function formatRupiah(angka, prefix) {
-            var number_string = angka.replace(/[^,\d]/g, '').toString(),
-                split = number_string.split(','),
-                sisa = split[0].length % 3,
-                rupiah = split[0].substr(0, sisa),
-                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
 
-            // tambahkan titik jika yang di input sudah menjadi angka ribuan
-            if (ribuan) {
-                separator = sisa ? ',' : '';
-                rupiah += separator + ribuan.join(',');
+
+    function renderPemasukan() {
+        $.ajax({
+            url: '<?= base_url('pemasukan/get_data') ?>',
+            async: true,
+            type: 'POST',
+            dataType: 'json',
+            success: function(response) {
+                var i;
+                var html = '';
+                if (response.length != 0) {
+                    for (i = 0; i < 5; i++) {
+                        html += '<div class="card">';
+                        html += '<div class="card-content">';
+                        html += '<div class="card-body">';
+                        html += '<p class="text-right" style="text-align:right;">' + response[i].pemasukan_tgl + '</p>';
+                        html += '<h6 class="">' + response[i].pemasukan + '</h6>';
+                        html += '<p>' + response[i].pemasukan_keterangan + '</p>';
+                        html += '<hr />';
+                        html += '<h6>Rp. ' + formatRupiah(response[i].pemasukan_total) + '</h6>';
+                        html += '</div></div></div>';
+                    }
+                    $('#data-pemasukan').html(html);
+                } else {
+                    html = "<div class='card'>";
+                    html += "<div class='card-content'>";   
+                    html += "<div class='card-body'>";
+                    html += "<h6 class='text-center'>Data Kosong</h6>";
+                    html += "</div></div></div>";
+                    $('#data-pemasukan').html(html);
+                }
             }
+        });
+    }
+    //Format Rupiah
+    function formatRupiah(angka, prefix) {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
 
-            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        // tambahkan titik jika yang di input sudah menjadi angka ribuan
+        if (ribuan) {
+            separator = sisa ? ',' : '';
+            rupiah += separator + ribuan.join(',');
         }
+
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+    }
 
         //Get Selected Value ID 
-        function get_selected_id() {
-            var e = document.getElementById('select_kategori');
-            var value = e.value;
-            var text = e.options[e.selectedIndex].text;
-            return text;
-        }
+    function get_selected_id() {
+        var e = document.getElementById('select_kategori');
+        var value = e.value;
+        var text = e.options[e.selectedIndex].text;
+        return text;
+    }
 
-        function getToday() {
-            const tgl = new Date();
-            let d = tgl.getDate();
-            let m = tgl.getMonth() + 1;
-            let y = tgl.getFullYear();
+    function getToday() {
+        const tgl = new Date();
+        let d = tgl.getDate();
+        let m = tgl.getMonth() + 1;
+        let y = tgl.getFullYear();
 
-            var datefrom = y + "-" + m + "-" + d;
-            var dateto = y + "-" + m + "-" + d;
+        var datefrom = y + "-" + m + "-" + d;
+        var dateto = y + "-" + m + "-" + d;
 
-            $.ajax({
-                type: 'POST',
-                url: '<?= base_url('pemasukan/get_data_by_date') ?>',
-                dataType: 'json',
-                data: {
-                    'datefrom': datefrom,
-                    'dateto': dateto
-                },
-                success: function(response) {
-                    var i;
-                    var sum = 0;
-                    if (response.length != 0) {
-                        for (i = 0; i < response.length; i++) {
-                            sum += parseInt(response[i].pengeluaran_total)
-                        }
+        $.ajax({
+            type: 'POST',
+            url: '<?= base_url('pemasukan/get_data_by_date') ?>',
+            dataType: 'json',
+            data: {
+                'datefrom': datefrom,
+                'dateto': dateto
+            },
+            success: function(response) {
+                var i;
+                var sum = 0;
+                if (response.length != 0) {
+                    for (i = 0; i < response.length; i++) {
+                        sum += parseInt(response[i].pengeluaran_total)
                     }
-                    $('#pemasukan_hari_ini').text("Rp. " + formatRupiah(sum.toString()))
-                },
-            })
-        }
+                }
+                $('#pemasukan_hari_ini').text("Rp. " + formatRupiah(sum.toString()))
+            },
+        });
+    }
 
-        function getMonth() {
-            const tgl = new Date();
-            let d = tgl.getDate();
-            let m = tgl.getMonth() + 1;
-            let y = tgl.getFullYear();
+    function getMonth() {
+        const tgl = new Date();
+        let d = tgl.getDate();
+        let m = tgl.getMonth() + 1;
+        let y = tgl.getFullYear();
 
-            var datefrom = y + "-" + m + "-" + "01";
-            var dateto = y + "-" + m + "-" + "31";
+        var datefrom = y + "-" + m + "-" + "01";
+        var dateto = y + "-" + m + "-" + "31";
 
 
-            $.ajax({
-                type: 'POST',
-                url: '<?= base_url('pemasukan/get_data_by_date') ?>',
-                dataType: 'json',
-                data: {
-                    'datefrom': datefrom,
-                    'dateto': dateto
-                },
-                success: function(response) {
-                    var i;
-                    var sum = 0;
-                    if (response.length != 0) {
-                        for (i = 0; i < response.length; i++) {
-                            sum += parseInt(response[i].pengeluaran_total)
-                        }
+        $.ajax({
+            type: 'POST',
+            url: '<?= base_url('pemasukan/get_data_by_date') ?>',
+            dataType: 'json',
+            data: {
+                'datefrom': datefrom,
+                'dateto': dateto
+            },
+            success: function(response) {
+                var i;
+                var sum = 0;
+                if (response.length != 0) {
+                    for (i = 0; i < response.length; i++) {
+                        sum += parseInt(response[i].pengeluaran_total)
                     }
-                    $('#pemasukan_bulan_ini').text("Rp. " + formatRupiah(sum.toString()))
-                },
-            })
-        }
+                }
+                $('#pemasukan_bulan_ini').text("Rp. " + formatRupiah(sum.toString()))
+            },
+        });
+    }
 
-        function getYear() {
-            const tgl = new Date();
-            let d = tgl.getDate();
-            let m = tgl.getMonth() + 1;
-            let y = tgl.getFullYear();
+    function getYear() {
+        const tgl = new Date();
+        let d = tgl.getDate();
+        let m = tgl.getMonth() + 1;
+        let y = tgl.getFullYear();
 
-            var datefrom = y + "-" + "1" + "-" + "1";
-            var dateto = y + "-" + m + "-" + d;
+        var datefrom = y + "-" + "1" + "-" + "1";
+        var dateto = y + "-" + m + "-" + d;
 
 
-            $.ajax({
-                type: 'POST',
-                url: '<?= base_url('pemasukan/get_data_by_date') ?>',
-                dataType: 'json',
-                data: {
-                    'datefrom': datefrom,
-                    'dateto': dateto
-                },
-                success: function(response) {
-                    var i;
-                    var sum = 0;
-                    if (response.length != 0) {
-                        for (i = 0; i < response.length; i++) {
-                            sum += parseInt(response[i].pengeluaran_total)
-                        }
+        $.ajax({
+            type: 'POST',
+            url: '<?= base_url('pemasukan/get_data_by_date') ?>',
+            dataType: 'json',
+            data: {
+                'datefrom': datefrom,
+                'dateto': dateto
+            },
+            success: function(response) {
+                var i;
+                var sum = 0;
+                if (response.length != 0) {
+                    for (i = 0; i < response.length; i++) {
+                        sum += parseInt(response[i].pengeluaran_total)
                     }
-                    $('#pemasukan_tahun_ini').text("Rp. " + formatRupiah(sum.toString()))
-                },
-            })
-        }
-    </script>
+                }
+                $('#pemasukan_tahun_ini').text("Rp. " + formatRupiah(sum.toString()))
+            },
+        })
+    }
+</script>
