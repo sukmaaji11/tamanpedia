@@ -242,6 +242,7 @@
             }
         });
     }
+    
     //Format Rupiah
     function formatRupiah(angka, prefix) {
         var number_string = angka.replace(/[^,\d]/g, '').toString(),
