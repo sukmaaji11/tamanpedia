@@ -373,7 +373,9 @@
                })
                .done(response => {
                    const items = response.data || [];
+                   console.log(items);
                    const total = items.reduce((sum, item) => sum + (Number(item.pemasukan_total) || 0), 0);
+                   console.log(total);
                    $('#pemasukan_tahun_ini').html(`<span class="currency-symbol">Rp</span>${formatRupiah(total.toString())}`);
                })
                .fail(error => {
