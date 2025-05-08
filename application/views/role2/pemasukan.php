@@ -292,33 +292,35 @@
        }
 
        function getToday() {
-           const tgl = new Date();
-           let d = tgl.getDate();
-           let m = tgl.getMonth() + 1;
-           let y = tgl.getFullYear();
+           const padNumber = num => num.toString().padStart(2, '0'); // Helper for date formatting
+           const today = new Date();
 
-           var datefrom = y + "-" + m + "-" + d;
-           var dateto = y + "-" + m + "-" + d;
+           // Format dates as YYYY-MM-DD
+           const dateString = `${today.getFullYear()}-${padNumber(today.getMonth() + 1)}-${padNumber(today.getDate())}`;
 
            $.ajax({
-               type: 'POST',
-               url: '<?= base_url('pemasukan/get_data_by_date') ?>',
-               dataType: 'json',
-               data: {
-                   'datefrom': datefrom,
-                   'dateto': dateto
-               },
-               success: function(response) {
-                   var i;
-                   var sum = 0;
-                   if (response.length != 0) {
-                       for (i = 0; i < response.length; i++) {
-                           sum += parseInt(response[i].pemasukan_total)
-                       }
+                   type: 'GET', // Changed to GET as we're fetching data
+                   url: '<?= base_url('pemasukan/get_data_by_date') ?>',
+                   dataType: 'json',
+                   data: {
+                       datefrom: dateString,
+                       dateto: dateString
                    }
-                   $('#pemasukan_hari_ini').text("Rp. " + formatRupiah(sum.toString()))
-               },
-           });
+               })
+               .done(response => {
+                   const isValidResponse = Array.isArray(response);
+                   const total = isValidResponse ?
+                       response.reduce((sum, item) => {
+                           const amount = Number(item.pemasukan_total) || 0;
+                           return sum + amount;
+                       }, 0) : 0;
+
+                   $('#pemasukan_hari_ini').html(`<span class="currency-symbol">Rp</span>${formatRupiah(total.toFixed(2))}`);
+               })
+               .fail((xhr, status, error) => {
+                   console.error('Error fetching today\'s data:', error);
+                   $('#pemasukan_hari_ini').html(`<span class="error-text">Gagal memuat data</span>`);
+               });
        }
 
        function getMonth() {
