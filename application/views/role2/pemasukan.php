@@ -315,7 +315,7 @@
                            return sum + amount;
                        }, 0) : 0;
 
-                   $('#pemasukan_hari_ini').html(`<span class="currency-symbol">Rp</span>${formatRupiah(total.toFixed(2))}`);
+                   $('#pemasukan_hari_ini').html(`<span class="currency-symbol">Rp</span>${formatRupiah(total.toString())}`);
                })
                .fail((xhr, status, error) => {
                    console.error('Error fetching today\'s data:', error);
