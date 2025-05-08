@@ -323,8 +323,6 @@
                        items.reduce((sum, item) => sum + (Number(item.pemasukan_total) || 0), 0) :
                        0;
 
-                   console.log("Valid Response:", isValidResponse, "Total:", total);
-
                    $('#pemasukan_hari_ini').html(`<span class="currency-symbol">Rp</span>${formatRupiah(total.toString())}`);
                })
                .fail((xhr, status, error) => {
@@ -344,24 +342,36 @@
 
 
            $.ajax({
-               type: 'POST',
-               url: '<?= base_url('pemasukan/get_data_by_date') ?>',
-               dataType: 'json',
-               data: {
-                   'datefrom': datefrom,
-                   'dateto': dateto
-               },
-               success: function(response) {
-                   var i;
-                   var sum = 0;
-                   if (response.length != 0) {
-                       for (i = 0; i < response.length; i++) {
-                           sum += parseInt(response[i].pemasukan_total)
-                       }
+                   type: 'GET', // Changed to GET as we're fetching data
+                   url: '<?= base_url('pemasukan/get_data_by_date') ?>',
+                   dataType: 'json',
+                   data: {
+                       datefrom: dateString,
+                       dateto: dateString
                    }
-                   $('#pemasukan_bulan_ini').text("Rp. " + formatRupiah(sum.toString()))
-               },
-           });
+               })
+               .done(response => {
+                   // 1. Access the nested array
+                   const items = response.data || [];
+
+                   // 2. Validate structure
+                   const isValidResponse = (
+                       Array.isArray(items) &&
+                       items.length > 0 &&
+                       items.every(item => 'pemasukan_total' in item)
+                   );
+
+                   // 3. Calculate total
+                   const total = isValidResponse ?
+                       items.reduce((sum, item) => sum + (Number(item.pemasukan_total) || 0), 0) :
+                       0;
+
+                   $('#pemasukan_bulan_ini').html(`<span class="currency-symbol">Rp</span>${formatRupiah(total.toString())}`);
+               })
+               .fail((xhr, status, error) => {
+                   console.error('Error fetching today\'s data:', error);
+                   $('#pemasukan_bulan_ini').html(`<span class="error-text">Gagal memuat data</span>`);
+               });
        }
 
        function getYear() {
