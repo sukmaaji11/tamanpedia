@@ -308,7 +308,9 @@
                    }
                })
                .done(response => {
+                   console.log(response[0].pemasukan_total);
                    const isValidResponse = Array.isArray(response);
+                   console.log(isValidResponse);
                    console.log(response);
                    const total = isValidResponse ?
                        response.reduce((sum, item) => {
