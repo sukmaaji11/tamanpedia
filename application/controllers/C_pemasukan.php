@@ -62,6 +62,8 @@ class C_pemasukan extends CI_Controller
         try {
             $this->load->model('M_pemasukan');
 
+            echo $this->input->post('datefrom');
+
             // Get and sanitize input
             $from = $this->input->post('datefrom', true) ?? date('Y-m-d');
             $to = $this->input->post('dateto', true) ?? date('Y-m-d');
