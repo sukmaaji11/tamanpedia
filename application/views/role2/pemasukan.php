@@ -226,7 +226,7 @@
                            html += '<div class="card">';
                            html += '<div class="card-content">';
                            html += '<div class="card-body">';
-                           html += '<p class="text-right" style="text-align:right;">' + response[i].pemasukan_tgl + '</p>';
+                           html += '<p class="text-right" style="text-align:right;">' + response[i].pemasukan + '</p>';
                            html += '<h6 class="">' + response[i].pemasukan + '</h6>';
                            html += '<p>' + response[i].pemasukan_keterangan + '</p>';
                            html += '<hr />';
@@ -294,7 +294,7 @@
                    var sum = 0;
                    if (response.length != 0) {
                        for (i = 0; i < response.length; i++) {
-                           sum += parseInt(response[i].pengeluaran_total)
+                           sum += parseInt(response[i].pemasukan_total)
                        }
                    }
                    $('#pemasukan_hari_ini').text("Rp. " + formatRupiah(sum.toString()))
@@ -325,7 +325,7 @@
                    var sum = 0;
                    if (response.length != 0) {
                        for (i = 0; i < response.length; i++) {
-                           sum += parseInt(response[i].pengeluaran_total)
+                           sum += parseInt(response[i].pemasukan_total)
                        }
                    }
                    $('#pemasukan_bulan_ini').text("Rp. " + formatRupiah(sum.toString()))
@@ -356,7 +356,7 @@
                    var sum = 0;
                    if (response.length != 0) {
                        for (i = 0; i < response.length; i++) {
-                           sum += parseInt(response[i].pengeluaran_total)
+                           sum += parseInt(response[i].pemasukan_total)
                        }
                    }
                    $('#pemasukan_tahun_ini').text("Rp. " + formatRupiah(sum.toString()))
