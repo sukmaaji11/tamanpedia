@@ -371,7 +371,7 @@
                    $('#pemasukan_bulan_ini').html(`<span class="currency-symbol">Rp</span>${formatRupiah(total.toString())}`);
                })
                .fail((xhr, status, error) => {
-                   console.error('Error fetching today\'s data:', error);
+                   console.error('Error fetching Monthly\'s data:', error);
                    $('#pemasukan_bulan_ini').html(`<span class="error-text">Gagal memuat data</span>`);
                });
        }

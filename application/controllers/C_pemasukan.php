@@ -62,19 +62,17 @@ class C_pemasukan extends CI_Controller
         try {
             $this->load->model('M_pemasukan');
 
-            var_dump($this->input->post('datefrom'));
-            die;
-
             // Get and sanitize input
             $from = $this->input->post('datefrom', true) ?? date('Y-m-d');
             $to = $this->input->post('dateto', true) ?? date('Y-m-d');
-
             $data = $this->M_pemasukan->get_data_by_date($from, $to);
 
             echo json_encode([
                 'status' => 'success',
                 'data' => $data
             ]);
+            var_dump($this->input->post('datefrom'));
+            die;
         } catch (Exception $e) {
             log_message('error', 'Controller Error: ' . $e->getMessage());
             echo json_encode([
