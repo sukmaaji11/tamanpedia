@@ -308,15 +308,15 @@
                    }
                })
                .done(response => {
+                   console.log("Full Response:", response);
+                   console.log("Is Array?", Array.isArray(response));
+                   console.log("First Item:", response[0]);
+
                    const isValidResponse = Array.isArray(response);
-                   console.log(isValidResponse);
-                   console.log(response);
                    const total = isValidResponse ?
                        response.reduce((sum, item) => {
                            // Handle string/number conversion
                            const rawValue = item.pemasukan_total || '0';
-                           console.log(rawValue);
-
                            // Remove commas and non-numeric characters
                            const numericString = String(rawValue)
                                .replace(/[^0-9.-]/g, '');
