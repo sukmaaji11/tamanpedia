@@ -230,7 +230,7 @@
                                 <div class="card-content">
                                     <div class="card-body">
                                         <div class="text-right">
-                                            ${item.pemasukan || '-'}
+                                            ${item.pemasukan_tgl || '-'}
                                         </div>
                                         <h6>${item.pemasukan || 'No Category'}</h6>
                                         <p>${item.pemasukan_keterangan || 'No Description'}</p>
