@@ -346,8 +346,8 @@
                    url: '<?= base_url('pemasukan/get_data_by_date') ?>',
                    dataType: 'json',
                    data: {
-                       datefrom: dateString,
-                       dateto: dateString
+                       datefrom: datefrom,
+                       dateto: dateto
                    }
                })
                .done(response => {
