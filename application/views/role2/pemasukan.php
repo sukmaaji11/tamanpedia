@@ -213,37 +213,56 @@
 
        function renderPemasukan() {
            $.ajax({
-               url: '<?= base_url('pemasukan/get_data') ?>',
-               async: true,
-               type: 'POST',
-               dataType: 'json',
-               success: function(response) {
-                   var i;
-                   var html = '';
-                   console.log(response);
-                   if (response.length != 0) {
-                       for (i = 0; i < 5; i++) {
-                           html += '<div class="card">';
-                           html += '<div class="card-content">';
-                           html += '<div class="card-body">';
-                           html += '<p class="text-right" style="text-align:right;">' + response[i].pemasukan + '</p>';
-                           html += '<h6 class="">' + response[i].pemasukan + '</h6>';
-                           html += '<p>' + response[i].pemasukan_keterangan + '</p>';
-                           html += '<hr />';
-                           html += '<h6>Rp. ' + formatRupiah(response[i].pemasukan_total) + '</h6>';
-                           html += '</div></div></div>';
-                       }
-                       $('#data-pemasukan').html(html);
+                   url: '<?= base_url('pemasukan/get_data') ?>',
+                   type: 'POST',
+                   dataType: 'json'
+               })
+               .done(function(response) {
+                   const container = $('#data-pemasukan');
+                   let html = '';
+                   // Check if response is valid and has data
+                   if (Array.isArray(response) && response.length > 0) {
+                       // Show maximum 5 items
+                       const itemsToShow = response.slice(0, 5);
+                       itemsToShow.forEach(item => {
+                           html += `
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="text-right">
+                                            ${item.pemasukan || '-'}
+                                        </div>
+                                        <h6>${item.pemasukan || 'No Category'}</h6>
+                                        <p>${item.pemasukan_keterangan || 'No Description'}</p>
+                                        <hr>
+                                        <h6>Rp. ${formatRupiah(item.pemasukan_total?.toString() || '0')}</h6>
+                                    </div>
+                                </div>
+                            </div>`;
+                       });
                    } else {
-                       html = "<div class='card'>";
-                       html += "<div class='card-content'>";
-                       html += "<div class='card-body'>";
-                       html += "<h6 class='text-center'>Data Kosong</h6>";
-                       html += "</div></div></div>";
-                       $('#data-pemasukan').html(html);
+                       html = `
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="card-body text-center">
+                                        <h6>Data Kosong</h6>
+                                    </div>
+                                </div>
+                            </div>`;
                    }
-               }
-           });
+                   container.html(html);
+               })
+               .fail(function(xhr, status, error) {
+                   console.error('AJAX Error:', status, error);
+                   $('#data-pemasukan').html(`
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body text-center text-danger">
+                                <h6>Gagal memuat data</h6>
+                            </div>
+                        </div>
+                    </div>`);
+               });
        }
 
        //Format Rupiah
