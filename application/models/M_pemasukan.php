@@ -73,13 +73,12 @@ class M_pemasukan extends CI_Model
         $this->db->where('pemasukan_id', $pemasukan_id);
         $this->db->delete('tb_pemasukan');
     }
-}
 
-
-// Helper
-// Add this helper method to your model
-private function validateDate($date)
-{
-    $d = DateTime::createFromFormat('Y-m-d', $date);
-    return $d && $d->format('Y-m-d') === $date;
+    // Helper
+    // Add this helper method to your model
+    private function validateDate($date)
+    {
+        $d = DateTime::createFromFormat('Y-m-d', $date);
+        return $d && $d->format('Y-m-d') === $date;
+    }
 }
