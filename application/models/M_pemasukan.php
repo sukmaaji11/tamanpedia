@@ -20,10 +20,33 @@ class M_pemasukan extends CI_Model
 
     public function get_data_by_date($from, $to)
     {
-        $this->db->where('pemasukan_tgl >=', $from);
-        $this->db->where('pemasukan_tgl <=', $to);
-        return $this->db->get('tb_pemasukan')->result();
+        // Validate date formats first
+        if (!$this->validateDate($from) || !$this->validateDate($to)) {
+            log_message('error', 'Invalid date format received: ' . $from . ' / ' . $to);
+            return [];
+        }
+
+        try {
+            $this->db->where('pemasukan_tgl >=', $from);
+            $this->db->where('pemasukan_tgl <=', $to);
+            $query = $this->db->get('tb_pemasukan');
+
+            // Debugging: Log the generated SQL
+            log_message('debug', 'Generated SQL: ' . $this->db->last_query());
+
+            if (!$query) {
+                $error = $this->db->error();
+                log_message('error', 'Database Error: ' . $error['message']);
+                return [];
+            }
+
+            return $query->result();
+        } catch (Exception $e) {
+            log_message('error', 'Model Error: ' . $e->getMessage());
+            return [];
+        }
     }
+
 
     public function add($data)
     {
@@ -50,4 +73,13 @@ class M_pemasukan extends CI_Model
         $this->db->where('pemasukan_id', $pemasukan_id);
         $this->db->delete('tb_pemasukan');
     }
+}
+
+
+// Helper
+// Add this helper method to your model
+private function validateDate($date)
+{
+    $d = DateTime::createFromFormat('Y-m-d', $date);
+    return $d && $d->format('Y-m-d') === $date;
 }

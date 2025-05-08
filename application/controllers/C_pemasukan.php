@@ -57,10 +57,30 @@ class C_pemasukan extends CI_Controller
 
     public function get_data_by_date()
     {
-        $from = $this->input->post('datefrom');
-        $to = $this->input->post('dateto');
-        $data = $this->M_pemasukan->get_data_by_date($from, $to);
-        echo json_encode($data, true);
+        header('Content-Type: application/json');
+
+        try {
+            $this->load->model('M_pemasukan');
+
+            // Get and sanitize input
+            $from = $this->input->post('datefrom', true) ?? date('Y-m-d');
+            $to = $this->input->post('dateto', true) ?? date('Y-m-d');
+
+            $data = $this->M_pemasukan->get_data_by_date($from, $to);
+
+            echo json_encode([
+                'status' => 'success',
+                'data' => $data
+            ]);
+        } catch (Exception $e) {
+            log_message('error', 'Controller Error: ' . $e->getMessage());
+            echo json_encode([
+                'status' => 'error',
+                'message' => 'Failed to retrieve data'
+            ]);
+        }
+
+        exit;
     }
 
     public function add()
