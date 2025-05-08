@@ -339,6 +339,8 @@
            var datefrom = `${today.getFullYear()}-${padNumber(today.getMonth() + 1)}-${padNumber(1)}`;
            var dateto = `${today.getFullYear()}-${padNumber(today.getMonth() + 1)}-${padNumber(31)}`;
 
+           console.log(datefrom);
+           console.log(dateto);
 
            $.ajax({
                    type: 'GET', // Changed to GET as we're fetching data
