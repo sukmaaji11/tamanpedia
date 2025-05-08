@@ -308,7 +308,6 @@
                    }
                })
                .done(response => {
-                   console.log(response[0].pemasukan_total);
                    const isValidResponse = Array.isArray(response);
                    console.log(isValidResponse);
                    console.log(response);
@@ -316,6 +315,7 @@
                        response.reduce((sum, item) => {
                            // Handle string/number conversion
                            const rawValue = item.pemasukan_total || '0';
+                           console.log(rawValue);
 
                            // Remove commas and non-numeric characters
                            const numericString = String(rawValue)
