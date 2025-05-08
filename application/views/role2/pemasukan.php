@@ -332,13 +332,12 @@
        }
 
        function getMonth() {
-           const tgl = new Date();
-           let d = tgl.getDate();
-           let m = tgl.getMonth() + 1;
-           let y = tgl.getFullYear();
+           const padNumber = num => num.toString().padStart(2, '0'); // Helper for date formatting
 
-           var datefrom = y + "-" + m + "-" + "01";
-           var dateto = y + "-" + m + "-" + "31";
+           const today = new Date();
+
+           var datefrom = `${today.getFullYear()}-${padNumber(today.getMonth() + 1)}-${padNumber(1)}`;
+           var dateto = `${today.getFullYear()}-${padNumber(today.getMonth() + 1)}-${padNumber(31)}`;
 
 
            $.ajax({
