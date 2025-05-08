@@ -71,8 +71,6 @@ class C_pemasukan extends CI_Controller
                 'status' => 'success',
                 'data' => $data
             ]);
-            var_dump($this->input->post('datefrom'));
-            die;
         } catch (Exception $e) {
             log_message('error', 'Controller Error: ' . $e->getMessage());
             echo json_encode([
@@ -81,6 +79,41 @@ class C_pemasukan extends CI_Controller
             ]);
         }
 
+        exit;
+    }
+
+    public function get_data_by_dateMonthly()
+    {
+        header('Content-Type: application/json');
+
+        try {
+            $this->load->model('M_pemasukan');
+
+            // Get from GET parameters instead of POST
+            $from = $this->input->get('datefrom', true) ?? date('Y-m-d');
+            $to = $this->input->get('dateto', true) ?? date('Y-m-d');
+
+            // Validate date format
+            if (
+                !DateTime::createFromFormat('Y-m-d', $from) ||
+                !DateTime::createFromFormat('Y-m-d', $to)
+            ) {
+                throw new Exception("Format tanggal tidak valid");
+            }
+
+            $data = $this->M_pemasukan->get_data_by_date($from, $to);
+
+            echo json_encode([
+                'status' => 'success',
+                'data' => $data
+            ]);
+        } catch (Exception $e) {
+            log_message('error', 'Controller Error: ' . $e->getMessage());
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ]);
+        }
         exit;
     }
 

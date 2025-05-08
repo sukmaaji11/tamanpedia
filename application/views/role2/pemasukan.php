@@ -332,47 +332,31 @@
        }
 
        function getMonth() {
-           const padNumber = num => num.toString().padStart(2, '0'); // Helper for date formatting
-
            const today = new Date();
+           const year = today.getFullYear();
+           const month = today.getMonth() + 1; // 1-12
 
-           var datefrom = `${today.getFullYear()}-${padNumber(today.getMonth() + 1)}-${padNumber(1)}`;
-           var dateto = `${today.getFullYear()}-${padNumber(today.getMonth() + 1)}-${padNumber(31)}`;
-
-           console.log(datefrom);
-           console.log(dateto);
+           // Get first and last day of month
+           const firstDay = `${year}-${String(month).padStart(2,'0')}-01`;
+           const lastDay = new Date(year, month, 0).getDate(); // Handles varying month lengths
 
            $.ajax({
-                   type: 'GET', // Changed to GET as we're fetching data
-                   url: '<?= base_url('pemasukan/get_data_by_date') ?>',
+                   type: 'GET',
+                   url: '<?= base_url('pemasukan/get_data_by_dateMonthly') ?>',
                    dataType: 'json',
                    data: {
-                       datefrom: datefrom,
-                       dateto: dateto
+                       datefrom: firstDay,
+                       dateto: `${year}-${String(month).padStart(2,'0')}-${lastDay}`
                    }
                })
                .done(response => {
-                   // 1. Access the nested array
                    const items = response.data || [];
-                   console.log(items);
-
-                   // 2. Validate structure
-                   const isValidResponse = (
-                       Array.isArray(items) &&
-                       items.length > 0 &&
-                       items.every(item => 'pemasukan_total' in item)
-                   );
-
-                   // 3. Calculate total
-                   const total = isValidResponse ?
-                       items.reduce((sum, item) => sum + (Number(item.pemasukan_total) || 0), 0) :
-                       0;
-
-                   $('#pemasukan_bulan_ini').html(`<span class="currency-symbol">Rp</span>${formatRupiah(total.toString())}`);
+                   const total = items.reduce((sum, item) => sum + (Number(item.pemasukan_total) || 0), 0);
+                   $('#pemasukan_bulan_ini').html(`Rp. ${formatRupiah(total)}`);
                })
-               .fail((xhr, status, error) => {
-                   console.error('Error fetching Monthly\'s data:', error);
-                   $('#pemasukan_bulan_ini').html(`<span class="error-text">Gagal memuat data</span>`);
+               .fail(error => {
+                   console.error('Error:', error);
+                   $('#pemasukan_bulan_ini').html('Gagal memuat data');
                });
        }
 
