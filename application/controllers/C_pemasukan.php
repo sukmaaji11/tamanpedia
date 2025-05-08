@@ -69,12 +69,6 @@ class C_pemasukan extends CI_Controller
         header('Content-Type: application/json');
 
         try {
-            // Enable database debugging
-            $this->db->db_debug = TRUE; // 👈 Add this line
-
-            // Enable error reporting temporarily
-            error_reporting(E_ALL);
-            ini_set('display_errors', 1);
             // Check if form is submitted
             if ($this->input->post()) {
                 // Validate required fields
@@ -109,11 +103,6 @@ class C_pemasukan extends CI_Controller
                         'updated_at'           => date('Y-m-d H:i:s'),
                         'pemasukan_status'     => "Approved"
                     ];
-
-                    // Debug: Check final data
-                    echo "<pre>";
-                    print_r($data);
-                    echo "</pre>";
                 }
             }
             if ($this->M_pemasukan->add($data)) {
@@ -125,10 +114,6 @@ class C_pemasukan extends CI_Controller
                 throw new Exception('Gagal menyimpan ke database');
             }
         } catch (Exception $e) {
-            // Get database error if exists
-            $db_error = $this->db->error();
-            $message = $db_error['message'] ?? $e->getMessage();
-
             log_message('error', 'Insert Failed: ' . $message);
             echo json_encode([
                 'status' => 'error',
