@@ -313,6 +313,7 @@
                    const total = isValidResponse ?
                        response.reduce((sum, item) => {
                            const amount = Number(item.pemasukan_total) || 0;
+                           console.log(amount);
                            return sum + amount;
                        }, 0) : 0;
                    console.log(total);
