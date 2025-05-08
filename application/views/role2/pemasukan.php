@@ -308,25 +308,22 @@
                    }
                })
                .done(response => {
-                   console.log("Full Response:", response);
-                   console.log("Is Array?", Array.isArray(response));
-                   console.log("First Item:", response[0]);
+                   // 1. Access the nested array
+                   const items = response.data || [];
 
-                   const isValidResponse = Array.isArray(response);
+                   // 2. Validate structure
+                   const isValidResponse = (
+                       Array.isArray(items) &&
+                       items.length > 0 &&
+                       items.every(item => 'pemasukan_total' in item)
+                   );
+
+                   // 3. Calculate total
                    const total = isValidResponse ?
-                       response.reduce((sum, item) => {
-                           // Handle string/number conversion
-                           const rawValue = item.pemasukan_total || '0';
-                           // Remove commas and non-numeric characters
-                           const numericString = String(rawValue)
-                               .replace(/[^0-9.-]/g, '');
+                       items.reduce((sum, item) => sum + (Number(item.pemasukan_total) || 0), 0) :
+                       0;
 
-                           const amount = parseFloat(numericString) || 0;
-
-                           return sum + amount;
-                       }, 0) : 0;
-
-                   console.log(total);
+                   console.log("Valid Response:", isValidResponse, "Total:", total);
 
                    $('#pemasukan_hari_ini').html(`<span class="currency-symbol">Rp</span>${formatRupiah(total.toString())}`);
                })
