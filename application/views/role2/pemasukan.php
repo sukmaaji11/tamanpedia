@@ -315,6 +315,7 @@
                            const amount = Number(item.pemasukan_total) || 0;
                            return sum + amount;
                        }, 0) : 0;
+                   console.log(total);
 
                    $('#pemasukan_hari_ini').html(`<span class="currency-symbol">Rp</span>${formatRupiah(total.toString())}`);
                })
