@@ -353,6 +353,7 @@
                .done(response => {
                    // 1. Access the nested array
                    const items = response.data || [];
+                   console.log(items);
 
                    // 2. Validate structure
                    const isValidResponse = (
