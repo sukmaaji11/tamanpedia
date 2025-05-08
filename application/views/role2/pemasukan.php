@@ -312,11 +312,17 @@
                    console.log(response);
                    const total = isValidResponse ?
                        response.reduce((sum, item) => {
-                           const amount = Number(item.pemasukan_total) || 0;
-                           console.log(amount);
+                           // Handle string/number conversion
+                           const rawValue = item.pemasukan_total || '0';
+
+                           // Remove commas and non-numeric characters
+                           const numericString = String(rawValue)
+                               .replace(/[^0-9.-]/g, '');
+
+                           const amount = parseFloat(numericString) || 0;
+
                            return sum + amount;
                        }, 0) : 0;
-                   console.log(amount);
 
                    console.log(total);
 
