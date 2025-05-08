@@ -85,7 +85,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form class="form form-vertical" id="form-pemasukan">
+                        <form class="form form-vertical" id="form-pengeluaran">
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-12">
@@ -126,7 +126,7 @@
                                         <div class="form-group">
                                             <label for="contact-info-vertical">Nota/Bukti Transaksi</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" name="pemasukan_img_filename" class="form-control pemasukan_img_filename rupiah" placeholder="0" aria-label="Total" aria-describedby="basic-addon1" required>
+                                                <input type="file" name="pemasukan_img_filename" class="form-control pemasukan_img_filename rupiah" id="pengeluaranImg" placeholder="0" aria-label="Total" aria-describedby="basic-addon1" required>
                                             </div>
                                         </div>
                                     </div>
@@ -144,7 +144,7 @@
                         <button type="button" class="btn btn-light-secondary btn-sm" data-bs-dismiss="modal">
                             <span class="d-sm-block">Close</span>
                         </button>
-                        <button type="button" class="btn btn-primary ml-1 btn-sm" id="btn-add-pengeluaran">
+                        <button type="button" class="btn btn-primar y ml-1 btn-sm" id="btn-add-pengeluaran">
                             <span class="d-sm-block">Simpan</span>
                         </button>
                     </div>
@@ -176,239 +176,59 @@
             renderPengeluaran();
         });
 
-        //BTN NEXT 
-        $('#btn-next').on('click', function() {
-            var kategori = get_selected_id();
-            console.log(kategori);
-            if (kategori == "") {
-                alert('Kategori Tidak Boleh Kosong');
-            } else if (kategori == "KANDANG") {
-                $("#modal_kategori").modal('hide');
-                $("#modal_kandang").modal('show');
-            } else if (kategori == "LAIN-LAIN") {
-                $("#modal_kategori").modal('hide');
-                $("#modal_lain").modal('show');
-            } else if (kategori == "PROD.(IDHAM)") {
-                $("#modal_kategori").modal('hide');
-                $("#modal_prodidh").modal('show');
-            } else if (kategori == "PROD.(HARY)") {
-                $("#modal_kategori").modal('hide');
-                $("#modal_prodhar").modal('show');
-            } else if (kategori == "REK.LAIN") {
-                $("#modal_kategori").modal('hide');
-                $("#modal_reklain").modal('show');
-            } else if (kategori == "PROYEK") {
-                $("#modal_kategori").modal('hide');
-                $("#modal_proyek").modal('show');
-            } else {
-                alert("EROR");
+        //BTN ADD Pemasukan
+        $('#btn-add-pengeluaran').on('click', function() {
+            // Get CSRF token
+            var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>';
+            var csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+
+            // Get form values
+            var formData = {
+                [csrfName]: csrfHash, // Include CSRF token
+                'pengeluaran_kategori': $('select[name=pengeluaran_kategori]').val(),
+                'pengeluaran_tgl': $('input[name=pengeluaran_tgl]').val(),
+                'pengeluaran': $('input[name=pengeluaran]').val(),
+                'pengeluaran_total': $('input[name=pengeluaran_total]').val(),
+                'pengeluaran_keterangan': $('textarea[name=pengeluaran_keterangan]').val()
+            };
+
+            // Convert numeric value properly
+            if (formData.pengeluaran_total) {
+                formData.pengeluaran_total = parseFloat(
+                    formData.pengeluaran_total.replace(/[^0-9.]/g, '')
+                ) || 0;
             }
-        })
 
-        //BTN KANDANG
-        $('#btn-pengeluaran-kandang').on('click', function() {
-            var pengeluaran = $('input[name=pengeluaran_kandang]').val();
-            var kategori = "KANDANG";
-            var tgl_pengeluaran = $('input[name=tgl_pengeluaran_kandang]').val();
-            var jenis_barang = $('input[name=pengeluaran_jenis_barang]').val();
-            var jumlah_barang = $('input[name=satuan_pengeluaran_kandang]').val();
-            var harga_satuan = $('input[name=harga_satuan_pengeluaran_kandang]').val();
-            var total = $('input[name=total_pengeluaran_kandang]').val();
-            var keterangan = $('textarea[name=keterangan_pengeluaran_kandang]').val();
+            // Append file
+            const fileInput = $('#pengeluaranImg')[0];
+            if (fileInput.files.length > 0) {
+                formData.append('pengeluaran_img_filename', fileInput.files[0]);
+            }
+
 
             $.ajax({
                 type: 'POST',
-                url: '<?= base_url('pengeluaran/add') ?>',
-                data: {
-                    'pengeluaran': pengeluaran,
-                    'kategori': kategori,
-                    'tgl_pengeluaran': tgl_pengeluaran,
-                    'jenis_barang': jenis_barang,
-                    'jumlah_barang': jumlah_barang,
-                    'harga_satuan': harga_satuan.replace(/,(?=\d{3})/g, ''),
-                    'total': total.replace(/,(?=\d{3})/g, ''),
-                    'keterangan': keterangan
-                },
-                beforeSend: function() {
-                    $('#btn-pengeluaran-kandang').attr('disabled');
-                },
+                url: '<?= site_url("pengeluaran/add") ?>',
+                data: formData,
+                contentType: false,
+                processData: false,
+                dataType: 'json', // 👈 Critical for JSON parsing
                 success: function(response) {
-                    alert('Data Berhasil Disimpan!');
-                    location.reload();
+                    if (response.status === 'success') {
+                        window.location.reload();
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                },
+                error: function(xhr) {
+                    var url = '<?= site_url("pengeluaran/add") ?>';
+                    console.log(url);
+                    console.error("AJAX Error:", xhr.responseText);
+                    alert('Terjadi kesalahan. Cek konsol untuk detail.');
                 }
-            })
-        })
+            });
+        });
 
-        //BTN LAIN-LAIN
-        $('#btn-pengeluaran-lain').on('click', function() {
-            var pengeluaran = $('input[name=pengeluaran_lain]').val();
-            var kategori = "LAIN-LAIN";
-            var tgl_pengeluaran = $('input[name=tgl_pengeluaran_lain]').val();
-            var jenis_barang = "-"
-            var jumlah_barang = "-"
-            var harga_satuan = "-"
-            var total = $('input[name=total_pengeluaran_lain]').val();
-            var keterangan = $('textarea[name=keterangan_pengeluaran_lain]').val();
-
-            $.ajax({
-                type: 'POST',
-                url: '<?= base_url('pengeluaran/add') ?>',
-                data: {
-                    'pengeluaran': pengeluaran,
-                    'kategori': kategori,
-                    'tgl_pengeluaran': tgl_pengeluaran,
-                    'jenis_barang': jenis_barang,
-                    'jumlah_barang': jumlah_barang,
-                    'harga_satuan': harga_satuan,
-                    'total': total.replace(/,(?=\d{3})/g, ''),
-                    'keterangan': keterangan
-                },
-                beforeSend: function() {
-                    $('#btn-pengeluaran-lain').attr('disabled');
-                },
-                success: function(response) {
-                    alert('Data Berhasil Disimpan!');
-                    location.reload();
-                }
-            })
-        })
-
-        //BTN PROD IDHAM
-        $('#btn-pengeluaran-prodidh').on('click', function() {
-            var pengeluaran = $('input[name=pengeluaran_prodidh]').val();
-            var kategori = "PROD.(IDHAM)";
-            var tgl_pengeluaran = $('input[name=tgl_pengeluaran_prodidh]').val();
-            var jenis_barang = "-"
-            var jumlah_barang = "-"
-            var harga_satuan = "-"
-            var total = $('input[name=total_pengeluaran_prodidh]').val();
-            var keterangan = $('textarea[name=keterangan_pengeluaran_prodidh]').val();
-
-            $.ajax({
-                type: 'POST',
-                url: '<?= base_url('pengeluaran/add') ?>',
-                data: {
-                    'pengeluaran': pengeluaran,
-                    'kategori': kategori,
-                    'tgl_pengeluaran': tgl_pengeluaran,
-                    'jenis_barang': jenis_barang,
-                    'jumlah_barang': jumlah_barang,
-                    'harga_satuan': harga_satuan,
-                    'total': total.replace(/,(?=\d{3})/g, ''),
-                    'keterangan': keterangan
-                },
-                beforeSend: function() {
-                    $('#btn-pengeluaran-prodidh').attr('disabled');
-                },
-                success: function(response) {
-                    alert('Data Berhasil Disimpan!');
-                    location.reload();
-                }
-            })
-        })
-
-        //BTN PROD HARRY
-        $('#btn-pengeluaran-prodhar').on('click', function() {
-            var pengeluaran = $('input[name=pengeluaran_prodhar]').val();
-            var kategori = "PROD.(HARY)";
-            var tgl_pengeluaran = $('input[name=tgl_pengeluaran_prodhar]').val();
-            var jenis_barang = "-"
-            var jumlah_barang = "-"
-            var harga_satuan = "-"
-            var total = $('input[name=total_pengeluaran_prodhar]').val();
-            var keterangan = $('textarea[name=keterangan_pengeluaran_prodhar]').val();
-
-            $.ajax({
-                type: 'POST',
-                url: '<?= base_url('pengeluaran/add') ?>',
-                data: {
-                    'pengeluaran': pengeluaran,
-                    'kategori': kategori,
-                    'tgl_pengeluaran': tgl_pengeluaran,
-                    'jenis_barang': jenis_barang,
-                    'jumlah_barang': jumlah_barang,
-                    'harga_satuan': harga_satuan,
-                    'total': total.replace(/,(?=\d{3})/g, ''),
-                    'keterangan': keterangan
-                },
-                beforeSend: function() {
-                    $('#btn-pengeluaran-prodhar').attr('disabled');
-                },
-                success: function(response) {
-                    alert('Data Berhasil Disimpan!');
-                    location.reload();
-                }
-            })
-        })
-
-
-        //BTN REK LAIN
-        $('#btn-pengeluaran-reklain').on('click', function() {
-            var pengeluaran = $('input[name=pengeluaran_reklain]').val();
-            var kategori = "REK.LAIN";
-            var tgl_pengeluaran = $('input[name=tgl_pengeluaran_reklain]').val();
-            var jenis_barang = "-"
-            var jumlah_barang = "-"
-            var harga_satuan = "-"
-            var total = $('input[name=total_pengeluaran_reklain]').val();
-            var keterangan = $('textarea[name=keterangan_pengeluaran_reklain]').val();
-
-            $.ajax({
-                type: 'POST',
-                url: '<?= base_url('pengeluaran/add') ?>',
-                data: {
-                    'pengeluaran': pengeluaran,
-                    'kategori': kategori,
-                    'tgl_pengeluaran': tgl_pengeluaran,
-                    'jenis_barang': jenis_barang,
-                    'jumlah_barang': jumlah_barang,
-                    'harga_satuan': harga_satuan,
-                    'total': total.replace(/,(?=\d{3})/g, ''),
-                    'keterangan': keterangan
-                },
-                beforeSend: function() {
-                    $('#btn-pengeluaran-reklain').attr('disabled');
-                },
-                success: function(response) {
-                    alert('Data Berhasil Disimpan!');
-                    location.reload();
-                }
-            })
-        })
-
-        //BTN PROYEK
-        $('#btn-pengeluaran-proyek').on('click', function() {
-            var pengeluaran = $('input[name=pengeluaran_proyek]').val();
-            var kategori = "PROYEK";
-            var tgl_pengeluaran = $('input[name=tgl_pengeluaran_proyek]').val();
-            var jenis_barang = "-"
-            var jumlah_barang = "-"
-            var harga_satuan = "-"
-            var total = $('input[name=total_pengeluaran_proyek]').val();
-            var keterangan = $('textarea[name=keterangan_pengeluaran_proyek]').val();
-
-            $.ajax({
-                type: 'POST',
-                url: '<?= base_url('pengeluaran/add') ?>',
-                data: {
-                    'pengeluaran': pengeluaran,
-                    'kategori': kategori,
-                    'tgl_pengeluaran': tgl_pengeluaran,
-                    'jenis_barang': jenis_barang,
-                    'jumlah_barang': jumlah_barang,
-                    'harga_satuan': harga_satuan,
-                    'total': total.replace(/,(?=\d{3})/g, ''),
-                    'keterangan': keterangan
-                },
-                beforeSend: function() {
-                    $('#btn-pengeluaran-proyek').attr('disabled');
-                },
-                success: function(response) {
-                    alert('Data Berhasil Disimpan!');
-                    location.reload();
-                }
-            })
-        })
 
         function renderPengeluaran() {
             $.ajax({

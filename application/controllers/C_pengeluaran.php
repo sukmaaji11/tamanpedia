@@ -30,6 +30,8 @@ class C_pengeluaran extends CI_Controller
     public function index()
     {
         $data['user'] = $this->db->get_where('tb_user', ['user_role' => $this->session->userdata('user_role')])->row_array();
+        $data['kategori'] = $this->db->get_where('tb_kategori', array('kategori_role =' => 2))->result();
+
         if ($this->session->userdata('user_role') == 2) {
             $this->load->view('role2/template/header.php', $data);
             $this->load->view('role2/template/sidebar.php', $data);
@@ -64,18 +66,77 @@ class C_pengeluaran extends CI_Controller
 
     public function add()
     {
-        $data = [
-            'pengeluaran'   => $this->input->post('pengeluaran'),
-            'pengeluaran_kategori'   => $this->input->post('kategori'),
-            'pengeluaran_tgl'  => $this->input->post('tgl_pengeluaran'),
-            'pengeluaran_jenis_barang' => $this->input->post('jenis_barang'),
-            'pengeluaran_jumlah'  => $this->input->post('jumlah_barang'),
-            'pengeluaran_harga_satuan' => $this->input->post('harga_satuan'),
-            'pengeluaran_total' => $this->input->post('total'),
-            'pengeluaran_keterangan' => $this->input->post('keterangan')
-        ];
-        
-        $this->M_pengeluaran->add($data);
+        header('Content-Type: application/json');
+
+        try {
+            // Verify CSRF token
+            if (!$this->security->csrf_verify()) {
+                throw new Exception("Invalid CSRF token");
+            }
+
+            // File Upload Configuration
+            $config['upload_path']   = '../../assets/uploads/pengeluaran';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['max_size']      = 2048; // 2MB
+            $config['encrypt_name']  = TRUE;
+
+            $this->load->library('upload', $config);
+
+            // Validate required fields
+            $this->form_validation->set_rules('pengeluaran_kategori', 'Kategori', 'required');
+            $this->form_validation->set_rules('pengeluaran_total', 'Total', 'required|numeric');
+
+            if ($this->form_validation->run() == FALSE) {
+                throw new Exception(validation_errors('<div class="error">', '</div>'));
+            }
+
+            // Handle file upload
+            $filename = null;
+            if (!empty($_FILES['pengeluaran_img_filename']['name'])) {
+                if (!$this->upload->do_upload('pengeluaran_img_filename')) {
+                    throw new Exception($this->upload->display_errors());
+                }
+                $upload_data = $this->upload->data();
+                $filename = $upload_data['file_name'];
+            }
+
+            // Get and validate kategori
+            $kategori_id = $this->input->post('pengeluaran_kategori');
+            $kategori = $this->db->get_where('tb_kategori', ['kategori_id' => $kategori_id])->row_array();
+            if (!$kategori) {
+                throw new Exception("Kategori tidak ditemukan!");
+            }
+
+            // Prepare data
+            $data = [
+                'pengeluaran_kategori'    => $kategori_id,
+                'pengeluaran_tgl'         => $this->input->post('pengeluaran_tgl'),
+                'pengeluaran'             => $this->input->post('pengeluaran'),
+                'pengeluaran_total'       => $this->input->post('pengeluaran_total'),
+                'pengeluaran_img_filename' => $filename,
+                'pengeluaran_keterangan'  => $this->input->post('pengeluaran_keterangan'),
+                'created_at'              => date('Y-m-d H:i:s'),
+                'updated_at'              => date('Y-m-d H:i:s'),
+                'pengeluaran_status'      => "Approved"
+            ];
+
+            if ($this->M_pengeluaran->add($data)) {
+                echo json_encode([
+                    'status' => 'success',
+                    'message' => 'Data berhasil disimpan',
+                    'filename' => $filename
+                ]);
+            } else {
+                throw new Exception('Gagal menyimpan ke database');
+            }
+        } catch (Exception $e) {
+            log_message('error', 'Pengeluaran Error: ' . $e->getMessage());
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ]);
+        }
+        exit;
     }
 
     public function edit()
