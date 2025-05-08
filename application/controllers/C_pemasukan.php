@@ -117,6 +117,28 @@ class C_pemasukan extends CI_Controller
         exit;
     }
 
+    public function get_data_by_dateYearly()
+    {
+        header('Content-Type: application/json');
+
+        try {
+            $year = $this->input->get('year', true) ?? date('Y');
+            $total = $this->M_pemasukan->get_yearly_total($year);
+
+            echo json_encode([
+                'status' => 'success',
+                'total' => $total
+            ]);
+        } catch (Exception $e) {
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ]);
+        }
+        exit;
+    }
+
+
     public function add()
     {
         // Force JSON response even for errors

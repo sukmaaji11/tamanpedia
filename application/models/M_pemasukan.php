@@ -47,6 +47,13 @@ class M_pemasukan extends CI_Model
         }
     }
 
+    public function get_yearly_total($year)
+    {
+        $this->db->select_sum('pemasukan_total');
+        $this->db->where('YEAR(pemasukan_tgl)', $year);
+        $query = $this->db->get('tb_pemasukan');
+        return $query->row()->pemasukan_total ?? 0;
+    }
 
     public function add($data)
     {

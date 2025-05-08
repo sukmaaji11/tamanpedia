@@ -361,33 +361,23 @@
        }
 
        function getYear() {
-           const tgl = new Date();
-           let d = tgl.getDate();
-           let m = tgl.getMonth() + 1;
-           let y = tgl.getFullYear();
-
-           var datefrom = y + "-" + "1" + "-" + "1";
-           var dateto = y + "-" + m + "-" + d;
-
+           const today = new Date();
+           const year = today.getFullYear();
 
            $.ajax({
-               type: 'POST',
-               url: '<?= base_url('pemasukan/get_data_by_date') ?>',
-               dataType: 'json',
-               data: {
-                   'datefrom': datefrom,
-                   'dateto': dateto
-               },
-               success: function(response) {
-                   var i;
-                   var sum = 0;
-                   if (response.length != 0) {
-                       for (i = 0; i < response.length; i++) {
-                           sum += parseInt(response[i].pemasukan_total)
-                       }
+                   url: '<?= base_url('pemasukan/get_data_dateYearly') ?>',
+                   data: {
+                       year: year
                    }
-                   $('#pemasukan_tahun_ini').text("Rp. " + formatRupiah(sum.toString()))
-               },
-           })
+               })
+               .done(response => {
+                   const items = response.data || [];
+                   const total = items.reduce((sum, item) => sum + (Number(item.pemasukan_total) || 0), 0);
+                   $('#pemasukan_tahun_ini').html(`<span class="currency-symbol">Rp</span>${formatRupiah(total.toString())}`);
+               })
+               .fail(error => {
+                   console.error('Error:', error);
+                   $('#pemasukan_tahun_ini').html('Gagal memuat data');
+               });
        }
    </script>
