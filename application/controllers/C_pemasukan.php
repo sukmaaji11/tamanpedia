@@ -123,11 +123,19 @@ class C_pemasukan extends CI_Controller
 
         try {
             $year = $this->input->get('year', true) ?? date('Y');
-            $total = $this->M_pemasukan->get_yearly_total($year);
 
+            // Validate year format
+            if (!preg_match('/^\d{4}$/', $year)) {
+                throw new Exception("Invalid year format");
+            }
+
+            $this->load->model('M_pemasukan');
+            $data = $this->M_pemasukan->get_yearly_total($year);
+
+            // Return empty array instead of null
             echo json_encode([
                 'status' => 'success',
-                'total' => $total
+                'data' => $data ? $data : []
             ]);
         } catch (Exception $e) {
             echo json_encode([
