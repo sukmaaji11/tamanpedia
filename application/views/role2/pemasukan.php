@@ -365,6 +365,7 @@
            const year = today.getFullYear();
 
            $.ajax({
+                   type: 'GET',
                    url: '<?= base_url('pemasukan/get_data_dateYearly') ?>',
                    data: {
                        year: year
