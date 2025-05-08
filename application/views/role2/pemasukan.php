@@ -366,7 +366,7 @@
 
            $.ajax({
                    type: 'GET',
-                   url: '<?= base_url('pemasukan/get_data_dateYearly') ?>',
+                   url: '<?= base_url('pemasukan/get_data_by_dateYearly') ?>',
                    data: {
                        year: year
                    }
