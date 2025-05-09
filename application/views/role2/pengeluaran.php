@@ -182,15 +182,15 @@
             var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>';
             var csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
 
-            // Get form values
-            var formData = {
-                [csrfName]: csrfHash, // Include CSRF token
-                'pengeluaran_kategori': $('select[name=pengeluaran_kategori]').val(),
-                'pengeluaran_tgl': $('input[name=pengeluaran_tgl]').val(),
-                'pengeluaran': $('input[name=pengeluaran]').val(),
-                'pengeluaran_total': $('input[name=pengeluaran_total]').val(),
-                'pengeluaran_keterangan': $('textarea[name=pengeluaran_keterangan]').val()
-            };
+            const formData = new FormData();
+
+            // Append form data
+            formData.append(csrfName, csrfHash);
+            formData.append('pengeluaran_kategori', $('[name="pengeluaran_kategori"]').val());
+            formData.append('pengeluaran_tgl', $('[name="pengeluaran_tgl"]').val());
+            formData.append('pengeluaran', $('input[name=pengeluaran]').val());
+            formData.append('pengeluaran_total', $('input[name=pengeluaran_total]').val());
+            formData.append('pengeluaran_keterangan', $('textarea[name=pengeluaran_keterangan]').val())
 
             // Convert numeric value properly
             if (formData.pengeluaran_total) {
