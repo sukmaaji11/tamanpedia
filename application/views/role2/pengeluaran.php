@@ -126,7 +126,7 @@
                                         <div class="form-group">
                                             <label for="contact-info-vertical">Nota/Bukti Transaksi</label>
                                             <div class="input-group mb-3">
-                                                <input type="file" name="pemasukan_img_filename" class="form-control pemasukan_img_filename rupiah" id="pengeluaranImg" placeholder="0" aria-label="Total" aria-describedby="basic-addon1" required>
+                                                <input type="file" name="pemasukan_img_filename" class="form-control pemasukan_img_filename" id="pengeluaranImg">
                                             </div>
                                         </div>
                                     </div>
@@ -176,35 +176,31 @@
             renderPengeluaran();
         });
 
-        //BTN ADD Pemasukan
+        // BTN ADD Pengeluaran
         $('#btn-add-pengeluaran').on('click', function() {
             // Get CSRF token
-            var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>';
-            var csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
+            const csrfName = '<?= $this->security->get_csrf_token_name() ?>';
+            const csrfHash = '<?= $this->security->get_csrf_hash() ?>';
 
             const formData = new FormData();
+            const fileInput = document.getElementById('pengeluaranImg');
 
-            // Append form data
+            // Process numeric value BEFORE adding to FormData
+            const rawTotal = $('input[name=pengeluaran_total]').val();
+            const cleanTotal = parseFloat(rawTotal.replace(/[^0-9.]/g, '')) || 0;
+
+            // Append all form data
             formData.append(csrfName, csrfHash);
             formData.append('pengeluaran_kategori', $('[name="pengeluaran_kategori"]').val());
             formData.append('pengeluaran_tgl', $('[name="pengeluaran_tgl"]').val());
             formData.append('pengeluaran', $('input[name=pengeluaran]').val());
-            formData.append('pengeluaran_total', $('input[name=pengeluaran_total]').val());
-            formData.append('pengeluaran_keterangan', $('textarea[name=pengeluaran_keterangan]').val())
+            formData.append('pengeluaran_total', cleanTotal);
+            formData.append('pengeluaran_keterangan', $('textarea[name=pengeluaran_keterangan]').val());
 
-            // Convert numeric value properly
-            if (formData.pengeluaran_total) {
-                formData.pengeluaran_total = parseFloat(
-                    formData.pengeluaran_total.replace(/[^0-9.]/g, '')
-                ) || 0;
-            }
-
-            // Append file
-            const fileInput = $('#pengeluaranImg')[0];
+            // Append file with correct field name (matches controller expectation)
             if (fileInput.files.length > 0) {
-                formData.append('pengeluaran_img_filename', fileInput.files[0]);
+                formData.append('pengeluaran_img_filename', fileInput.files[0]); // Correct field name
             }
-
 
             $.ajax({
                 type: 'POST',
@@ -212,22 +208,58 @@
                 data: formData,
                 contentType: false,
                 processData: false,
-                dataType: 'json', // 👈 Critical for JSON parsing
+                dataType: 'json',
+                beforeSend: function() {
+                    $('#btn-add-pengeluaran').prop('disabled', true);
+                },
+                complete: function() {
+                    $('#btn-add-pengeluaran').prop('disabled', false);
+                },
                 success: function(response) {
                     if (response.status === 'success') {
-                        window.location.reload();
+                        // Proper form reset
+                        document.getElementById('pengeluaranForm').reset();
+
+                        // Update UI instead of full reload
+                        refreshPengeluaranData();
+                        showSuccessAlert('Data berhasil disimpan!');
                     } else {
-                        alert('Error: ' + response.message);
+                        showErrorAlert(response.message || 'Terjadi kesalahan');
                     }
                 },
                 error: function(xhr) {
-                    var url = '<?= site_url("pengeluaran/add") ?>';
-                    console.log(url);
-                    console.error("AJAX Error:", xhr.responseText);
-                    alert('Terjadi kesalahan. Cek konsol untuk detail.');
+                    let errorMessage = 'Terjadi kesalahan server';
+                    try {
+                        const res = JSON.parse(xhr.responseText);
+                        errorMessage = res.message || errorMessage;
+                    } catch (e) {
+                        errorMessage = xhr.statusText;
+                    }
+                    showErrorAlert(errorMessage);
                 }
             });
         });
+
+        // Helper functions
+        function showSuccessAlert(message) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Sukses',
+                text: message
+            });
+        }
+
+        function showErrorAlert(message) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: message
+            });
+        }
+
+        function refreshPengeluaranData() {
+            // Your logic to refresh pengeluaran list
+        }
 
 
         function renderPengeluaran() {
