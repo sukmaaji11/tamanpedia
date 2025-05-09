@@ -144,7 +144,7 @@
                         <button type="button" class="btn btn-light-secondary btn-sm" data-bs-dismiss="modal">
                             <span class="d-sm-block">Close</span>
                         </button>
-                        <button type="button" class="btn btn-primar y ml-1 btn-sm" id="btn-add-pengeluaran">
+                        <button type="button" class="btn btn-primary ml-1 btn-sm" id="btn-add-pengeluaran">
                             <span class="d-sm-block">Simpan</span>
                         </button>
                     </div>
@@ -175,7 +175,6 @@
             getYear();
             renderPengeluaran();
         });
-
         // BTN ADD Pengeluaran
         $('#btn-add-pengeluaran').on('click', function() {
             // Get CSRF token
@@ -185,11 +184,11 @@
             const formData = new FormData();
             const fileInput = document.getElementById('pengeluaranImg');
 
-            // Process numeric value BEFORE adding to FormData
+            // Process numeric value
             const rawTotal = $('input[name=pengeluaran_total]').val();
             const cleanTotal = parseFloat(rawTotal.replace(/[^0-9.]/g, '')) || 0;
 
-            // Append all form data
+            // Append all data
             formData.append(csrfName, csrfHash);
             formData.append('pengeluaran_kategori', $('[name="pengeluaran_kategori"]').val());
             formData.append('pengeluaran_tgl', $('[name="pengeluaran_tgl"]').val());
@@ -197,10 +196,16 @@
             formData.append('pengeluaran_total', cleanTotal);
             formData.append('pengeluaran_keterangan', $('textarea[name=pengeluaran_keterangan]').val());
 
-            // Append file with correct field name (matches controller expectation)
+            // Append file with CORRECT field name
             if (fileInput.files.length > 0) {
-                formData.append('pengeluaran_img_filename', fileInput.files[0]); // Correct field name
+                formData.append('pengeluaran_img_filename', fileInput.files[0]); // Changed field name
             }
+
+            // Add CSRF header
+            const headers = {
+                'X-CSRF-TOKEN': csrfHash,
+                'X-Requested-With': 'XMLHttpRequest'
+            };
 
             $.ajax({
                 type: 'POST',
@@ -209,33 +214,33 @@
                 contentType: false,
                 processData: false,
                 dataType: 'json',
+                headers: headers, // Add headers
                 beforeSend: function() {
-                    $('#btn-add-pengeluaran').prop('disabled', true);
+                    $('#btn-add-pengeluaran').prop('disabled', true)
+                        .html('<i class="fas fa-spinner fa-spin"></i> Processing');
                 },
                 complete: function() {
-                    $('#btn-add-pengeluaran').prop('disabled', false);
+                    $('#btn-add-pengeluaran').prop('disabled', false)
+                        .html('Simpan Pengeluaran');
                 },
                 success: function(response) {
                     if (response.status === 'success') {
-                        // Proper form reset
-                        document.getElementById('pengeluaranForm').reset();
-
-                        // Update UI instead of full reload
+                        $('#pengeluaranForm')[0].reset();
                         refreshPengeluaranData();
-                        showSuccessAlert('Data berhasil disimpan!');
+                        Swal.fire('Success!', 'Data saved successfully', 'success');
                     } else {
-                        showErrorAlert(response.message || 'Terjadi kesalahan');
+                        Swal.fire('Error!', response.message || 'Unknown error', 'error');
                     }
                 },
                 error: function(xhr) {
-                    let errorMessage = 'Terjadi kesalahan server';
+                    let error = 'Server Error';
                     try {
                         const res = JSON.parse(xhr.responseText);
-                        errorMessage = res.message || errorMessage;
+                        error = res.message || xhr.statusText;
                     } catch (e) {
-                        errorMessage = xhr.statusText;
+                        error = xhr.statusText;
                     }
-                    showErrorAlert(errorMessage);
+                    Swal.fire('Error!', error, 'error');
                 }
             });
         });
