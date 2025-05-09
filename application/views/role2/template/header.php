@@ -18,6 +18,7 @@
 
     <script src="<?= base_url('assets/js/jquery/jquery.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/jquery/jquery.price_format.min.js') ?>"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 </head>

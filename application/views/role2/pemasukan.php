@@ -196,9 +196,10 @@
                dataType: 'json', // 👈 Critical for JSON parsing
                success: function(response) {
                    if (response.status === 'success') {
+                       showSuccessAlert('Data berhasil disimpan!');
                        window.location.reload();
                    } else {
-                       alert('Error: ' + response.message);
+                       showErrorAlert('Error: ' + response.message);
                    }
                },
                error: function(xhr) {
@@ -263,6 +264,25 @@
                         </div>
                     </div>`);
                });
+       }
+
+       // Helper functions
+
+       //Sweet Alert Success
+       function showSuccessAlert(message) {
+           Swal.fire({
+               icon: 'success',
+               title: 'Sukses',
+               text: message
+           });
+       }
+       //Sweet Alert Error
+       function showErrorAlert(message) {
+           Swal.fire({
+               icon: 'error',
+               title: 'Error',
+               text: message
+           });
        }
 
        //Format Rupiah

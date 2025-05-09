@@ -227,7 +227,7 @@
                     if (response.status === 'success') {
                         $('#pengeluaranForm')[0].reset();
                         refreshPengeluaranData();
-                        Swal.fire('Success!', 'Data saved successfully', 'success');
+                        showSuccessAlert('Data berhasil disimpan!');
                     } else {
                         Swal.fire('Error!', response.message || 'Unknown error', 'error');
                     }
