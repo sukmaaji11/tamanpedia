@@ -175,74 +175,51 @@
             getYear();
             renderPengeluaran();
         });
+
         // BTN ADD Pengeluaran
-        $('#btn-add-pengeluaran').on('click', function() {
+        $('#btn-add-pemasukan').on('click', function() {
             // Get CSRF token
             var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>';
             var csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
 
-            const formData = new FormData();
+            // Get form values
+            var formData = {
+                [csrfName]: csrfHash, // Include CSRF token
+                'pengeluaran_kategori': $('select[name=pengeluaran_kategori]').val(),
+                'pengeluaran_tgl': $('input[name=pengeluaran_tgl]').val(),
+                'pengeluaran': $('input[name=pengeluaran]').val(),
+                'pengeluaran_total': $('input[name=pengeluaran_total]').val(),
+                'pengeluaran_keterangan': $('textarea[name=pengeluaran_keterangan]').val()
+            };
 
-            // 3. Numeric Value Sanitization
-            const rawTotal = $('input[name=pengeluaran_total]').val();
-            const cleanTotal = parseFloat(rawTotal.replace(/[^0-9.]/g, '')) || 0;
-
-            // 4. Append CSRF Token
-            formData.append(csrfName, csrfHash); // Use dynamic name
-
-            // 5. Append Other Form Data
-            formData.append('pengeluaran_kategori', $('[name="pengeluaran_kategori"]').val());
-            formData.append('pengeluaran_tgl', $('[name="pengeluaran_tgl"]').val());
-            formData.append('pengeluaran', $('input[name=pengeluaran]').val());
-            formData.append('pengeluaran_total', cleanTotal);
-            formData.append('pengeluaran_keterangan', $('textarea[name=pengeluaran_keterangan]').val());
-
-            const fileInput = document.getElementById('pengeluaranImg');
-
-
-            // 6. File Upload Handling
-            if (fileInput.files.length > 0) {
-                formData.append('pengeluaran_img_filename', fileInput.files[0]); // Match controller field name
+            // Convert numeric value properly
+            if (formData.pemasukan_total) {
+                formData.pengeluaran_total = parseFloat(
+                    formData.pengeluaran_total.replace(/[^0-9.]/g, '')
+                ) || 0;
             }
 
-            // 7. AJAX Configuration
             $.ajax({
                 type: 'POST',
                 url: '<?= site_url("pengeluaran/add") ?>',
                 data: formData,
-                dataType: 'json',
-                beforeSend: function() {
-                    $('#btn-add-pengeluaran')
-                        .prop('disabled', true)
-                        .html('<i class="fas fa-spinner fa-spin"></i> Processing');
-                },
-                complete: function() {
-                    $('#btn-add-pengeluaran')
-                        .prop('disabled', false)
-                        .html('Simpan Pengeluaran');
-                },
+                dataType: 'json', // 👈 Critical for JSON parsing
                 success: function(response) {
                     if (response.status === 'success') {
-                        // Reset form and UI
-                        $('#pengeluaranForm')[0].reset();
                         getToday();
                         getMonth();
                         getYear();
                         renderPengeluaran();
-                        Swal.fire('Success!', 'Data saved successfully', 'success');
+                        showSuccessAlert('Data berhasil disimpan!');
                     } else {
-                        Swal.fire('Error!', response.message || 'Unknown error', 'error');
+                        showErrorAlert('Error: ' + response.message);
                     }
                 },
                 error: function(xhr) {
-                    let error = 'Server Error';
-                    try {
-                        const res = JSON.parse(xhr.responseText);
-                        error = res.message || xhr.statusText;
-                    } catch (e) {
-                        error = xhr.statusText;
-                    }
-                    Swal.fire('Error!', error, 'error');
+                    var url = '<?= site_url("pengeluaran/add") ?>';
+                    console.log(url);
+                    console.error("AJAX Error:", xhr.responseText);
+                    alert('Terjadi kesalahan. Cek konsol untuk detail.');
                 }
             });
         });
