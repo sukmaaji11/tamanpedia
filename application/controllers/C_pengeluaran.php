@@ -25,6 +25,9 @@ class C_pengeluaran extends CI_Controller
         parent::__construct();
         date_default_timezone_set('Asia/Jakarta');
         $this->load->model('M_pengeluaran');
+
+        // Disable CSRF token regeneration
+        $this->config->set_item('csrf_regenerate', FALSE);
     }
 
     public function index()

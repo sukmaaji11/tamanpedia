@@ -177,9 +177,9 @@
         });
         // BTN ADD Pengeluaran
         $('#btn-add-pengeluaran').on('click', function() {
-            // Get CSRF token
-            const csrfName = '<?= $this->security->get_csrf_token_name() ?>';
-            const csrfHash = '<?= $this->security->get_csrf_hash() ?>';
+            // Get fresh CSRF token from cookie
+            const csrfCookie = document.cookie.match(/csrf_cookie=([^;]+)/);
+            const csrfHash = csrfCookie ? csrfCookie[1] : '';
 
             const formData = new FormData();
             const fileInput = document.getElementById('pengeluaranImg');
@@ -226,6 +226,9 @@
                 },
                 success: function(response) {
                     if (response.status === 'success') {
+                        // Refresh CSRF token after success
+                        const newCsrf = response.new_csrf || csrfHash;
+                        document.cookie = `csrf_cookie=${newCsrf}; path=/`;
                         $('#pengeluaranForm')[0].reset();
                         refreshPengeluaranData();
                         showSuccessAlert('Data berhasil disimpan!');
