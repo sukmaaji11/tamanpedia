@@ -177,7 +177,7 @@
         });
 
         // BTN ADD Pengeluaran
-        $('#btn-add-pemasukan').on('click', function() {
+        $('#btn-add-pengeluaran').on('click', function() {
             // Get CSRF token
             var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>';
             var csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
