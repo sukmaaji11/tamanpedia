@@ -117,10 +117,10 @@ class C_pengeluaran extends CI_Controller
                 throw new Exception('Gagal menyimpan ke database');
             }
         } catch (Exception $e) {
-            log_message('error', 'Insert Failed: ' . $message);
+            log_message('error', 'Controller Error: ' . $e->getMessage());
             echo json_encode([
                 'status' => 'error',
-                'message' => 'Database Error: ' . $message // 👈 Show exact error
+                'message' => $e->getMessage()
             ]);
         }
         exit;
