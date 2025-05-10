@@ -159,7 +159,7 @@
     <script>
         $(document).ready(function() {
             $('.sidebar-item').removeClass('active');
-            $('#sidebar-dashboard').addClass('active');
+            $('#sidebar-pengeluaran').addClass('active');
             $('.rupiah').priceFormat({
                 prefix: '',
                 centsLimit: 0,

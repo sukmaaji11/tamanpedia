@@ -149,7 +149,7 @@
    <script>
        $(document).ready(function() {
            $('.sidebar-item').removeClass('active');
-           $('#sidebar-dashboard').addClass('active');
+           $('#sidebar-pemasukan').addClass('active');
            $('.rupiah').priceFormat({
                prefix: '',
                centsLimit: 0,
@@ -196,8 +196,11 @@
                dataType: 'json', // 👈 Critical for JSON parsing
                success: function(response) {
                    if (response.status === 'success') {
+                       getToday();
+                       getMonth();
+                       getYear();
+                       renderPemasukan();
                        showSuccessAlert('Data berhasil disimpan!');
-                       window.location.reload();
                    } else {
                        showErrorAlert('Error: ' + response.message);
                    }

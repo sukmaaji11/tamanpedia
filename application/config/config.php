@@ -409,9 +409,9 @@ $config['sess_regenerate_destroy'] = FALSE;
 |
 */
 $config['cookie_prefix']    = '';
-$config['cookie_domain']    = '';
-$config['cookie_path']        = '/';
-$config['cookie_secure']    = FALSE;
+$config['cookie_path']     = '/';
+$config['cookie_domain']   = $_SERVER['HTTP_HOST']; // Auto-detect domain
+$config['cookie_secure']   = isset($_SERVER['HTTPS']); // Auto-detect HTTPS
 $config['cookie_httponly']     = FALSE;
 $config['cookie_samesite']     = 'Lax';
 
@@ -460,7 +460,7 @@ $config['global_xss_filtering'] = FALSE;
 $config['csrf_protection'] = FALSE;
 $config['csrf_token_name'] = 'csrf_test_name';
 $config['csrf_cookie_name'] = 'csrf_cookie_name';
-$config['csrf_expire'] = 7200;
+$config['csrf_expire'] = 14400;
 $config['csrf_regenerate'] = TRUE;
 $config['csrf_exclude_uris'] = array();
 
