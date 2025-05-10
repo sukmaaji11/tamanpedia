@@ -177,10 +177,9 @@
         });
         // BTN ADD Pengeluaran
         $('#btn-add-pengeluaran').on('click', function() {
-            // 1. Get CSRF Token from Cookie
-            const csrfCookie = document.cookie.match(/csrf_cookie=([^;]+)/);
-            let csrfHash = csrfCookie ? csrfCookie[1] : '';
-            const csrfName = '<?= $this->security->get_csrf_token_name() ?>'; // From PHP
+            // Get CSRF token
+            var csrfName = '<?php echo $this->security->get_csrf_token_name(); ?>';
+            var csrfHash = '<?php echo $this->security->get_csrf_hash(); ?>';
 
             const formData = new FormData();
 
@@ -210,12 +209,8 @@
             $.ajax({
                 type: 'POST',
                 url: '<?= site_url("pengeluaran/add") ?>',
-                data: formData,
-                contentType: false,
-                processData: false,
-                headers: {
-                    'X-CSRF-TOKEN': csrfHash // Header validation
-                },
+                data: formDat,
+                dataType: 'json',
                 beforeSend: function() {
                     $('#btn-add-pengeluaran')
                         .prop('disabled', true)
@@ -228,13 +223,12 @@
                 },
                 success: function(response) {
                     if (response.status === 'success') {
-                        // Refresh CSRF token
-                        if (response.new_csrf) {
-                            document.cookie = `csrf_cookie=${response.new_csrf}; path=/`;
-                        }
                         // Reset form and UI
                         $('#pengeluaranForm')[0].reset();
-                        refreshPengeluaranData();
+                        getToday();
+                        getMonth();
+                        getYear();
+                        renderPengeluaran();
                         Swal.fire('Success!', 'Data saved successfully', 'success');
                     } else {
                         Swal.fire('Error!', response.message || 'Unknown error', 'error');

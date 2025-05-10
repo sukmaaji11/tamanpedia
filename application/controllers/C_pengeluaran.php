@@ -69,77 +69,80 @@ class C_pengeluaran extends CI_Controller
 
     public function add()
     {
+        // Force JSON response even for errors
         header('Content-Type: application/json');
 
         try {
-            // Verify CSRF token from POST data
-            $postedToken = $this->input->post($this->security->get_csrf_token_name());
-            $currentToken = $this->security->get_csrf_hash();
+            if ($this->input->post()) {
+                // Validate required fields
+                $this->form_validation->set_rules('pengeluaran_kategori', 'Kategori', 'required');
+                $this->form_validation->set_rules('pengeluaran_total', 'Total', 'required|numeric');
 
-            if ($postedToken !== $currentToken) {
-                throw new Exception("Security token mismatch. Please refresh the page.");
-            }
+                if ($this->form_validation->run() == FALSE) {
+                    // Show validation errors
+                    $errors = validation_errors();
+                    echo $errors;
+                    die();
+                } else {
+                    // Get kategori safely
+                    $kategori_id = $this->input->post('pengeluaran_kategori');
+                    $kategori = $this->db->get_where('tb_kategori', ['kategori_id' => $kategori_id])->row_array();
 
-            // File Upload Configuration
-            $uploadPath = FCPATH . 'assets/uploads/pengeluaran/';
-            if (!is_dir($uploadPath)) {
-                mkdir($uploadPath, 0755, true);
-            }
+                    // Check if kategori exists
+                    if (!$kategori) {
+                        echo "Error: Kategori tidak ditemukan!";
+                        die();
+                    }
 
-            $config = [
-                'upload_path'   => $uploadPath,
-                'allowed_types' => 'jpg|jpeg|png|gif',
-                'max_size'      => 2048,
-                'encrypt_name'  => TRUE,
-            ];
+                    // File Upload Configuration
+                    $uploadPath = FCPATH . 'assets/uploads/pengeluaran/';
+                    if (!is_dir($uploadPath)) {
+                        mkdir($uploadPath, 0755, true);
+                    }
 
-            $this->load->library('upload', $config);
+                    $config = [
+                        'upload_path'   => $uploadPath,
+                        'allowed_types' => 'jpg|jpeg|png|gif',
+                        'max_size'      => 2048,
+                        'encrypt_name'  => TRUE,
+                    ];
 
-            // Validation
-            $this->form_validation->set_rules('pengeluaran_kategori', 'Kategori', 'required');
-            $this->form_validation->set_rules('pengeluaran_total', 'Total', 'required|numeric');
+                    $this->load->library('upload', $config);
 
-            if (!$this->form_validation->run()) {
-                throw new Exception(strip_tags(validation_errors()));
-            }
-
-            // File Upload
-            $filename = null;
-            if (!empty($_FILES['pengeluaran_img_filename']['name'])) {
-                if (!$this->upload->do_upload('pengeluaran_img_filename')) {
-                    throw new Exception($this->upload->display_errors());
+                    // File Upload
+                    $filename = null;
+                    if (!empty($_FILES['pengeluaran_img_filename']['name'])) {
+                        if (!$this->upload->do_upload('pengeluaran_img_filename')) {
+                            throw new Exception($this->upload->display_errors());
+                        }
+                        $filename = $this->upload->data('file_name');
+                    }
+                    // Database Insertion
+                    $data = [
+                        'pengeluaran_kategori'    => $this->input->post('pengeluaran_kategori', true),
+                        'pengeluaran_tgl'         => $this->input->post('pengeluaran_tgl', true),
+                        'pengeluaran'             => $this->input->post('pengeluaran', true),
+                        'pengeluaran_total'       => $this->input->post('pengeluaran_total', true),
+                        'pengeluaran_img_filename' => $filename,
+                        'pengeluaran_keterangan'  => $this->input->post('pengeluaran_keterangan', true),
+                        'created_at'              => date('Y-m-d H:i:s'),
+                        'pengeluaran_status'      => "Approved"
+                    ];
                 }
-                $filename = $this->upload->data('file_name');
             }
-
-            // Database Insertion
-            $data = [
-                'pengeluaran_kategori'    => $this->input->post('pengeluaran_kategori', true),
-                'pengeluaran_tgl'         => $this->input->post('pengeluaran_tgl', true),
-                'pengeluaran'             => $this->input->post('pengeluaran', true),
-                'pengeluaran_total'       => $this->input->post('pengeluaran_total', true),
-                'pengeluaran_img_filename' => $filename,
-                'pengeluaran_keterangan'  => $this->input->post('pengeluaran_keterangan', true),
-                'created_at'              => date('Y-m-d H:i:s'),
-                'pengeluaran_status'      => "Approved"
-            ];
-
             if ($this->M_pengeluaran->add($data)) {
-                echo json_encode(['status' => 'success', 'message' => 'Data saved']);
+                echo json_encode([
+                    'status' => 'success',
+                    'message' => 'Data berhasil disimpan'
+                ]);
             } else {
-                throw new Exception('Database save failed');
+                throw new Exception('Gagal menyimpan ke database');
             }
-            // Return success with new token
-            echo json_encode([
-                'status' => 'success',
-                'message' => 'Data saved',
-                'new_csrf' => $this->security->get_csrf_hash() // Send new token
-            ]);
         } catch (Exception $e) {
+            log_message('error', 'Insert Failed: ' . $message);
             echo json_encode([
                 'status' => 'error',
-                'message' => $e->getMessage(),
-                'new_csrf' => $this->security->get_csrf_hash()
+                'message' => 'Database Error: ' . $message // 👈 Show exact error
             ]);
         }
         exit;
