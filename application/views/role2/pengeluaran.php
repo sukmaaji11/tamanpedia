@@ -209,7 +209,7 @@
             $.ajax({
                 type: 'POST',
                 url: '<?= site_url("pengeluaran/add") ?>',
-                data: formDat,
+                data: formData,
                 dataType: 'json',
                 beforeSend: function() {
                     $('#btn-add-pengeluaran')
