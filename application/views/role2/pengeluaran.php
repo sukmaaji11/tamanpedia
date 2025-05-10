@@ -179,13 +179,10 @@
         $('#btn-add-pengeluaran').on('click', function() {
             // 1. Get CSRF Token from Cookie
             const csrfCookie = document.cookie.match(/csrf_cookie=([^;]+)/);
-            const csrfHash = csrfCookie ? csrfCookie[1] : '';
-
-            // 2. Get CSRF Token Name from PHP
-            const csrfName = '<?= $this->security->get_csrf_token_name() ?>'; // Defined in PHP
+            let csrfHash = csrfCookie ? csrfCookie[1] : '';
+            const csrfName = '<?= $this->security->get_csrf_token_name() ?>'; // From PHP
 
             const formData = new FormData();
-            const fileInput = document.getElementById('pengeluaranImg');
 
             // 3. Numeric Value Sanitization
             const rawTotal = $('input[name=pengeluaran_total]').val();
@@ -201,9 +198,12 @@
             formData.append('pengeluaran_total', cleanTotal);
             formData.append('pengeluaran_keterangan', $('textarea[name=pengeluaran_keterangan]').val());
 
+            const fileInput = document.getElementById('pengeluaranImg');
+
+
             // 6. File Upload Handling
             if (fileInput.files.length > 0) {
-                formData.append('pengeluaran_img', fileInput.files[0]); // Match controller field name
+                formData.append('pengeluaran_img_filename', fileInput.files[0]); // Match controller field name
             }
 
             // 7. AJAX Configuration
@@ -229,8 +229,9 @@
                 success: function(response) {
                     if (response.status === 'success') {
                         // Refresh CSRF token
-                        document.cookie = `csrf_cookie=${response.new_csrf}; path=/`;
-
+                        if (response.new_csrf) {
+                            document.cookie = `csrf_cookie=${response.new_csrf}; path=/`;
+                        }
                         // Reset form and UI
                         $('#pengeluaranForm')[0].reset();
                         refreshPengeluaranData();

@@ -72,12 +72,12 @@ class C_pengeluaran extends CI_Controller
         header('Content-Type: application/json');
 
         try {
-            // CSRF Verification
+            // Verify CSRF token from POST data
             $postedToken = $this->input->post($this->security->get_csrf_token_name());
             $currentToken = $this->security->get_csrf_hash();
 
             if ($postedToken !== $currentToken) {
-                throw new Exception("Security token mismatch");
+                throw new Exception("Security token mismatch. Please refresh the page.");
             }
 
             // File Upload Configuration
@@ -105,8 +105,8 @@ class C_pengeluaran extends CI_Controller
 
             // File Upload
             $filename = null;
-            if (!empty($_FILES['pengeluaran_img']['name'])) {
-                if (!$this->upload->do_upload('pengeluaran_img')) {
+            if (!empty($_FILES['pengeluaran_img_filename']['name'])) {
+                if (!$this->upload->do_upload('pengeluaran_img_filename')) {
                     throw new Exception($this->upload->display_errors());
                 }
                 $filename = $this->upload->data('file_name');
@@ -129,10 +129,11 @@ class C_pengeluaran extends CI_Controller
             } else {
                 throw new Exception('Database save failed');
             }
-            // 3. Return new CSRF token
+            // Return success with new token
             echo json_encode([
                 'status' => 'success',
-                'new_csrf' => $this->security->get_csrf_hash()
+                'message' => 'Data saved',
+                'new_csrf' => $this->security->get_csrf_hash() // Send new token
             ]);
         } catch (Exception $e) {
             echo json_encode([
