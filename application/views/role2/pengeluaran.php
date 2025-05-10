@@ -248,32 +248,56 @@
 
         function renderPengeluaran() {
             $.ajax({
-                url: '<?= base_url('pengeluaran/get_data') ?>',
-                async: true,
-                type: 'POST',
-                dataType: 'json',
-                success: function(response) {
-                    var i;
-                    var html = '';
-                    if (response.length != 0) {
-                        for (i = 0; i < 5; i++) {
-                            html += '<div class="card">';
-                            html += '<div class="card-content">';
-                            html += '<div class="card-body">';
-                            html += '<p class="text-right" style="text-align:right;">' + response[i].pengeluaran_tgl + '</p>';
-                            html += '<h6 class="">' + response[i].pengeluaran + '</h6>';
-                            html += '<p>' + response[i].pengeluaran_keterangan + '</p>';
-                            html += '<hr />';
-                            html += '<h6>Rp. ' + formatRupiah(response[i].pengeluaran_total) + '</h6>';
-                            html += '</div></div></div>';
-                        }
-                        $('#data-pengeluaran').html(html);
+                    url: '<?= base_url('pengeluaran/get_data') ?>',
+                    type: 'POST',
+                    dataType: 'json'
+                })
+                .done(function(response) {
+                    const container = $('#data-pengeluaran');
+                    let html = '';
+                    // Check if response is valid and has data
+                    if (Array.isArray(response) && response.length > 0) {
+                        // Show maximum 5 items
+                        const itemsToShow = response.slice(0, 5);
+                        itemsToShow.forEach(item => {
+                            html += `
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="card-body">
+                                        <div class="text-right">
+                                            ${item.pengeluaran_tgl || '-'}
+                                        </div>
+                                        <h6>${item.pengeluaran || 'No Information'}</h6>
+                                        <p>${item.pengeluaran_keterangan || 'No Description'}</p>
+                                        <hr>
+                                        <h6>Rp. ${formatRupiah(item.pengeluaran_total?.toString() || '0')}</h6>
+                                    </div>
+                                </div>
+                            </div>`;
+                        });
                     } else {
-                        $('#data-pengeluaran').html(response);
+                        html = `
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="card-body text-center">
+                                        <h6>Data Kosong</h6>
+                                    </div>
+                                </div>
+                            </div>`;
                     }
-                }
-            });
-
+                    container.html(html);
+                })
+                .fail(function(xhr, status, error) {
+                    console.error('AJAX Error:', status, error);
+                    $('#data-pengeluaran').html(`
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body text-center text-danger">
+                                <h6>Gagal memuat data</h6>
+                            </div>
+                        </div>
+                    </div>`);
+                });
         }
         //Format Rupiah
         function formatRupiah(angka, prefix) {
