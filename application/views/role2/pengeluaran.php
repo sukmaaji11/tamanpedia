@@ -193,7 +193,7 @@
             };
 
             // Convert numeric value properly
-            if (formData.pemasukan_total) {
+            if (formData.pengeluaran_total) {
                 formData.pengeluaran_total = parseFloat(
                     formData.pengeluaran_total.replace(/[^0-9.]/g, '')
                 ) || 0;
