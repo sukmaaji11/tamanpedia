@@ -94,38 +94,16 @@ class C_pengeluaran extends CI_Controller
                         die();
                     }
 
-                    // File Upload Configuration
-                    $uploadPath = FCPATH . 'assets/uploads/pengeluaran/';
-                    if (!is_dir($uploadPath)) {
-                        mkdir($uploadPath, 0755, true);
-                    }
-
-                    $config = [
-                        'upload_path'   => $uploadPath,
-                        'allowed_types' => 'jpg|jpeg|png|gif',
-                        'max_size'      => 2048,
-                        'encrypt_name'  => TRUE,
-                    ];
-
-                    $this->load->library('upload', $config);
-
-                    // File Upload
-                    $filename = null;
-                    if (!empty($_FILES['pengeluaran_img_filename']['name'])) {
-                        if (!$this->upload->do_upload('pengeluaran_img_filename')) {
-                            throw new Exception($this->upload->display_errors());
-                        }
-                        $filename = $this->upload->data('file_name');
-                    }
                     // Database Insertion
                     $data = [
                         'pengeluaran_kategori'    => $this->input->post('pengeluaran_kategori', true),
                         'pengeluaran_tgl'         => $this->input->post('pengeluaran_tgl', true),
                         'pengeluaran'             => $this->input->post('pengeluaran', true),
                         'pengeluaran_total'       => $this->input->post('pengeluaran_total', true),
-                        'pengeluaran_img_filename' => $filename,
+                        'pengeluaran_img_filename' => "Tes.png",
                         'pengeluaran_keterangan'  => $this->input->post('pengeluaran_keterangan', true),
                         'created_at'              => date('Y-m-d H:i:s'),
+                        'updated_at'           => date('Y-m-d H:i:s'),
                         'pengeluaran_status'      => "Approved"
                     ];
                 }
