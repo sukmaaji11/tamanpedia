@@ -213,8 +213,9 @@
                 data: formData,
                 contentType: false,
                 processData: false,
-                dataType: 'json',
-                headers: headers, // Add headers
+                headers: {
+                    'X-CSRF-TOKEN': csrfHash // Add custom header
+                }, // Add headers
                 beforeSend: function() {
                     $('#btn-add-pengeluaran').prop('disabled', true)
                         .html('<i class="fas fa-spinner fa-spin"></i> Processing');
