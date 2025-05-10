@@ -177,36 +177,36 @@
         });
         // BTN ADD Pengeluaran
         $('#btn-add-pengeluaran').on('click', function() {
-            // Get fresh CSRF token from cookie
+            // 1. Get CSRF Token from Cookie
             const csrfCookie = document.cookie.match(/csrf_cookie=([^;]+)/);
             const csrfHash = csrfCookie ? csrfCookie[1] : '';
+
+            // 2. Get CSRF Token Name from PHP
+            const csrfName = '<?= $this->security->get_csrf_token_name() ?>'; // Defined in PHP
 
             const formData = new FormData();
             const fileInput = document.getElementById('pengeluaranImg');
 
-            // Process numeric value
+            // 3. Numeric Value Sanitization
             const rawTotal = $('input[name=pengeluaran_total]').val();
             const cleanTotal = parseFloat(rawTotal.replace(/[^0-9.]/g, '')) || 0;
 
-            // Append all data
-            formData.append(csrfName, csrfHash);
+            // 4. Append CSRF Token
+            formData.append(csrfName, csrfHash); // Use dynamic name
+
+            // 5. Append Other Form Data
             formData.append('pengeluaran_kategori', $('[name="pengeluaran_kategori"]').val());
             formData.append('pengeluaran_tgl', $('[name="pengeluaran_tgl"]').val());
             formData.append('pengeluaran', $('input[name=pengeluaran]').val());
             formData.append('pengeluaran_total', cleanTotal);
             formData.append('pengeluaran_keterangan', $('textarea[name=pengeluaran_keterangan]').val());
 
-            // Append file with CORRECT field name
+            // 6. File Upload Handling
             if (fileInput.files.length > 0) {
-                formData.append('pengeluaran_img_filename', fileInput.files[0]); // Changed field name
+                formData.append('pengeluaran_img', fileInput.files[0]); // Match controller field name
             }
 
-            // Add CSRF header
-            const headers = {
-                'X-CSRF-TOKEN': csrfHash,
-                'X-Requested-With': 'XMLHttpRequest'
-            };
-
+            // 7. AJAX Configuration
             $.ajax({
                 type: 'POST',
                 url: '<?= site_url("pengeluaran/add") ?>',
@@ -214,24 +214,27 @@
                 contentType: false,
                 processData: false,
                 headers: {
-                    'X-CSRF-TOKEN': csrfHash // Add custom header
-                }, // Add headers
+                    'X-CSRF-TOKEN': csrfHash // Header validation
+                },
                 beforeSend: function() {
-                    $('#btn-add-pengeluaran').prop('disabled', true)
+                    $('#btn-add-pengeluaran')
+                        .prop('disabled', true)
                         .html('<i class="fas fa-spinner fa-spin"></i> Processing');
                 },
                 complete: function() {
-                    $('#btn-add-pengeluaran').prop('disabled', false)
+                    $('#btn-add-pengeluaran')
+                        .prop('disabled', false)
                         .html('Simpan Pengeluaran');
                 },
                 success: function(response) {
                     if (response.status === 'success') {
-                        // Refresh CSRF token after success
-                        const newCsrf = response.new_csrf || csrfHash;
-                        document.cookie = `csrf_cookie=${newCsrf}; path=/`;
+                        // Refresh CSRF token
+                        document.cookie = `csrf_cookie=${response.new_csrf}; path=/`;
+
+                        // Reset form and UI
                         $('#pengeluaranForm')[0].reset();
                         refreshPengeluaranData();
-                        showSuccessAlert('Data berhasil disimpan!');
+                        Swal.fire('Success!', 'Data saved successfully', 'success');
                     } else {
                         Swal.fire('Error!', response.message || 'Unknown error', 'error');
                     }

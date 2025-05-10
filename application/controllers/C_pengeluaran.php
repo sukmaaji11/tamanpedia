@@ -77,7 +77,7 @@ class C_pengeluaran extends CI_Controller
             $currentToken = $this->security->get_csrf_hash();
 
             if ($postedToken !== $currentToken) {
-                throw new Exception("Security token expired. Please refresh the page.");
+                throw new Exception("Security token mismatch");
             }
 
             // File Upload Configuration
@@ -129,9 +129,17 @@ class C_pengeluaran extends CI_Controller
             } else {
                 throw new Exception('Database save failed');
             }
+            // 3. Return new CSRF token
+            echo json_encode([
+                'status' => 'success',
+                'new_csrf' => $this->security->get_csrf_hash()
+            ]);
         } catch (Exception $e) {
-            log_message('error', 'Pengeluaran Error: ' . $e->getMessage());
-            echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+            echo json_encode([
+                'status' => 'error',
+                'message' => $e->getMessage(),
+                'new_csrf' => $this->security->get_csrf_hash()
+            ]);
         }
         exit;
     }
