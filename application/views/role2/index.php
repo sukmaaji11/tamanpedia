@@ -88,6 +88,7 @@
     </div>
     </div>
     </div>
+
     <script>
         $(document).ready(function() {
             $('.sidebar-item').removeClass('active');
@@ -267,51 +268,52 @@
                     }
                 }
             });
+        }
 
-            function renderPemasukan() {
-                $.ajax({
-                    url: '<?= base_url('pengeluaran/get_data') ?>',
-                    async: true,
-                    type: 'POST',
-                    dataType: 'json',
-                    success: function(response) {
-                        var i;
-                        var html = '';
-                        if (response.length != 0) {
-                            for (i = 0; i < 5; i++) {
-                                html += '<div class="card">';
-                                html += '<div class="card-content">';
-                                html += '<div class="card-body">';
-                                html += '<p class="text-right" style="text-align:right;">' + response[i].pengeluaran_tgl + '</p>';
-                                html += '<h6 class="">' + response[i].pengeluaran + '</h6>';
-                                html += '<p>' + response[i].pengeluaran_keterangan + '</p>';
-                                html += '<hr />';
-                                html += '<h6>Rp. ' + formatRupiah(response[i].pengeluaran_total) + '</h6>';
-                                html += '</div></div></div>';
-                            }
-                            $('#data-pengeluaran').html(html);
-                        } else {
-                            $('#data-pengeluaran').html('<div class="card"> <div class="card-content"> <div class="card-body"> <h6 class="text-center">Tidak Ada Data</h6> </div></div></div>');
+        function renderPemasukan() {
+            $.ajax({
+                url: '<?= base_url('pengeluaran/get_data') ?>',
+                async: true,
+                type: 'POST',
+                dataType: 'json',
+                success: function(response) {
+                    var i;
+                    var html = '';
+                    if (response.length != 0) {
+                        for (i = 0; i < 5; i++) {
+                            html += '<div class="card">';
+                            html += '<div class="card-content">';
+                            html += '<div class="card-body">';
+                            html += '<p class="text-right" style="text-align:right;">' + response[i].pengeluaran_tgl + '</p>';
+                            html += '<h6 class="">' + response[i].pengeluaran + '</h6>';
+                            html += '<p>' + response[i].pengeluaran_keterangan + '</p>';
+                            html += '<hr />';
+                            html += '<h6>Rp. ' + formatRupiah(response[i].pengeluaran_total) + '</h6>';
+                            html += '</div></div></div>';
                         }
+                        $('#data-pengeluaran').html(html);
+                    } else {
+                        $('#data-pengeluaran').html('<div class="card"> <div class="card-content"> <div class="card-body"> <h6 class="text-center">Tidak Ada Data</h6> </div></div></div>');
                     }
-                });
-            }
-
-            //Format Rupiah
-            function formatRupiah(angka, prefix) {
-                var number_string = angka.replace(/[^,\d]/g, '').toString(),
-                    split = number_string.split(','),
-                    sisa = split[0].length % 3,
-                    rupiah = split[0].substr(0, sisa),
-                    ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-
-                // tambahkan titik jika yang di input sudah menjadi angka ribuan
-                if (ribuan) {
-                    separator = sisa ? ',' : '';
-                    rupiah += separator + ribuan.join(',');
                 }
+            });
+        }
 
-                rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-                return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        //Format Rupiah
+        function formatRupiah(angka, prefix) {
+            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                split = number_string.split(','),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+            // tambahkan titik jika yang di input sudah menjadi angka ribuan
+            if (ribuan) {
+                separator = sisa ? ',' : '';
+                rupiah += separator + ribuan.join(',');
             }
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        }
     </script>
