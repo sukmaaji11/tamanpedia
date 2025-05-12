@@ -5,8 +5,8 @@
                     <div class="d-block">
                         <img src="<?= base_url('assets/image/logo-sn.png') ?>" alt="Logo" width="100" height="75">
                     </div>
-                    <h3>Pengeluaran SN</h3>
-                    <p class="text-subtitle text-muted">Sistem Keuangan SN.</p>
+                    <h3>Tamanpedia</h3>
+                    <p class="text-subtitle text-muted">Generate Laporan Keuangan</p>
                 </div>
             </div>
         </div>
@@ -17,44 +17,18 @@
                 </div>
                 <div class="card-body">
                     <form class="form form-vertical">
-                        <label class="label">Bulan
-                        </label>
                         <div class="form-group position-relative has-icon-left">
-                            <select class="form form-select" name="select_bulan" placeholder="Pilih Bulan">
-                                <option value=" "></option>
-                                <option value="1">Januari</option>
-                                <option value="2">Februari</option>
-                                <option value="3">Maret</option>
-                                <option value="4">April</option>
-                                <option value="5">Mei</option>
-                                <option value="6">Juni</option>
-                                <option value="7">Juli</option>
-                                <option value="8">Agustus</option>
-                                <option value="9">September</option>
-                                <option value="10">Oktober</option>
-                                <option value="11">November</option>
-                                <option value="12">Desember</option>
-                            </select>
-
+                            <label class="label">From</label>
+                            <input type="date" name="start_date" placeholder="Tanggal Mulai" require>
                         </div>
-                        <form class="form form-vertical">
-                            <label class="label">Tahun
-                            </label>
-                            <div class="form-group position-relative has-icon-left">
-                                <select class="form form-select" name="select_tahun">
-                                    <option value=" "></option>
-                                    <?php
-                                    $start = date("Y");
-                                    $last = "2020";
-                                    for ($i = $start; $i >= $last; $i--) { ?>
-                                        <option value="<?= $i ?>"><?= $i; ?></option>
-                                    <?php }; ?>
-                                </select>
-                            </div>
-                            <div style="float: right;">
-                                <button type="button" onclick="generateReport()" class="btn btn-sm btn-success">Generate</button>
-                            </div>
-                        </form>
+                        <div class="form-group position-relative has-icon-left">
+                            <label class="label">To</label>
+                            <input type="date" name="end_date" placeholder="Tanggal Mulai" require>
+                        </div>
+                        <div style="float: right;">
+                            <button type="button" onclick="generateReport()" class="btn btn-sm btn-success">Generate</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <hr />
