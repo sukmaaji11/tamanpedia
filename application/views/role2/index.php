@@ -105,10 +105,8 @@
             });
             getTodayPemasukan();
             getMonthPemasukan();
-            getYearPemasukan();
             getTodayPengeluaran();
             getMonthPengeluaran();
-            getYearPengeluaran();
         });
 
         function getTodayPemasukan() {
