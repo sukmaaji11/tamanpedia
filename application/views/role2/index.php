@@ -107,7 +107,7 @@
             getMonthPemasukan();
             getTodayPengeluaran();
             getMonthPengeluaran();
-            getDanaTersedia(getAllPemasukan, getAllPengeluaran);
+            getDanaTersedia();
         });
 
         function getTodayPemasukan() {
@@ -240,47 +240,59 @@
             })
         }
 
-        function getDanaTersedia(pemasukan, pengeluaran) {
-            total = pemasukan - pengeluaran;
-            $('#dana-tersedia-total').text("Rp. " + formatRupiah(sum.toString()));
-        }
-
+        // 1. Get Total Pemasukan (Income)
         function getAllPemasukan() {
-            $.ajax({
-                url: '<?= base_url('pemasukan/get_data') ?>',
-                async: true,
-                type: 'POST',
-                dataType: 'json',
-                success: function(response) {
-                    var i;
-                    var sum = 0;
-                    if (response.length != 0) {
-                        for (i = 0; i < response.length; i++) {
-                            sum += parseInt(response[i].pengeluaran_total)
-                        }
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: '<?= base_url('pemasukan/get_data') ?>',
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(response) {
+                        const total = response.reduce((sum, item) => {
+                            return sum + (Number(item.pemasukan_total) || 0); // Fixed field name
+                        }, 0);
+                        resolve(total);
+                    },
+                    error: function(xhr) {
+                        reject('Failed to load pemasukan data');
                     }
-                },
+                });
             });
-            return sum;
         }
 
+        // 2. Get Total Pengeluaran (Expenses)
         function getAllPengeluaran() {
-            $.ajax({
-                url: '<?= base_url('pengeluaran/get_data') ?>',
-                async: true,
-                type: 'POST',
-                dataType: 'json',
-                success: function(response) {
-                    var i;
-                    var sum = 0;
-                    if (response.length != 0) {
-                        for (i = 0; i < response.length; i++) {
-                            sum += parseInt(response[i].pengeluaran_total)
-                        }
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: '<?= base_url('pengeluaran/get_data') ?>',
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(response) {
+                        const total = response.reduce((sum, item) => {
+                            return sum + (Number(item.pengeluaran_total) || 0);
+                        }, 0);
+                        resolve(total);
+                    },
+                    error: function(xhr) {
+                        reject('Failed to load pengeluaran data');
                     }
-                },
+                });
             });
-            return sum;
+        }
+
+        // 3. Calculate Available Funds
+        function getDanaTersedia() {
+            Promise.all([getAllPemasukan(), getAllPengeluaran()])
+                .then(([totalPemasukan, totalPengeluaran]) => {
+                    const danaTersedia = totalPemasukan - totalPengeluaran;
+                    $('#dana-tersedia-total').text(
+                        "Rp. " + formatRupiah(danaTersedia.toString())
+                    );
+                })
+                .catch(error => {
+                    console.error(error);
+                    $('#dana-tersedia-total').text('Error loading data');
+                });
         }
 
         //Format Rupiah
