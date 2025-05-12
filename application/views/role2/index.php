@@ -107,6 +107,7 @@
             getMonthPemasukan();
             getTodayPengeluaran();
             getMonthPengeluaran();
+            getDanaTersedia(getAllPemasukan, getAllPengeluaran);
         });
 
         function getTodayPemasukan() {
@@ -239,36 +240,31 @@
             })
         }
 
-        function renderPengeluaran() {
-            $.ajax({
-                url: '<?= base_url('pengeluaran/get_data') ?>',
-                async: true,
-                type: 'POST',
-                dataType: 'json',
-                success: function(response) {
-                    var i;
-                    var html = '';
-                    if (response.length != 0) {
-                        for (i = 0; i < 5; i++) {
-                            html += '<div class="card">';
-                            html += '<div class="card-content">';
-                            html += '<div class="card-body">';
-                            html += '<p class="text-right" style="text-align:right;">' + response[i].pengeluaran_tgl + '</p>';
-                            html += '<h6 class="">' + response[i].pengeluaran + '</h6>';
-                            html += '<p>' + response[i].pengeluaran_keterangan + '</p>';
-                            html += '<hr />';
-                            html += '<h6>Rp. ' + formatRupiah(response[i].pengeluaran_total) + '</h6>';
-                            html += '</div></div></div>';
-                        }
-                        $('#data-pemasukan').html(html);
-                    } else {
-                        $('#data-pemasukan').html('<div class="card"> <div class="card-content"> <div class="card-body"> <h6 class="text-center">Tidak Ada Data</h6> </div></div></div>');
-                    }
-                }
-            });
+        function getDanaTersedia(pemasukan, pengeluaran) {
+            total = pemasukan - pengeluaran;
+            $('#dana-tersedia-total').text("Rp. " + formatRupiah(sum.toString()));
         }
 
-        function renderPemasukan() {
+        function getAllPemasukan() {
+            $.ajax({
+                url: '<?= base_url('pemasukan/get_data') ?>',
+                async: true,
+                type: 'POST',
+                dataType: 'json',
+                success: function(response) {
+                    var i;
+                    var sum = 0;
+                    if (response.length != 0) {
+                        for (i = 0; i < response.length; i++) {
+                            sum += parseInt(response[i].pengeluaran_total)
+                        }
+                    }
+                },
+            });
+            return sum;
+        }
+
+        function getAllPengeluaran() {
             $.ajax({
                 url: '<?= base_url('pengeluaran/get_data') ?>',
                 async: true,
@@ -276,25 +272,15 @@
                 dataType: 'json',
                 success: function(response) {
                     var i;
-                    var html = '';
+                    var sum = 0;
                     if (response.length != 0) {
-                        for (i = 0; i < 5; i++) {
-                            html += '<div class="card">';
-                            html += '<div class="card-content">';
-                            html += '<div class="card-body">';
-                            html += '<p class="text-right" style="text-align:right;">' + response[i].pengeluaran_tgl + '</p>';
-                            html += '<h6 class="">' + response[i].pengeluaran + '</h6>';
-                            html += '<p>' + response[i].pengeluaran_keterangan + '</p>';
-                            html += '<hr />';
-                            html += '<h6>Rp. ' + formatRupiah(response[i].pengeluaran_total) + '</h6>';
-                            html += '</div></div></div>';
+                        for (i = 0; i < response.length; i++) {
+                            sum += parseInt(response[i].pengeluaran_total)
                         }
-                        $('#data-pengeluaran').html(html);
-                    } else {
-                        $('#data-pengeluaran').html('<div class="card"> <div class="card-content"> <div class="card-body"> <h6 class="text-center">Tidak Ada Data</h6> </div></div></div>');
                     }
-                }
+                },
             });
+            return sum;
         }
 
         //Format Rupiah
