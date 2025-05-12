@@ -23,7 +23,7 @@
                         </div>
                         <div class="form-group position-relative has-icon-left">
                             <label class="label">To</label>
-                            <input type="date" class="form form-control" name="end_date" placeholder="Tanggal Mulai" require>
+                            <input type="date" class="form-control flatpickr-range mb-3 flatpickr-input" name="end_date" placeholder="Tanggal Mulai" require>
                         </div>
                         <div style="float: right;">
                             <button type="button" onclick="generateReport()" class="btn btn-sm btn-success">Generate</button>
