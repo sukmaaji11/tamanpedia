@@ -116,7 +116,11 @@
         $(document).ready(function() {
             $('.sidebar-item').removeClass('active');
             $('#sidebar-laporan').addClass('active');
-            $('.date-input').flatpickr();
+            $('.date-input').flatpickr({
+                enableTime: true,
+                altInput: true,
+                allowInput: true,
+            });
         });
 
 
