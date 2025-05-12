@@ -19,11 +19,11 @@
                     <form class="form form-vertical">
                         <div class="form-group position-relative has-icon-left">
                             <label class="label">From</label>
-                            <input type="date" name="start_date" placeholder="Tanggal Mulai" require>
+                            <input type="date" class="form form-control" name="start_date" placeholder="Tanggal Mulai" require>
                         </div>
                         <div class="form-group position-relative has-icon-left">
                             <label class="label">To</label>
-                            <input type="date" name="end_date" placeholder="Tanggal Mulai" require>
+                            <input type="date" class="form form-control" name="end_date" placeholder="Tanggal Mulai" require>
                         </div>
                         <div style="float: right;">
                             <button type="button" onclick="generateReport()" class="btn btn-sm btn-success">Generate</button>
