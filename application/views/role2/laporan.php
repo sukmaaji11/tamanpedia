@@ -151,12 +151,12 @@
                 <div class="mt-4">
                     <h5>Detailed Transactions</h5>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col mb-4">
                             <h6>Income Details</h6>
                             ${renderTransactionList(pemasukanData, 'success')}
                         </div>
                         <hr />
-                        <div class="col-md-6">
+                        <div class="col">
                             <h6>Expense Details</h6>
                             ${renderTransactionList(pengeluaranData, 'danger')}
                         </div>
@@ -172,119 +172,6 @@
             });
         }
 
-
-        function getTotalPengeluaran() {
-            var data = getData();
-            var i;
-            var sum = 0;
-
-            for (i = 0; i < data.length; i++) {
-                sum += parseInt(data[i].pengeluaran_total);
-            }
-            return sum;
-        }
-
-        function getDataByKategori(kategori) {
-            var data = getData();
-            var sum = 0;
-            if (data.length != 0) {
-                for (i = 0; i < data.length; i++) {
-                    if (data[i].pengeluaran_kategori == kategori) {
-                        sum += parseInt(data[i].pengeluaran_total);
-                    }
-                }
-            }
-            return sum;
-        }
-
-        function generateTable() {
-            var data = getData();
-            var html = "";
-            var no = 1;
-
-            if (data.length != 0) {
-                for (i = 0; i < data.length; i++) {
-                    html += '<tr>';
-                    html += '   <td class="text-xs" style="width:10%;">' + no++ + '</td>';
-                    html += '   <td class="text-xs">' + data[i].pengeluaran_tgl + '</td>';
-                    html += '   <td class="text-xs">' + data[i].pengeluaran_kategori + '</td>';
-                    html += '   <td class="text-xs">' + data[i].pengeluaran + '</td>';
-                    html += '   <td class="text-xs">' + data[i].pengeluaran_jenis_barang + '</td>';
-                    html += '   <td class="text-xs">' + data[i].pengeluaran_jumlah + '</td>';
-                    html += '   <td class="text-xs">' + data[i].pengeluaran_keterangan + '</td>';
-                    html += '   <td class="text-xs">Rp. ' + formatRupiah(data[i].pengeluaran_total) + '</td>';
-                    html += '</tr>';
-                }
-                $('#table-data').html(html);
-            } else {
-                html += '<tr>';
-                html += '<td colspan="5">Tidak Ada Data</td>';
-                html += '</tr>';
-
-                $('#table-data').html(html);
-
-            }
-        }
-
-        function generateMonthYear() {
-            var key = {
-                1: "Januari",
-                2: "Februari",
-                3: "Maret",
-                4: "April",
-                5: "Mei",
-                6: "Juni",
-                7: "Juli",
-                8: "Agustus",
-                9: "September",
-                10: "Oktober",
-                11: "November",
-                12: "Desember"
-            }
-
-            let m = $('select[name=select_bulan]').val();
-            let y = $('select[name=select_tahun]').val();
-
-            $("#monthyear").text(key[m] + " " + y);
-
-            var my = key[m] + "%20" + y;
-
-            return my;
-        }
-
-        function generateReport() {
-            var data = getData();
-
-            //Remove Class Invisible
-            $('.report').removeClass('invisible');
-
-            //Generate Month Year
-            generateMonthYear();
-
-            //Total Pengeluaran
-            var totalPengeluaran = getTotalPengeluaran();
-            $('#total_pengeluaran').text("Rp. " + formatRupiah(totalPengeluaran.toString()));
-            $("#pengeluaran_total_by_kategori").text("Rp. " + formatRupiah(totalPengeluaran.toString()));
-
-            //Total Pengeluaran By Kategori
-            var kt_kandang = getDataByKategori("KANDANG");
-            var kt_prodidh = getDataByKategori("PROD.(IDHAM)");
-            var kt_prodhar = getDataByKategori("PROD.(HARY)");
-            var kt_reklain = getDataByKategori("REK.LAIN");
-            var kt_lainlain = getDataByKategori("LAIN-LAIN");
-            var kt_proyek = getDataByKategori("PROYEK");
-            $('#pengeluaran_kandang').text("Rp." + formatRupiah(kt_kandang.toString()));
-            $('#pengeluaran_prodidh').text("Rp." + formatRupiah(kt_prodidh.toString()));
-            $('#pengeluaran_prodhar').text("Rp." + formatRupiah(kt_prodhar.toString()));
-            $('#pengeluaran_reklain').text("Rp." + formatRupiah(kt_reklain.toString()));
-            $('#pengeluaran_lainlain').text("Rp." + formatRupiah(kt_lainlain.toString()));
-            $('#pengeluaran_proyek').text("Rp." + formatRupiah(kt_proyek.toString()));
-
-
-            //Detail Pengeluaran
-            generateTable();
-
-        }
 
         //Fungsi Kirim Whatsapp
         function sendWhatsapp() {
