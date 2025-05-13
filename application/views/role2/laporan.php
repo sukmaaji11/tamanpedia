@@ -186,7 +186,7 @@
                 const totalPemasukan = pemasukanData.reduce((sum, item) => sum + parseFloat(item.pemasukan_total), 0);
                 const totalPengeluaran = pengeluaranData.reduce((sum, item) => sum + parseFloat(item.pengeluaran_total), 0);
                 const danaTersedia = totalPemasukan - totalPengeluaran;
-                var text = "Laporan%20Keuangan%20%Tamanpedia%20-%20" + startDate + "to" + endDate + "%0A%0ATotal%20Pengeluaran%20%3A%20Rp%20" + formatRupiah(totalPengeluaran.toString()) + "%0A%0ASelengkapnya%20%3A%20%0Asys.sasanangapak.com%2Flaporan%2Fpreview%2F" + m + "%2F" + y + ""
+                var text = "Laporan%20Keuangan%20%Tamanpedia%20-%20" + startDate + "to" + endDate + "%0A%0ATotal%20Pengeluaran%20%3A%20Rp%20" + formatRupiah(totalPengeluaran.toString()) + "%0A%0ASelengkapnya%20%3A%20%0Asys.sasanangapak.com%2Flaporan%2Fpreview%2F" + "%2F" + "";
                 var url = "https://wa.me/?text=" + text + "";
 
                 return window.open(url, '_blank');
