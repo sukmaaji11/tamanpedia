@@ -128,7 +128,7 @@
                             </div>
                         </div>
                     </div>
-                    
+                    <hr />
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
@@ -137,7 +137,7 @@
                             </div>
                         </div>
                     </div>
-                    
+                    <hr />
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
@@ -147,7 +147,7 @@
                         </div>
                     </div>
                 </div>
-                
+                <hr />
                 <div class="mt-4">
                     <h5>Detailed Transactions</h5>
                     <div class="row">
@@ -155,6 +155,7 @@
                             <h6>Income Details</h6>
                             ${renderTransactionList(pemasukanData, 'success')}
                         </div>
+                        <hr />
                         <div class="col-md-6">
                             <h6>Expense Details</h6>
                             ${renderTransactionList(pengeluaranData, 'danger')}
