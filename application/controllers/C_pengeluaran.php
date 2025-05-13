@@ -68,15 +68,18 @@ class C_pengeluaran extends CI_Controller
     }
 
 
-    // In Pengeluaran controller
+    // In Pengeluaran.php controller
     public function get_report()
     {
         $start_date = $this->input->post('start_date');
         $end_date = $this->input->post('end_date');
 
+        $this->db->select('tb_pengeluaran.*, tb_kategori.kategori as kategori_name');
+        $this->db->from('tb_pengeluaran');
+        $this->db->join('tb_kategori', 'tb_pengeluaran.pengeluaran_kategori = tb_kategori.kategori_id');
         $this->db->where('pengeluaran_tgl >=', $start_date);
         $this->db->where('pengeluaran_tgl <=', $end_date);
-        $data = $this->db->get('tb_pengeluaran')->result_array();
+        $data = $this->db->get()->result_array();
 
         echo json_encode($data);
     }

@@ -222,7 +222,7 @@
             ${data.map(item => `
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
-                        <strong>${item.pemasukan_kategori || item.pengeluaran_kategori}</strong><br>
+                        <strong>${item.kategori || item.kategori}</strong><br>
                         <small>${item.pemasukan_tgl || item.pengeluaran_tgl}</small>
                     </div>
                     <span class="text-${textClass}">${formatRupiah(item.pemasukan_total || item.pengeluaran_total)}</span>
