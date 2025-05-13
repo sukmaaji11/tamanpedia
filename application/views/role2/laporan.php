@@ -123,7 +123,7 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
-                                <h5>Total Income</h5>
+                                <h5>Total Pemasukan</h5>
                                 <div class="text-success">${formatRupiah(totalPemasukan.toString())}</div>
                             </div>
                         </div>
@@ -132,7 +132,7 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
-                                <h5>Total Expenses</h5>
+                                <h5>Total Pengeluaran</h5>
                                 <div class="text-danger">${formatRupiah(totalPengeluaran.toString())}</div>
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
-                                <h5>Available Funds</h5>
+                                <h5>Dana Tersedia</h5>
                                 <div class="text-primary">${formatRupiah(danaTersedia.toString())}</div>
                             </div>
                         </div>
@@ -175,11 +175,14 @@
 
         //Fungsi Kirim Whatsapp
         function sendWhatsapp() {
+            const startDate = $('[name="start_date"]').val();
+            const endDate = $('[name="end_date"]').val();
+
             var monthyear = generateMonthYear();
             var totalPengeluaran = getTotalPengeluaran();
             let m = $('select[name=select_bulan]').val();
             let y = $('select[name=select_tahun]').val();
-            var text = "Laporan%20Keuangan%20SN%20%0ANoorman%20-%20" + monthyear + "%0A%0ATotal%20Pengeluaran%20%3A%20Rp%20" + formatRupiah(totalPengeluaran.toString()) + "%0A%0ASelengkapnya%20%3A%20%0Asys.sasanangapak.com%2Flaporan%2Fpreview%2F" + m + "%2F" + y + ""
+            var text = "Laporan%20Keuangan%20%Tamanpedia%20-%20" + startDate + "to" + endDate + "%0A%0ATotal%20Pengeluaran%20%3A%20Rp%20" + formatRupiah(totalPengeluaran.toString()) + "%0A%0ASelengkapnya%20%3A%20%0Asys.sasanangapak.com%2Flaporan%2Fpreview%2F" + m + "%2F" + y + ""
             var url = "https://wa.me/?text=" + text + "";
 
             return window.open(url, '_blank');
