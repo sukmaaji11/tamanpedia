@@ -67,6 +67,20 @@ class C_pengeluaran extends CI_Controller
         echo json_encode($data, true);
     }
 
+
+    // In Pengeluaran controller
+    public function get_report()
+    {
+        $start_date = $this->input->post('start_date');
+        $end_date = $this->input->post('end_date');
+
+        $this->db->where('pengeluaran_tgl >=', $start_date);
+        $this->db->where('pengeluaran_tgl <=', $end_date);
+        $data = $this->db->get('tb_pengeluaran')->result_array();
+
+        echo json_encode($data);
+    }
+
     public function add()
     {
         // Force JSON response even for errors

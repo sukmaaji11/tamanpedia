@@ -146,6 +146,18 @@ class C_pemasukan extends CI_Controller
         exit;
     }
 
+    // In Pemasukan controller
+    public function get_report()
+    {
+        $start_date = $this->input->post('start_date');
+        $end_date = $this->input->post('end_date');
+
+        $this->db->where('pemasukan_tgl >=', $start_date);
+        $this->db->where('pemasukan_tgl <=', $end_date);
+        $data = $this->db->get('tb_pemasukan')->result_array();
+
+        echo json_encode($data);
+    }
 
     public function add()
     {

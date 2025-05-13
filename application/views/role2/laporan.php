@@ -118,32 +118,112 @@
             $('#sidebar-laporan').addClass('active');
         });
 
-
-        function getData() {
-            const tgl = new Date();
-            let m = $('select[name=select_bulan]').val();
-            let y = $('select[name=select_tahun]').val();
-
-            var datefrom = y + "-" + m + "-" + "01";
-            var dateto = y + "-" + m + "-" + "31";
-
-            var data = $.ajax({
-                global: false,
-                async: false,
+        // 1. Function to get Pengeluaran (Expenses) data
+        function getPengeluaranReport(startDate, endDate) {
+            return $.ajax({
+                url: '<?= base_url('pengeluaran/get_report') ?>',
                 type: 'POST',
-                url: '<?= base_url('pengeluaran/get_data_by_date') ?>',
                 dataType: 'json',
                 data: {
-                    'datefrom': datefrom,
-                    'dateto': dateto
-                },
-                success: function(response) {
-                    return response;
-                },
-            }).responseJSON;
-
-            return data;
+                    start_date: startDate,
+                    end_date: endDate
+                }
+            });
         }
+
+        // 2. Function to get Pemasukan (Income) data
+        function getPemasukanReport(startDate, endDate) {
+            return $.ajax({
+                url: '<?= base_url('pemasukan/get_report') ?>',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    start_date: startDate,
+                    end_date: endDate
+                }
+            });
+        }
+
+        // 3. Function to calculate and display report
+        function generateFinancialReport() {
+            const startDate = $('[name="start_date"]').val();
+            const endDate = $('[name="end_date"]').val();
+
+            if (!startDate || !endDate) {
+                alert('Please select both start and end dates');
+                return;
+            }
+
+            // Show loading indicator
+            $('#report').html('<div class="text-center">Loading...</div>');
+
+            Promise.all([
+                getPemasukanReport(startDate, endDate),
+                getPengeluaranReport(startDate, endDate)
+            ]).then(([pemasukanData, pengeluaranData]) => {
+                // Calculate totals
+                const totalPemasukan = pemasukanData.reduce((sum, item) => sum + parseFloat(item.pemasukan_total), 0);
+                const totalPengeluaran = pengeluaranData.reduce((sum, item) => sum + parseFloat(item.pengeluaran_total), 0);
+                const danaTersedia = totalPemasukan - totalPengeluaran;
+
+                // Build report HTML
+
+                const reportHtml = `
+            <div class="report-section">
+                <h4>Period: ${startDate} to ${endDate}</h4>
+                
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>Total Income</h5>
+                                <div class="text-success">${formatRupiah(totalPemasukan)}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>Total Expenses</h5>
+                                <div class="text-danger">${formatRupiah(totalPengeluaran)}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>Available Funds</h5>
+                                <div class="text-primary">${formatRupiah(danaTersedia)}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-4">
+                    <h5>Detailed Transactions</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>Income Details</h6>
+                            ${renderTransactionList(pemasukanData, 'success')}
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Expense Details</h6>
+                            ${renderTransactionList(pengeluaranData, 'danger')}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+                $('.report').removeClass('invisible');
+                $('.report').html(reportHtml);
+            }).catch(error => {
+                console.error('Error:', error);
+                $('#.report').html('<div class="alert alert-danger">Error loading report data</div>');
+            });
+        }
+
 
         function getTotalPengeluaran() {
             var data = getData();
