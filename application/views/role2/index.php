@@ -285,9 +285,15 @@
             Promise.all([getAllPemasukan(), getAllPengeluaran()])
                 .then(([totalPemasukan, totalPengeluaran]) => {
                     const danaTersedia = totalPemasukan - totalPengeluaran;
-                    $('#dana-tersedia-total').text(
-                        "Rp. " + formatRupiah(danaTersedia.toString())
-                    );
+                    if (danaTersedia < 0) {
+                        $('#dana-tersedia-total').text(
+                            "Rp. - " + formatRupiah(danaTersedia.toString())
+                        );
+                    } else {
+                        $('#dana-tersedia-total').text(
+                            "Rp. " + formatRupiah(danaTersedia.toString())
+                        );
+                    }
                 })
                 .catch(error => {
                     console.error(error);
