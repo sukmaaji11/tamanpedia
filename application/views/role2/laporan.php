@@ -170,7 +170,7 @@
 
                 const reportHtml = `
             <div class="report-section">
-                <h4>Period: ${startDate} to ${endDate}</h4>
+                <p>Period: ${startDate} to ${endDate}</p>
                 
                 <div class="row">
                     <div class="col-md-4">
@@ -376,8 +376,8 @@
             ${data.map(item => `
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
-                        <strong>${item.pemasukan?.kategori || item.pengeluaran?.kategori}</strong><br>
-                        <small>${item.tgl_transaksi}</small>
+                        <strong>${item.pemasukan?.pemasukan_kategori || item.pengeluaran?.pengeluaran_kategori}</strong><br>
+                        <small>$${item.pemasukan?.pemasukan_tgl || item.pengeluaran?.pengeluaran_tgl}</small>
                     </div>
                     <span class="text-${textClass}">${formatRupiah(item.pemasukan_total || item.pengeluaran_total)}</span>
                 </li>
