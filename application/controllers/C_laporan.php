@@ -44,8 +44,8 @@ class C_laporan extends CI_Controller
     public function preview()
     {
         $data = [
-            'month' => $this->uri->segment(3),
-            'year' => $this->uri->segment(4),
+            'start_date' => $this->uri->segment(3),
+            'end_date' => $this->uri->segment(4),
         ];
 
         $this->load->view('preview.php', $data);
