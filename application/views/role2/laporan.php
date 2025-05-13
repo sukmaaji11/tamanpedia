@@ -177,7 +177,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5>Total Income</h5>
-                                <div class="text-success">${formatRupiah(totalPemasukan)}</div>
+                                <div class="text-success">${formatRupiah(totalPemasukan.toString())}</div>
                             </div>
                         </div>
                     </div>
@@ -186,7 +186,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5>Total Expenses</h5>
-                                <div class="text-danger">${formatRupiah(totalPengeluaran)}</div>
+                                <div class="text-danger">${formatRupiah(totalPengeluaran.toString())}</div>
                             </div>
                         </div>
                     </div>
@@ -195,7 +195,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h5>Available Funds</h5>
-                                <div class="text-primary">${formatRupiah(danaTersedia)}</div>
+                                <div class="text-primary">${formatRupiah(danaTersedia.toString())}</div>
                             </div>
                         </div>
                     </div>
@@ -220,7 +220,7 @@
                 $('.report').html(reportHtml);
             }).catch(error => {
                 console.error('Error:', error);
-                $('#.report').html('<div class="alert alert-danger">Error loading report data</div>');
+                $('.report').html('<div class="alert alert-danger">Error loading report data</div>');
             });
         }
 
