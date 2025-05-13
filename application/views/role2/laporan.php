@@ -367,4 +367,28 @@
             rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
             return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
         }
+        // Helper function to render transaction lists
+        function renderTransactionList(data, textClass) {
+            if (data.length === 0) return '<div class="text-muted">No transactions found</div>';
+
+            return `
+        <ul class="list-group">
+            ${data.map(item => `
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>${item.pemasukan?.kategori || item.pengeluaran?.kategori}</strong><br>
+                        <small>${item.tgl_transaksi}</small>
+                    </div>
+                    <span class="text-${textClass}">${formatRupiah(item.pemasukan_total || item.pengeluaran_total)}</span>
+                </li>
+            `).join('')}
+        </ul>
+    `;
+        }
+
+        // Add event listener for report generation
+        $('#generate-report-btn').click(function(e) {
+            e.preventDefault();
+            generateFinancialReport();
+        });
     </script>
