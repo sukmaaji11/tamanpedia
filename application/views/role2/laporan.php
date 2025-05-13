@@ -43,71 +43,18 @@
                         <p><?= $user['username'] ?> - <span id="monthyear"></span></p>
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <h6>Total Pengeluaran</h6>
-                            <p class="h3" id="total_pengeluaran"></p>
-                            <hr />
-                            <h6>Kategori Pengeluaran</h6>
-                            <div class="table-responsive">
-                                <table class="table table-xs">
-                                    <tr>
-                                        <td>KANDANG</td>
-                                        <td id="pengeluaran_kandang"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>PROD.(IDHAM)</td>
-                                        <td id="pengeluaran_prodidh"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>PROD.(HARY)</td>
-                                        <td id="pengeluaran_prodhar"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>REK.LAIN</td>
-                                        <td id="pengeluaran_reklain"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>LAIN-LAIN</td>
-                                        <td id="pengeluaran_lainlain"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>PROYEK</td>
-                                        <td id="pengeluaran_proyek"></td>
-                                    </tr>
-                                    <tfoot>
-                                        <tr>
-                                            <td><b>Total</b></td>
-                                            <td id="pengeluaran_total_by_kategori"></td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                            <hr />
-                            <h6>Detail Pengeluaran</h6>
-                            <div class=" table-responsive">
-                                <table class="table table-xs text-nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Tgl</th>
-                                            <th>Kategori</th>
-                                            <th>Pengeluaran</th>
-                                            <th>Jenis Barang</th>
-                                            <th>Jumlah Barang</th>
-                                            <th>Keterangan</th>
-                                            <th>Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="table-data">
+                        <div class="report-data">
 
-                                    </tbody>
-                                </table>
-                            </div>
+
                         </div>
+
+                        <hr />
+
                     </div>
                 </div>
             </div>
-        </section>
+    </div>
+    </section>
     </div>
     </div>
     </div>
@@ -217,10 +164,10 @@
             </div>
         `;
                 $('.report').removeClass('invisible');
-                $('.report').html(reportHtml);
+                $('.report-data').html(reportHtml);
             }).catch(error => {
                 console.error('Error:', error);
-                $('.report').html('<div class="alert alert-danger">Error loading report data</div>');
+                $('.report-data').html('<div class="alert alert-danger">Error loading report data</div>');
             });
         }
 
@@ -377,7 +324,7 @@
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <strong>${item.pemasukan?.pemasukan_kategori || item.pengeluaran?.pengeluaran_kategori}</strong><br>
-                        <small>$${item.pemasukan?.pemasukan_tgl || item.pengeluaran?.pengeluaran_tgl}</small>
+                        <small>${item.pemasukan?.pemasukan_tgl || item.pengeluaran?.pengeluaran_tgl}</small>
                     </div>
                     <span class="text-${textClass}">${formatRupiah(item.pemasukan_total || item.pengeluaran_total)}</span>
                 </li>
