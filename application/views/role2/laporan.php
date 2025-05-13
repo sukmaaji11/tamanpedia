@@ -26,7 +26,7 @@
                             <input type="date" class="form form-control" name="end_date" required>
                         </div>
                         <div style="float: right;">
-                            <button type="button" onclick="generateReport()" class="btn btn-sm btn-success">Generate</button>
+                            <button type="button" id="generate-report-btn" class="btn btn-sm btn-success">Generate</button>
                         </div>
                     </form>
                 </div>
