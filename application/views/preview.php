@@ -45,7 +45,7 @@
                                     <h6 class="card-title">Laporan Keuangan <button onclick="sendWhatsapp()" type="button" class="btn btn-sm btn-primary"> <i class="bi bi-share"></i>
                                             Share</button>
                                     </h6>
-                                    <p>Admin - <span id="monthyear"></span></p>
+                                    <p>Admin - <span id="monthyear">2025</span></p>
                                 </div>
                                 <div class="card-body">
                                     <div class="report-data">
@@ -138,7 +138,9 @@
 
                 const reportHtml = `
             <div class="report-section">
-                <p>Period: ${startDate} to ${endDate}</p>
+                <p>Period: </p>
+                <br />
+                <p class="text-small">${startDate} to ${endDate}</p>
                 
                 <div class="row">
                     <div class="col-md-4">
@@ -173,12 +175,12 @@
                     <h5>Detailed Transactions</h5>
                     <div class="row">
                         <div class="col mb-4">
-                            <h6>Income Details</h6>
+                            <h6>Detail Pemasukan</h6>
                             ${renderTransactionList(pemasukanData, 'success')}
                         </div>
                         <hr />
                         <div class="col">
-                            <h6>Expense Details</h6>
+                            <h6>Detail Pengeluaran</h6>
                             ${renderTransactionList(pengeluaranData, 'danger')}
                         </div>
                     </div>
@@ -207,7 +209,7 @@
                 const totalPemasukan = pemasukanData.reduce((sum, item) => sum + parseFloat(item.pemasukan_total), 0);
                 const totalPengeluaran = pengeluaranData.reduce((sum, item) => sum + parseFloat(item.pengeluaran_total), 0);
                 const danaTersedia = totalPemasukan - totalPengeluaran;
-                var text = "Laporan%20Keuangan%20%Tamanpedia%20-%20" + startDate + " " + "to" + " " + endDate + "%0A%0ATotal%20Pengeluaran%20%3A%20Rp%20" + formatRupiah(danaTersedia.toString()) + "%0A%0ATotal%20Pemasukan%20%3A%20Rp%20" + formatRupiah(totalPemasukan.toString()) + "%0A%0ADana%20Tersedia%20%3A%20Rp%20" + formatRupiah(totalPengeluaran.toString()) + "%0A%0ASelengkapnya%20%3A%20%0Atamanpedia.bra-dev.com%2Flaporan%2Fpreview%2F" + startDate + "%2F" + endDate + "";
+                var text = "Laporan%20Keuangan%20Tamanpedia%20-%20" + startDate + " " + "to" + " " + endDate + "%0A%0ATotal%20Pengeluaran%20%3A%20Rp%20" + formatRupiah(danaTersedia.toString()) + "%0A%0ATotal%20Pemasukan%20%3A%20Rp%20" + formatRupiah(totalPemasukan.toString()) + "%0A%0ADana%20Tersedia%20%3A%20Rp%20" + formatRupiah(totalPengeluaran.toString()) + "%0A%0ASelengkapnya%20%3A%20%0Atamanpedia.bra-dev.com%2Flaporan%2Fpreview%2F" + startDate + "%2F" + endDate + "";
                 var url = "https://wa.me/?text=" + text + "";
 
                 return window.open(url, '_blank');
