@@ -102,7 +102,7 @@
             }
 
             // Show loading indicator
-            $('.report').html('<div class="text-center">Loading...</div>');
+            $('.report-data').html('<div class="text-center">Loading...</div>');
 
             Promise.all([
                 getPemasukanReport(startDate, endDate),
