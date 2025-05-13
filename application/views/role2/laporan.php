@@ -19,11 +19,11 @@
                     <form class="form form-vertical">
                         <div class="form-group position-relative has-icon-left">
                             <label class="label">From</label>
-                            <input type="date" class="form form-control" name="start_date" placeholder="Tanggal Mulai" require>
+                            <input type="date" class="form form-control" name="start_date" required>
                         </div>
                         <div class="form-group position-relative has-icon-left">
                             <label class="label">To</label>
-                            <input type="date" class="form-control flatpickr mb-3 flatpickr-input date-input" name="end_date" placeholder="Tanggal Mulai" require>
+                            <input type="date" class="form form-control" name="end_date" required>
                         </div>
                         <div style="float: right;">
                             <button type="button" onclick="generateReport()" class="btn btn-sm btn-success">Generate</button>
@@ -116,10 +116,6 @@
         $(document).ready(function() {
             $('.sidebar-item').removeClass('active');
             $('#sidebar-laporan').addClass('active');
-            $('.date-input').flatpickr({
-                altInput: true,
-                allowInput: true,
-            });
         });
 
 
