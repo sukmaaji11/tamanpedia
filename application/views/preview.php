@@ -21,8 +21,8 @@
     </head>
 
     <body>
-        <input type="hidden" name="month" value="<?= $start_date; ?>">
-        <input type="hidden" name="year" value="<?= $end_date ?>">
+        <input type="hidden" name="start_date" value="<?= $start_date; ?>">
+        <input type="hidden" name="end_date" value="<?= $end_date ?>">
         <div id="app">
             <div id="main" style="margin-left: 0px;">
                 <div class="page-heading">
@@ -45,7 +45,7 @@
                                     <h6 class="card-title">Laporan Keuangan <button onclick="sendWhatsapp()" type="button" class="btn btn-sm btn-primary"> <i class="bi bi-share"></i>
                                             Share</button>
                                     </h6>
-                                    <p><?= $user['username'] ?> - <span id="monthyear"></span></p>
+                                    <p>Admin - <span id="monthyear"></span></p>
                                 </div>
                                 <div class="card-body">
                                     <div class="report-data">
