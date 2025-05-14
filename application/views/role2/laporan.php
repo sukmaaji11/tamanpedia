@@ -129,7 +129,7 @@
             ]).then(([pemasukanData, pengeluaranData]) => {
                 const reportHtml = `
                     <div class="report-section">
-                        <h4>Financial Report: ${formatDateRange(startDate, endDate)}</h4>
+                        <h4>Financial Report: ${formatDate(startDate) - formatDate(endDate)}</h4>
                         
                         <!-- Income Section -->
                         ${renderFinancialSection('Income', pemasukanData.summary, pemasukanData.details, 'success')}
@@ -295,9 +295,9 @@
 
         function formatDateRange(start, end) {
             return $ {
-                formatDate(start)
+                formatDate(start);
             } - $ {
-                formatDate(end)
+                formatDate(end);
             };
         }
 
@@ -306,20 +306,20 @@
             if (data.length === 0) return '<div class="text-muted">No transactions found</div>';
 
             return `
-        <ul class="list-group">
-            ${data.map(item => `
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <div>
-                        <strong>${item.pemasukan || item.pengeluaran}</strong><br>
-                        <small>${item.pemasukan_keterangan || item.pengeluaran_keterangan}</small>
-                        <br />
-                        <small>${item.pemasukan_tgl || item.pengeluaran_tgl}</small>
-                    </div>
-                    <span class="text-${textClass}">${formatRupiah(item.pemasukan_total || item.pengeluaran_total)}</span>
-                </li>
-            `).join('')}
-        </ul>
-    `;
+                <ul class="list-group">
+                    ${data.map(item => `
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>${item.pemasukan || item.pengeluaran}</strong><br>
+                                <small>${item.pemasukan_keterangan || item.pengeluaran_keterangan}</small>
+                                <br />
+                                <small>${item.pemasukan_tgl || item.pengeluaran_tgl}</small>
+                            </div>
+                            <span class="text-${textClass}">${formatRupiah(item.pemasukan_total || item.pengeluaran_total)}</span>
+                        </li>
+                    `).join('')}
+                </ul>
+            `;
         }
 
         // Add event listener for report generation
