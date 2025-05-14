@@ -297,7 +297,49 @@
             });
         }
 
+        function renderTotalSummary(pemasukanSummary, pengeluaranSummary) {
+            // Calculate totals
+            const totalPemasukan = pemasukanSummary.reduce((sum, item) => sum + parseFloat(item.total), 0);
+            const totalPengeluaran = pengeluaranSummary.reduce((sum, item) => sum + parseFloat(item.total), 0);
+            const danaTersedia = totalPemasukan - totalPengeluaran;
 
+            return `
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div class="card border-success">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Income</h5>
+                                <div class="display-6 text-success">
+                                    ${formatRupiah(totalPemasukan.toString(), true)}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card border-danger">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Expenses</h5>
+                                <div class="display-6 text-danger">
+                                    ${formatRupiah(totalPengeluaran.toString(), true)}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-3">
+                        <div class="card border-primary">
+                            <div class="card-body">
+                                <h5 class="card-title">Available Funds</h5>
+                                <div class="display-6 text-primary">
+                                    ${formatRupiah(danaTersedia.toString(), true)}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
 
         // Helper function to render transaction lists
         function renderTransactionList(data, textClass) {
