@@ -215,6 +215,7 @@
             rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
             return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
         }
+
         // Helper function to render transaction lists
         function renderTransactionList(data, textClass) {
             if (data.length === 0) return '<div class="text-muted">No transactions found</div>';
@@ -224,7 +225,8 @@
             ${data.map(item => `
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
-                        <strong>${item.kategori_name || item.kategori_name}</strong><br>
+                        <strong>${item.pemasukan || item.pengeluaran}</strong><br>
+                        <small>${item.pemasukan_keterangan || item.pengeluaran_keterangan}</small>
                         <small>${item.pemasukan_tgl || item.pengeluaran_tgl}</small>
                     </div>
                     <span class="text-${textClass}">${formatRupiah(item.pemasukan_total || item.pengeluaran_total)}</span>
