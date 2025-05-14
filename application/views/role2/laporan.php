@@ -144,6 +144,9 @@
                     </div>
                 `;
                 $('.report-data').html(reportHtml);
+            }).catch(error => {
+                console.error('Error:', error);
+                $('.report-data').html('<div class="alert alert-danger">Error loading report data</div>');
             });
         }
 
