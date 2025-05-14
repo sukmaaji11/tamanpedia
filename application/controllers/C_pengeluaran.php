@@ -74,14 +74,29 @@ class C_pengeluaran extends CI_Controller
         $start_date = $this->input->post('start_date');
         $end_date = $this->input->post('end_date');
 
+        // Get Category Summaries
+        $this->db->select('tb_kategori.kategori, 
+        SUM(tb_pengeluaran.pengeluaran_total) as total,
+        COUNT(*) as transaction_count');
+        $this->db->from('tb_pengeluaran');
+        $this->db->join('tb_kategori', 'tb_pengeluaran.pengeluaran_kategori = tb_kategori.kategori_id');
+        $this->db->where('pengeluaran_tgl >=', $start_date);
+        $this->db->where('pengeluaran_tgl <=', $end_date);
+        $this->db->group_by('tb_pengeluaran.pengeluaran_kategori');
+        $summary = $this->db->get()->result_array();
+
+        // Get Detailed Transactions
         $this->db->select('tb_pengeluaran.*, tb_kategori.kategori as kategori_name');
         $this->db->from('tb_pengeluaran');
         $this->db->join('tb_kategori', 'tb_pengeluaran.pengeluaran_kategori = tb_kategori.kategori_id');
         $this->db->where('pengeluaran_tgl >=', $start_date);
         $this->db->where('pengeluaran_tgl <=', $end_date);
-        $data = $this->db->get()->result_array();
+        $details = $this->db->get()->result_array();
 
-        echo json_encode($data);
+        echo json_encode([
+            'summary' => $summary,
+            'details' => $details
+        ]);
     }
 
     public function add()
