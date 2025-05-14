@@ -90,6 +90,7 @@
         $(document).ready(function() {
             $('.sidebar-item').removeClass('active');
             $('#sidebar-laporan').addClass('active');
+            generateFinancialReport();
         });
 
         // 1. Function to get Pengeluaran (Expenses) data
