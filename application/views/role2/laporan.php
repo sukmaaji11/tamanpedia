@@ -131,18 +131,19 @@
             ]).then(([pemasukanData, pengeluaranData]) => {
                 const reportHtml = `
                     <div class="report-section">
-                        <h4>Financial Report: ${formatDate(startDate) - formatDate(endDate)}</h4>
+                        <h4>Financial Report: ${formatDate(startDate)} - ${formatDate(endDate)}</h4>
+                                      
+                        <!-- Totals Section -->
+                        <div class="totals-section mt-4">
+                            ${renderTotalSummary(pemasukanData.summary, pengeluaranData.summary)}
+                        </div>
                         
                         <!-- Income Section -->
                         ${renderFinancialSection('Income', pemasukanData.summary, pemasukanData.details, 'success')}
                         
                         <!-- Expenses Section -->
                         ${renderFinancialSection('Expenses', pengeluaranData.summary, pengeluaranData.details, 'danger')}
-                        
-                        <!-- Totals Section -->
-                        <div class="totals-section mt-4">
-                            ${renderTotalSummary(pemasukanData.summary, pengeluaranData.summary)}
-                        </div>
+          
                     </div>
                 `;
                 $('.report-data').html(reportHtml);
