@@ -1,12 +1,5 @@
     <style>
         /* Custom Styling */
-        .report-section {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-        }
-
         .section-title {
             color: #2c3e50;
             border-bottom: 2px solid #eee;
@@ -91,7 +84,6 @@
             $('.sidebar-item').removeClass('active');
             $('#sidebar-laporan').addClass('active');
             $('.report').removeClass('invisible');
-            generateFinancialReport();
         });
 
         // 1. Function to get Pengeluaran (Expenses) data
@@ -307,11 +299,11 @@
 
             return `
                 <div class="row">
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-4">
                         <div class="card border-success">
                             <div class="card-body">
-                                <h5 class="card-title">Total Income</h5>
-                                <div class="display-6 text-success">
+                                <h5 class="card-title">Total Pemasukan</h5>
+                                <div class="display-10 text-success">
                                     ${formatRupiah(totalPemasukan.toString(), true)}
                                 </div>
                             </div>
@@ -321,8 +313,8 @@
                     <div class="col-md-4 mb-3">
                         <div class="card border-danger">
                             <div class="card-body">
-                                <h5 class="card-title">Total Expenses</h5>
-                                <div class="display-6 text-danger">
+                                <h5 class="card-title">Total Pengeluaran</h5>
+                                <div class="display-10 text-danger">
                                     ${formatRupiah(totalPengeluaran.toString(), true)}
                                 </div>
                             </div>
@@ -332,8 +324,8 @@
                     <div class="col-md-4 mb-3">
                         <div class="card border-primary">
                             <div class="card-body">
-                                <h5 class="card-title">Available Funds</h5>
-                                <div class="display-6 text-primary">
+                                <h5 class="card-title">Dana Tersedia</h5>
+                                <div class="display-10 text-primary">
                                     ${formatRupiah(danaTersedia.toString(), true)}
                                 </div>
                             </div>
