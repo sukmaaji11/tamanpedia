@@ -297,13 +297,7 @@
             });
         }
 
-        function formatDateRange(start, end) {
-            return $ {
-                formatDate(start);
-            } - $ {
-                formatDate(end);
-            };
-        }
+
 
         // Helper function to render transaction lists
         function renderTransactionList(data, textClass) {
