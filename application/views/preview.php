@@ -134,7 +134,8 @@
                 const totalPengeluaran = pengeluaranData.reduce((sum, item) => sum + parseFloat(item.pengeluaran_total), 0);
                 const danaTersedia = totalPemasukan - totalPengeluaran;
 
-                console.log(danaTersedia);
+                console.log(danaTersedia.toString());
+                console.log(formatRupiah(danaTersedia.toString()));
 
                 // Build report HTML
 
