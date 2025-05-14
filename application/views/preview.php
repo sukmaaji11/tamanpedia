@@ -134,12 +134,13 @@
                 const totalPengeluaran = pengeluaranData.reduce((sum, item) => sum + parseFloat(item.pengeluaran_total), 0);
                 const danaTersedia = totalPemasukan - totalPengeluaran;
 
+                console.log(danaTersedia);
+
                 // Build report HTML
 
                 const reportHtml = `
-            <div class="report-section">
+     <div class="report-section">
                 <p>Period: </p>
-                <br />
                 <p class="text-small">${startDate} to ${endDate}</p>
                 
                 <div class="row">
@@ -172,7 +173,7 @@
                 </div>
                 <hr />
                 <div class="mt-4">
-                    <h5>Detailed Transactions</h5>
+                    <h5 class="mb-4">Detail Transaksis</h5>
                     <div class="row">
                         <div class="col mb-4">
                             <h6>Detail Pemasukan</h6>
@@ -241,12 +242,13 @@
             if (data.length === 0) return '<div class="text-muted">No transactions found</div>';
 
             return `
-        <ul class="list-group">
+         <ul class="list-group">
             ${data.map(item => `
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
                         <strong>${item.pemasukan || item.pengeluaran}</strong><br>
                         <small>${item.pemasukan_keterangan || item.pengeluaran_keterangan}</small>
+                        <br />
                         <small>${item.pemasukan_tgl || item.pengeluaran_tgl}</small>
                     </div>
                     <span class="text-${textClass}">${formatRupiah(item.pemasukan_total || item.pengeluaran_total)}</span>
