@@ -19,8 +19,8 @@
                     <h6 class="font-extrabold mb-0" id="dana-tersedia-total">112.000</h6>
                 </div>
                 <div class="d-block text-center mb-3">
-                    <a href="<?= base_url('pemasukan') ?>" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Pemasukan</a>
-                    <a href="<?= base_url('pengeluaran') ?>" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modal_kategori">+ Pengeluaran</a>
+                    <a href="<?= base_url('pemasukan') ?>" class="btn btn-sm btn-success">+ Pemasukan</a>
+                    <a href="<?= base_url('pengeluaran') ?>" class="btn btn-sm btn-danger">+ Pengeluaran</a>
                 </div>
             </div>
 

@@ -118,7 +118,6 @@
                 const reportHtml = `
             <div class="report-section">
                 <p>Period: </p>
-                <br />
                 <p class="text-small">${startDate} to ${endDate}</p>
                 
                 <div class="row">
@@ -151,7 +150,7 @@
                 </div>
                 <hr />
                 <div class="mt-4">
-                    <h5>Detailed Transactions</h5>
+                    <h5 class="mb-4">Detail Transaksis</h5>
                     <div class="row">
                         <div class="col mb-4">
                             <h6>Detail Pemasukan</h6>
@@ -227,6 +226,7 @@
                     <div>
                         <strong>${item.pemasukan || item.pengeluaran}</strong><br>
                         <small>${item.pemasukan_keterangan || item.pengeluaran_keterangan}</small>
+                        <br />
                         <small>${item.pemasukan_tgl || item.pengeluaran_tgl}</small>
                     </div>
                     <span class="text-${textClass}">${formatRupiah(item.pemasukan_total || item.pengeluaran_total)}</span>
