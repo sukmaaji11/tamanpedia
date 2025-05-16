@@ -19,6 +19,25 @@
         <script src="<?= base_url('assets/js/jquery/jquery.min.js') ?>"></script>
         <script src="<?= base_url('assets/js/jquery/jquery.price_format.min.js') ?>"></script>
     </head>
+    <style>
+        /* Custom Styling */
+        .section-title {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+
+        .totals-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+    </style>
 
     <body>
         <input type="hidden" name="start_date" value="<?= $start_date; ?>">
