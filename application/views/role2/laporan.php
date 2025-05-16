@@ -149,7 +149,7 @@
         // Helper function to render complete financial section
         function renderFinancialSection(title, summaryData, detailsData, themeColor) {
             return `
-                <div class="financial-section mt-4 mb-2">
+                <div class="financial-section mt-5 mb-2">
                     <h5 class="section-title">${title}</h5>
                     <div class="category-summary mb-4">
                         <h6>By Category</h6>

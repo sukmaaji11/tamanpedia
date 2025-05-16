@@ -123,7 +123,8 @@
             ]).then(([pemasukanData, pengeluaranData]) => {
                 const reportHtml = `
                     <div class="report-section">
-                        <h4>Financial Report: ${formatDate(startDate)} - ${formatDate(endDate)}</h4>
+                        <p class="periode">Periode : </p>
+                        <p>${formatDate(startDate)} - ${formatDate(endDate)}</p>
                                       
                         <!-- Totals Section -->
                         <div class="totals-section mt-4">
@@ -131,10 +132,10 @@
                         </div>
                         
                         <!-- Income Section -->
-                        ${renderFinancialSection('Income', pemasukanData.summary, pemasukanData.details, 'success')}
+                        ${renderFinancialSection('Pemasukan', pemasukanData.summary, pemasukanData.details, 'success')}
                         
                         <!-- Expenses Section -->
-                        ${renderFinancialSection('Expenses', pengeluaranData.summary, pengeluaranData.details, 'danger')}
+                        ${renderFinancialSection('Pengeluaran', pengeluaranData.summary, pengeluaranData.details, 'danger')}
           
                     </div>
                 `;
@@ -148,9 +149,8 @@
         // Helper function to render complete financial section
         function renderFinancialSection(title, summaryData, detailsData, themeColor) {
             return `
-                <div class="financial-section mb-5">
+                <div class="financial-section mt-5 mb-2">
                     <h5 class="section-title">${title}</h5>
-                    
                     <div class="category-summary mb-4">
                         <h6>By Category</h6>
                         <div class="row">
@@ -171,8 +171,8 @@
 
         function renderSummaryCard(item, themeColor) {
             return `
-                <div class="col-md-4 mb-3">
-                    <div class="card border-${themeColor}">
+                <div class="col-md-4">
+                    <div class="card bg-light border-${themeColor}">
                         <div class="card-body">
                             <div class="d-flex justify-content-between">
                                 <div>
@@ -195,7 +195,7 @@
 
             return `
                 <div class="table-responsive">
-                    <table class="table table-hover">
+                    <table class="table text-nowrap table-hover">
                         <thead class="table-${themeColor}">
                             <tr>
                                 <th>Date</th>
@@ -221,6 +221,51 @@
             `;
         }
 
+        function renderTotalSummary(pemasukanSummary, pengeluaranSummary) {
+            // Calculate totals
+            const totalPemasukan = pemasukanSummary.reduce((sum, item) => sum + parseFloat(item.total), 0);
+            const totalPengeluaran = pengeluaranSummary.reduce((sum, item) => sum + parseFloat(item.total), 0);
+            const danaTersedia = totalPemasukan - totalPengeluaran;
+
+            return `
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card border-success">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Pemasukan</h5>
+                                <div class="display-10 text-success">
+                                    ${formatRupiah(totalPemasukan.toString(), true)}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card border-danger">
+                            <div class="card-body">
+                                <h5 class="card-title">Total Pengeluaran</h5>
+                                <div class="display-10 text-danger">
+                                    ${formatRupiah(totalPengeluaran.toString(), true)}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card border-primary">
+                            <div class="card-body">
+                                <h5 class="card-title">Dana Tersedia</h5>
+                                <div class="display-10 text-primary">
+                                    ${formatRupiah(danaTersedia.toString(), true)}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+
         //Fungsi Kirim Whatsapp
         function sendWhatsapp() {
             const startDate = $('[name="start_date"]').val();
@@ -230,9 +275,11 @@
                 getPemasukanReport(startDate, endDate),
                 getPengeluaranReport(startDate, endDate)
             ]).then(([pemasukanData, pengeluaranData]) => {
+                var tempPemasukan = pemasukanData.summary;
+                var tempPengeluaran = pengeluaranData.summary;
                 // Calculate totals
-                const totalPemasukan = pemasukanData.summary.reduce((sum, item) => sum + parseFloat(item.pemasukan_total), 0);
-                const totalPengeluaran = pengeluaranData.summary.reduce((sum, item) => sum + parseFloat(item.pengeluaran_total), 0);
+                const totalPemasukan = tempPemasukan.reduce((sum, item) => sum + parseFloat(item.total), 0);
+                const totalPengeluaran = tempPengeluaran.reduce((sum, item) => sum + parseFloat(item.total), 0);
                 const danaTersedia = totalPemasukan - totalPengeluaran;
                 var text = "Laporan%20Keuangan%20Tamanpedia%20-%20" + startDate + " " + "to" + " " + endDate + "%0A%0ATotal%20Pengeluaran%20%3A%20Rp%20" + formatRupiah(danaTersedia.toString()) + "%0A%0ATotal%20Pemasukan%20%3A%20Rp%20" + formatRupiah(totalPemasukan.toString()) + "%0A%0ADana%20Tersedia%20%3A%20Rp%20" + formatRupiah(totalPengeluaran.toString()) + "%0A%0ASelengkapnya%20%3A%20%0Atamanpedia.bra-dev.com%2Flaporan%2Fpreview%2F" + startDate + "%2F" + endDate + "";
                 var url = "https://wa.me/?text=" + text + "";
@@ -243,7 +290,6 @@
                 console.error('Error:', error);
             });
         }
-
 
         //Format Rupiah
         function formatRupiah(angka, prefix) {
@@ -292,49 +338,6 @@
             });
         }
 
-        function renderTotalSummary(pemasukanSummary, pengeluaranSummary) {
-            // Calculate totals
-            const totalPemasukan = pemasukanSummary.reduce((sum, item) => sum + parseFloat(item.total), 0);
-            const totalPengeluaran = pengeluaranSummary.reduce((sum, item) => sum + parseFloat(item.total), 0);
-            const danaTersedia = totalPemasukan - totalPengeluaran;
-
-            return `
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card border-success">
-                            <div class="card-body">
-                                <h5 class="card-title">Total Pemasukan</h5>
-                                <div class="display-10 text-success">
-                                    ${formatRupiah(totalPemasukan.toString(), true)}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4 mb-3">
-                        <div class="card border-danger">
-                            <div class="card-body">
-                                <h5 class="card-title">Total Pengeluaran</h5>
-                                <div class="display-10 text-danger">
-                                    ${formatRupiah(totalPengeluaran.toString(), true)}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4 mb-3">
-                        <div class="card border-primary">
-                            <div class="card-body">
-                                <h5 class="card-title">Dana Tersedia</h5>
-                                <div class="display-10 text-primary">
-                                    ${formatRupiah(danaTersedia.toString(), true)}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
 
         // Helper function to render transaction lists
         function renderTransactionList(data, textClass) {
@@ -355,26 +358,5 @@
                     `).join('')}
                 </ul>
             `;
-        }
-
-        // Helper function to render transaction lists
-        function renderTransactionList(data, textClass) {
-            if (data.length === 0) return '<div class="text-muted">No transactions found</div>';
-
-            return `
-         <ul class="list-group">
-            ${data.map(item => `
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <div>
-                        <strong>${item.pemasukan || item.pengeluaran}</strong><br>
-                        <small>${item.pemasukan_keterangan || item.pengeluaran_keterangan}</small>
-                        <br />
-                        <small>${item.pemasukan_tgl || item.pengeluaran_tgl}</small>
-                    </div>
-                    <span class="text-${textClass}">${formatRupiah(item.pemasukan_total || item.pengeluaran_total)}</span>
-                </li>
-            `).join('')}
-        </ul>
-    `;
         }
     </script>
