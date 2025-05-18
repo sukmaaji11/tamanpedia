@@ -48,7 +48,16 @@
                         </a>
                         <ul class="submenu submenu-closed">
                             <li class="submenu-item  ">
-                                <a href="extra-component-avatar.html" class="submenu-link">Avatar</a>
+                                <a href="<?= base_url('app') ?>" class="submenu-link">APBD Desa</a>
+                            </li>
+                            <li class="submenu-item  ">
+                                <a href="<?= base_url('app') ?>" class="submenu-link">Penduduk</a>
+                            </li>
+                            <li class="submenu-item  ">
+                                <a href="<?= base_url('app') ?>" class="submenu-link">Deskripsi</a>
+                            </li>
+                            <li class="submenu-item  ">
+                                <a href="<?= base_url('app') ?>" class="submenu-link">Gallery</a>
                             </li>
                         </ul>
                     </li>
