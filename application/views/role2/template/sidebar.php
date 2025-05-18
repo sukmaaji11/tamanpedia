@@ -40,6 +40,18 @@
                             <span>Dashboard</span>
                         </a>
                     </li>
+                    <!-- Sidebar Site -->
+                    <li class="sidebar-item has-sub" id="sidebar-sites">
+                        <a href="<?= base_url('app') ?>" class='sidebar-link'>
+                            <i class="bi bi-browser-chrome"></i>
+                            <span>Sites</span>
+                        </a>
+                        <ul class="submenu submenu-closed">
+                            <li class="submenu-item  ">
+                                <a href="extra-component-avatar.html" class="submenu-link">Avatar</a>
+                            </li>
+                        </ul>
+                    </li>
                     <!-- Sidebar Title -->
                     <li class="sidebar-item" id="sidebar-pemasukan">
                         <a href="<?= base_url('pemasukan') ?>" class='sidebar-link'>
