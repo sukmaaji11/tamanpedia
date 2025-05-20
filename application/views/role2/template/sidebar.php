@@ -52,7 +52,7 @@
                             </li>
                             <li class="submenu-item  ">
                                 <a href="<?= base_url('app') ?>" class="submenu-link">Penduduk</a>
-                            </li>
+                            </li>`
                             <li class="submenu-item  ">
                                 <a href="<?= base_url('app') ?>" class="submenu-link">Deskripsi</a>
                             </li>

@@ -92,7 +92,7 @@
       <div class="container section-title" data-aos="fade-up">
         <h2>Tentang Kami</h2>
         <p>
-          Assalamu'alaikum, Sugeng Rawuh di Kampung Tamansari "MRIKI".. Mandiri Religius Inovatif Kompak dan BerIman.
+          Assalamu'alaikum, Sugeng Rawuh di Kampung Tamansari "<b>MRIKI</b>".. Mandiri Religius Inovatif Kompak dan BerIman.
         </p>
       </div><!-- End Section Title -->
 
@@ -214,28 +214,20 @@
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
           <h2>Sejarah Desa</h2>
-          <p>
-            Sejarah Kampung Tamansari Krandegan sebagian (Parakancanggah) Banjarnegara, berdasar kepingan kisah yang terkumpul turun temurun dari para sesepuh, tak lepas dari Perang Jawa yang dipimpin Pangeran Diponegoro pada saat memimpin perang melawan Kolonial, Pangeran Diponegoro memiliki strategi, yang selalu berpindah-pindah tempat, tujuannya agar gelora perlawanan dari rakyat terhadap kolonial terjadi dimana-mana serta menghindari agar sulit ditangkap. Daerahnya yang hamparan dikelilingi rawa-rawa serta terdapat sumber mata air tempuran saat itu menjadi tempat yang cukup aman untuk mengatur strategi bagi para pengikut dan pasukan Sentot Prawirodirjo yang merupakan Panglima termuda Pangeran Diponegoro waktu itu, terbukti terdapat juga adanya petilasan Mbah Nurijan yang juga merupakan Kyai sekaligus sahabat Pangeran Diponegoro disekitar Tamansari, dikisahkan turun temurun dahulu sebagian pengikut akhirnya tinggal menetap dan mengajarkan nilai-nilai ajaran luhur.
-            Namun penamaan Tamansari lebih unik lagi karena terdapat sebuah Pemandian Keputren dari era-Mataram bahkan ditengarai lebih tua, yang hingga saat tulisan ini dibuat jejaknya masih kokoh berupa komplek pemandian dengan struktur dan dinding dari bebatuan serta gerbang gapura yang menjadi saksi dari perkampungan yang syarat sejarah ini.
-            inilah yang mempengaruhi secara demografi masyarakat Tamansari Krandegan Banjarnegara secara budaya berkarakter spiritualis,rendah hati, berjiwa seni tinggi dan bermental juang. serta dari profesi sebagai besar warganya merupakan pedagang, enterpreneur, dan juga pendidik.
-
-            ~DJR</p>
         </div><!-- End Section Title -->
 
         <div class="container">
-
           <div class="row">
-
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-              <h3 class="resume-title">Sumary</h3>
-
               <div class="resume-item pb-0">
-                <h4>Tamanpedia</h4>
-                <p><em>Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.</em></p>
+                <h4>Sejarah Kampung Tamansari Krandegan sebagian (Parakancanggah) Banjarnegara</h4>
+                <p><em>
+                    berdasar kepingan kisah yang terkumpul turun temurun dari para sesepuh, tak lepas dari Perang Jawa yang dipimpin Pangeran Diponegoro pada saat memimpin perang melawan Kolonial, Pangeran Diponegoro memiliki strategi, yang selalu berpindah-pindah tempat, tujuannya agar gelora perlawanan dari rakyat terhadap kolonial terjadi dimana-mana serta menghindari agar sulit ditangkap. Daerahnya yang hamparan dikelilingi rawa-rawa serta terdapat sumber mata air tempuran saat itu menjadi tempat yang cukup aman untuk mengatur strategi bagi para pengikut dan pasukan Sentot Prawirodirjo yang merupakan Panglima termuda Pangeran Diponegoro waktu itu, terbukti terdapat juga adanya petilasan Mbah Nurijan yang juga merupakan Kyai sekaligus sahabat Pangeran Diponegoro disekitar Tamansari, dikisahkan turun temurun dahulu sebagian pengikut akhirnya tinggal menetap dan mengajarkan nilai-nilai ajaran luhur.
+                    Namun penamaan Tamansari lebih unik lagi karena terdapat sebuah Pemandian Keputren dari era-Mataram bahkan ditengarai lebih tua, yang hingga saat tulisan ini dibuat jejaknya masih kokoh berupa komplek pemandian dengan struktur dan dinding dari bebatuan serta gerbang gapura yang menjadi saksi dari perkampungan yang syarat sejarah ini.
+                    inilah yang mempengaruhi secara demografi masyarakat Tamansari Krandegan Banjarnegara secara budaya berkarakter spiritualis,rendah hati, berjiwa seni tinggi dan bermental juang. serta dari profesi sebagai besar warganya merupakan pedagang, enterpreneur, dan juga pendidik.
+                  </em></p>
                 <ul>
-                  <li>Portland par 127,Orlando, FL</li>
-                  <li>(123) 456-7891</li>
-                  <li>alice.barkley@example.com</li>
+                  <li>~DJR</li>
                 </ul>
               </div><!-- Edn Resume Item -->
             </div>
