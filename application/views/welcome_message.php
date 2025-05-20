@@ -220,8 +220,9 @@
           <div class="row">
             <div class="" data-aos="fade-up" data-aos-delay="100">
               <div class="resume-item pb-0">
-                <h4>Sejarah Kampung Tamansari Krandegan sebagian (Parakancanggah) Banjarnegara</h4>
-                <p><em>
+                <h4 class="text-center">Sejarah Kampung Tamansari Krandegan sebagian (Parakancanggah) Banjarnegara</h4>
+                <hr />
+                <p class="text-center"><em>
                     berdasar kepingan kisah yang terkumpul turun temurun dari para sesepuh, tak lepas dari Perang Jawa yang dipimpin Pangeran Diponegoro pada saat memimpin perang melawan Kolonial, Pangeran Diponegoro memiliki strategi, yang selalu berpindah-pindah tempat, tujuannya agar gelora perlawanan dari rakyat terhadap kolonial terjadi dimana-mana serta menghindari agar sulit ditangkap. Daerahnya yang hamparan dikelilingi rawa-rawa serta terdapat sumber mata air tempuran saat itu menjadi tempat yang cukup aman untuk mengatur strategi bagi para pengikut dan pasukan Sentot Prawirodirjo yang merupakan Panglima termuda Pangeran Diponegoro waktu itu, terbukti terdapat juga adanya petilasan Mbah Nurijan yang juga merupakan Kyai sekaligus sahabat Pangeran Diponegoro disekitar Tamansari, dikisahkan turun temurun dahulu sebagian pengikut akhirnya tinggal menetap dan mengajarkan nilai-nilai ajaran luhur.
                     Namun penamaan Tamansari lebih unik lagi karena terdapat sebuah Pemandian Keputren dari era-Mataram bahkan ditengarai lebih tua, yang hingga saat tulisan ini dibuat jejaknya masih kokoh berupa komplek pemandian dengan struktur dan dinding dari bebatuan serta gerbang gapura yang menjadi saksi dari perkampungan yang syarat sejarah ini.
                     inilah yang mempengaruhi secara demografi masyarakat Tamansari Krandegan Banjarnegara secara budaya berkarakter spiritualis,rendah hati, berjiwa seni tinggi dan bermental juang. serta dari profesi sebagai besar warganya merupakan pedagang, enterpreneur, dan juga pendidik.
