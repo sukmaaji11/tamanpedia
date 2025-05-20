@@ -189,7 +189,7 @@
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">
           <div class="row skills-content skills-animation">
-            <div class="col-lg-12">
+            <div class="">
               <div class="progress">
                 <span class="skill"><span>Pendapatan Desa</span> <i class="val">100%</i></span>
                 <div class="progress-bar-wrap">
@@ -218,7 +218,7 @@
 
         <div class="container">
           <div class="row">
-            <div class="col-lg-12" data-aos="fade-up" data-aos-delay="100">
+            <div class="" data-aos="fade-up" data-aos-delay="100">
               <div class="resume-item pb-0">
                 <h4>Sejarah Kampung Tamansari Krandegan sebagian (Parakancanggah) Banjarnegara</h4>
                 <p><em>
