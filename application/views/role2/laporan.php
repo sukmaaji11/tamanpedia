@@ -285,7 +285,6 @@
                 var url = "https://wa.me/?text=" + text + "";
 
                 return window.open(url, '_blank');
-                Nur - Hidayah Tamansari
             }).catch(error => {
                 console.error('Error:', error);
             });
