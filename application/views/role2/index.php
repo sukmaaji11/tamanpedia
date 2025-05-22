@@ -6,7 +6,7 @@
                         <img src="<?= base_url('assets/image/logo-sn.png') ?>" alt="Logo" width="100" height="75">
                     </div>
                     <h3>Dashboard</h3>
-                    <p class="text-subtitle text-muted">Tamanpedia</p>
+                    <p class="text-subtitle text-muted">Tamansari RT 02 RW 05</p>
                 </div>
             </div>
         </div>
