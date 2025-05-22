@@ -262,8 +262,8 @@
               <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
                 <img src="<?= base_url("assets/template/landing/") ?>assets/img/masonry-portfolio/gallery_1.jpeg" class="img-fluid" alt="">
                 <div class="portfolio-info">
-                  <h4>App 1</h4>
-                  <p>Lorem ipsum, dolor sit</p>
+                  <h4>Kesenian</h4>
+                  <p></p>
                   <a href="<?= base_url("assets/template/landing/") ?>assets/img/masonry-portfolio/gallery_1.jpeg" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
@@ -272,8 +272,8 @@
               <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
                 <img src="<?= base_url("assets/template/landing/") ?>assets/img/masonry-portfolio/gallery_2.jpeg" class="img-fluid" alt="">
                 <div class="portfolio-info">
-                  <h4>Product 1</h4>
-                  <p>Lorem ipsum, dolor sit</p>
+                  <h4>Kegiatan Masyarakat</h4>
+                  <p></p>
                   <a href="<?= base_url("assets/template/landing/") ?>assets/img/masonry-portfolio/gallery_2.jpeg" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
@@ -282,8 +282,8 @@
               <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
                 <img src="<?= base_url("assets/template/landing/") ?>assets/img/masonry-portfolio/gallery_3.jpeg" class="img-fluid" alt="">
                 <div class="portfolio-info">
-                  <h4>Branding 1</h4>
-                  <p>Lorem ipsum, dolor sit</p>
+                  <h4>Kesenian</h4>
+                  <p></p>
                   <a href="<?= base_url("assets/template/landing/") ?>assets/img/masonry-portfolio/gallery_3.jpeg" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
@@ -303,7 +303,7 @@
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
           <h2>Layanan</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <p>Layanan Terpadu Kampung Tamansari RT02 RW05 Kel.Krandegan Banjarnegara</p>
         </div><!-- End Section Title -->
 
         <div class="container">
@@ -349,9 +349,9 @@
                   <i class="bi bi-easel"></i>
                 </div>
                 <a href="#" class="stretched-link">
-                  <h3>Ledo Markt</h3>
+                  <h3>Pendataan Penduduk</h3>
                 </a>
-                <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
+                <p>RT melakukan pendataan penduduk untuk mengetahui jumlah dan karakteristik warga, yang berguna untuk penyusunan program pemerintah dan bantuan sosial.</p>
               </div>
             </div><!-- End Service Item -->
 
@@ -364,9 +364,9 @@
                   <i class="bi bi-bounding-box-circles"></i>
                 </div>
                 <a href="#" class="stretched-link">
-                  <h3>Asperiores Commodit</h3>
+                  <h3>Penyampaian Informasi</h3>
                 </a>
-                <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
+                <p>RT berperan sebagai saluran informasi antara pemerintah dan masyarakat, menyampaikan peraturan, program, dan kegiatan pemerintah kepada warga.</p>
                 <a href="#" class="stretched-link"></a>
               </div>
             </div><!-- End Service Item -->
@@ -380,9 +380,10 @@
                   <i class="bi bi-calendar4-week icon"></i>
                 </div>
                 <a href="#" class="stretched-link">
-                  <h3>Velit Doloremque</h3>
+                  <h3>3. Pelaksanaan Kegiatan Kemasyarakatan</h3>
                 </a>
-                <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
+                <p>
+                  RT menggerakkan kegiatan kemasyarakatan seperti gotong royong, arisan, dan kegiatan sosial lainnya yang bertujuan untuk mempererat tali silaturahmi dan meningkatkan partisipasi warga.</p>
                 <a href="#" class="stretched-link"></a>
               </div>
             </div><!-- End Service Item -->
@@ -396,9 +397,73 @@
                   <i class="bi bi-chat-square-text"></i>
                 </div>
                 <a href="#" class="stretched-link">
-                  <h3>Dolori Architecto</h3>
+                  <h3>Penyelesaian Masalah Sosial</h3>
                 </a>
-                <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
+                <p>RT membantu menyelesaikan masalah sosial yang terjadi di lingkungan RT, seperti perselisihan antar warga atau masalah lain yang membutuhkan solusi.</p>
+                <a href="#" class="stretched-link"></a>
+              </div>
+            </div><!-- End Service Item -->
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+              <div class="service-item item-pink position-relative">
+                <div class="icon">
+                  <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,566.797414625762C385.7384707136149,576.1784315230908,478.7894351017131,552.8928747891023,531.9192734346935,484.94944893311C584.6109503024035,417.5663521118492,582.489472248146,322.67544863468447,553.9536738515405,242.03673114598146C529.1557734026468,171.96086150256528,465.24506316201064,127.66468636344209,395.9583748389544,100.7403814666027C334.2173773831606,76.7482773500951,269.4350130405921,84.62216499799875,207.1952322260088,107.2889140133804C132.92018162631612,134.33871894543012,41.79353780512637,160.00259165414826,22.644507872594943,236.69541883565114C3.319112789854554,314.0945973066697,72.72355303640163,379.243833228382,124.04198916343866,440.3218312028393C172.9286146004772,498.5055451809895,224.45579914871206,558.5317968840102,300,566.797414625762"></path>
+                  </svg>
+                  <i class="bi bi-chat-square-text"></i>
+                </div>
+                <a href="#" class="stretched-link">
+                  <h3>Pemeliharaan Keamanan dan Ketertiban</h3>
+                </a>
+                <p>RT berperan dalam menjaga keamanan lingkungan, mengawasi potensi gangguan keamanan, serta membantu mengatasi masalah keamanan yang terjadi.</p>
+                <a href="#" class="stretched-link"></a>
+              </div>
+            </div><!-- End Service Item -->
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+              <div class="service-item item-pink position-relative">
+                <div class="icon">
+                  <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,566.797414625762C385.7384707136149,576.1784315230908,478.7894351017131,552.8928747891023,531.9192734346935,484.94944893311C584.6109503024035,417.5663521118492,582.489472248146,322.67544863468447,553.9536738515405,242.03673114598146C529.1557734026468,171.96086150256528,465.24506316201064,127.66468636344209,395.9583748389544,100.7403814666027C334.2173773831606,76.7482773500951,269.4350130405921,84.62216499799875,207.1952322260088,107.2889140133804C132.92018162631612,134.33871894543012,41.79353780512637,160.00259165414826,22.644507872594943,236.69541883565114C3.319112789854554,314.0945973066697,72.72355303640163,379.243833228382,124.04198916343866,440.3218312028393C172.9286146004772,498.5055451809895,224.45579914871206,558.5317968840102,300,566.797414625762"></path>
+                  </svg>
+                  <i class="bi bi-chat-square-text"></i>
+                </div>
+                <a href="#" class="stretched-link">
+                  <h3>Pelayanan Administrasi</h3>
+                </a>
+                <p>RT membantu pelayanan administrasi pemerintahan di tingkat RT, seperti pengurusan kartu tanda penduduk (KTP), surat keterangan, dan keperluan administrasi lainnya.</p>
+                <a href="#" class="stretched-link"></a>
+              </div>
+            </div><!-- End Service Item -->
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+              <div class="service-item item-pink position-relative">
+                <div class="icon">
+                  <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,566.797414625762C385.7384707136149,576.1784315230908,478.7894351017131,552.8928747891023,531.9192734346935,484.94944893311C584.6109503024035,417.5663521118492,582.489472248146,322.67544863468447,553.9536738515405,242.03673114598146C529.1557734026468,171.96086150256528,465.24506316201064,127.66468636344209,395.9583748389544,100.7403814666027C334.2173773831606,76.7482773500951,269.4350130405921,84.62216499799875,207.1952322260088,107.2889140133804C132.92018162631612,134.33871894543012,41.79353780512637,160.00259165414826,22.644507872594943,236.69541883565114C3.319112789854554,314.0945973066697,72.72355303640163,379.243833228382,124.04198916343866,440.3218312028393C172.9286146004772,498.5055451809895,224.45579914871206,558.5317968840102,300,566.797414625762"></path>
+                  </svg>
+                  <i class="bi bi-chat-square-text"></i>
+                </div>
+                <a href="#" class="stretched-link">
+                  <h3>Penyaluran Bantuan Sosial</h3>
+                </a>
+                <p>RT membantu penyaluran bantuan sosial dari pemerintah kepada warga yang berhak menerima.</p>
+                <a href="#" class="stretched-link"></a>
+              </div>
+            </div><!-- End Service Item -->
+
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+              <div class="service-item item-pink position-relative">
+                <div class="icon">
+                  <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,566.797414625762C385.7384707136149,576.1784315230908,478.7894351017131,552.8928747891023,531.9192734346935,484.94944893311C584.6109503024035,417.5663521118492,582.489472248146,322.67544863468447,553.9536738515405,242.03673114598146C529.1557734026468,171.96086150256528,465.24506316201064,127.66468636344209,395.9583748389544,100.7403814666027C334.2173773831606,76.7482773500951,269.4350130405921,84.62216499799875,207.1952322260088,107.2889140133804C132.92018162631612,134.33871894543012,41.79353780512637,160.00259165414826,22.644507872594943,236.69541883565114C3.319112789854554,314.0945973066697,72.72355303640163,379.243833228382,124.04198916343866,440.3218312028393C172.9286146004772,498.5055451809895,224.45579914871206,558.5317968840102,300,566.797414625762"></path>
+                  </svg>
+                  <i class="bi bi-chat-square-text"></i>
+                </div>
+                <a href="#" class="stretched-link">
+                  <h3>Pengembangan Lingkungan</h3>
+                </a>
+                <p>RT juga berperan dalam pengembangan lingkungan, seperti penataan lingkungan, penanaman pohon, dan kegiatan kebersihan.</p>
                 <a href="#" class="stretched-link"></a>
               </div>
             </div><!-- End Service Item -->
