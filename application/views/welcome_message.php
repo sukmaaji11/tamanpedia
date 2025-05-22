@@ -264,7 +264,7 @@
                 <div class="portfolio-info">
                   <h4>Kesenian</h4>
                   <p></p>
-                  <a href="<?= base_url("assets/template/landing/") ?>assets/img/masonry-portfolio/gallery_1.jpeg" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="<?= base_url("assets/template/landing/") ?>assets/img/masonry-portfolio/gallery_1.jpeg" title="Kesenian" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div><!-- End Portfolio Item -->
@@ -274,17 +274,27 @@
                 <div class="portfolio-info">
                   <h4>Kegiatan Masyarakat</h4>
                   <p></p>
-                  <a href="<?= base_url("assets/template/landing/") ?>assets/img/masonry-portfolio/gallery_2.jpeg" title="Product 1" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="<?= base_url("assets/template/landing/") ?>assets/img/masonry-portfolio/gallery_2.jpeg" title="Kegiatan Masyarakat" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div><!-- End Portfolio Item -->
 
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
                 <img src="<?= base_url("assets/template/landing/") ?>assets/img/masonry-portfolio/gallery_3.jpeg" class="img-fluid" alt="">
                 <div class="portfolio-info">
                   <h4>Kesenian</h4>
                   <p></p>
-                  <a href="<?= base_url("assets/template/landing/") ?>assets/img/masonry-portfolio/gallery_3.jpeg" title="Branding 1" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="<?= base_url("assets/template/landing/") ?>assets/img/masonry-portfolio/gallery_3.jpeg" title="Kesenian" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+              </div><!-- End Portfolio Item -->
+
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
+                <img src="<?= base_url("assets/template/landing/") ?>assets/img/masonry-portfolio/gallery_4.jpeg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>Kegiatan Masyarakat</h4>
+                  <p></p>
+                  <a href="<?= base_url("assets/template/landing/") ?>assets/img/masonry-portfolio/gallery_4.jpeg" title="Kegiatan Masyarakat" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                   <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
                 </div>
               </div><!-- End Portfolio Item -->
@@ -586,7 +596,7 @@
               <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
                 <i class="bi bi-telephone flex-shrink-0"></i>
                 <div>
-                  <h3>Call Us</h3>
+                  <h3>Kontak Pengurus</h3>
                   <p>+62 821-3675-6399 Sidi Hartono (ketua RT) </p>
                   <p> +62 815-4230-2969 Dika Julia R (sekretaris 1) </p>
                   <p> +62 896-9959-7282 Aditya Angga (Sekretaris 2) </p>
